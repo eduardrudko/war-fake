@@ -1,7 +1,5 @@
 package warfake.war.battlefield;
 
-import java.util.Random;
-
 public abstract class Squad {
 	private static final short NUMBER_OF_MAGES = 1;
 	private static final short NUMBER_OF_ARCHERS = 3;
@@ -17,9 +15,5 @@ public abstract class Squad {
 
 	protected static short getNumberOfWarriors() {
 		return NUMBER_OF_WARRIORS;
-	}
-
-	public static void main(String[] args) {
-
 	}
 }

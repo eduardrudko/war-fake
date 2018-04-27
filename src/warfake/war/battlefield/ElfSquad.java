@@ -8,8 +8,11 @@ import warfake.war.armedforce.ElfWarrior;
 
 public class ElfSquad extends Squad {
 	private ArrayList<ElfMage> elfMages = new ArrayList<>();
+	private ArrayList<ElfMage> superElfMages = new ArrayList<>();
 	private ArrayList<ElfArcher> elfArchers = new ArrayList<>();
+	private ArrayList<ElfArcher> superElfArchers = new ArrayList<>();
 	private ArrayList<ElfWarrior> elfWarriors = new ArrayList<>();
+	private ArrayList<ElfWarrior> superElfWarriors = new ArrayList<>();
 
 	public ElfSquad() {
 		for (int i = 0; i < Squad.getNumberOfMages(); i++) {
@@ -27,11 +30,23 @@ public class ElfSquad extends Squad {
 		return elfMages;
 	}
 
+	public ArrayList<ElfMage> getSuperElfMages() {
+		return superElfMages;
+	}
+
 	public ArrayList<ElfArcher> getElfArchers() {
 		return elfArchers;
 	}
 
+	public ArrayList<ElfArcher> getSuperElfArchers() {
+		return superElfArchers;
+	}
+
 	public ArrayList<ElfWarrior> getElfWarriors() {
 		return elfWarriors;
+	}
+
+	public ArrayList<ElfWarrior> getSuperElfWarriors() {
+		return superElfWarriors;
 	}
 }

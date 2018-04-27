@@ -17,7 +17,7 @@ public class ElfMage extends Elf {
 
 	public void heal(Person target) {
 		if (mana != 0) {
-			int currentHealth = target.getHealth();
+			float currentHealth = target.getHealth();
 			target.setHealth(currentHealth + ((currentHealth * healPower) / 100));
 			mana -= healPower;
 		} else {
@@ -27,16 +27,25 @@ public class ElfMage extends Elf {
 	}
 
 	public void enhanceSkill(ElfArcher archer) {
-		int currentAccuracy = archer.getAccuracy();
-		archer.setAccuracy(currentAccuracy + ((currentAccuracy * enhanceArcherPower)) / 100);
+		enhanceSkill(archer, enhanceArcherPower);
 	}
 
 	public void enhanceSkill(ElfWarrior warrior) {
-		int currentAccuracy = warrior.getAccuracy();
-		warrior.setAccuracy(currentAccuracy + ((currentAccuracy * enhanceWarriorPower)) / 100);
+		enhanceSkill(warrior, enhanceWarriorPower);
+	}
+	
+	private void enhanceSkill(Person target, int enhancePower) {
+		int currentAccuracy = target.getAccuracy();
+		target.setAccuracy(currentAccuracy + ((currentAccuracy * enhancePower)) / 100);
 	}
 
 	public static void main(String[] args) {
+		ElfMage elf = new ElfMage();
+		ElfArcher elf2 = new ElfArcher();
+		elf2.setHealth(5);
+		System.out.println(elf2.getHealth());
+		elf.heal(elf2);
+		System.out.println(elf2.getHealth());
 
 	}
 }

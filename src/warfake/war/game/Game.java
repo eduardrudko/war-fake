@@ -4,42 +4,46 @@ import java.util.Random;
 
 import warfake.war.battlefield.ElfSquad;
 import warfake.war.battlefield.HumanSquad;
-import warfake.war.battlefield.Squad;
+import warfake.war.battlefield.OrcSquad;
+import warfake.war.battlefield.UndeadSquad;
+import warfake.war.race.Elf;
 
 public class Game {
 
 	public static void main(String[] args) {
 		Game game = new Game();
-		game.spawnFirstSquad();
-		game.spawnSecondSquad();
-
+		game.spawnAlianceSquad();
+		game.spawnHordeSquad();
+		
 	}
 
 	private static final short NUMBER_OF_ALIANCE_SQUADS = 2;
 	private static final short NUMBER_OF_HORDE_SQUADS = 2;
-	Squad aliance;
-	Squad horde;
+	private ElfSquad elfSquad;
+	private HumanSquad humanSquad;
+	private OrcSquad orcSquad;
+	private UndeadSquad undeadSquad;
 
-	public void spawnFirstSquad() {
+	public void spawnAlianceSquad() {
 		Random random = new Random();
 		switch (random.nextInt(NUMBER_OF_ALIANCE_SQUADS) + 1) {
 		case 1:
-			aliance = new ElfSquad();
+			elfSquad = new ElfSquad();
 			break;
 		case 2:
-			aliance = new HumanSquad();
+			humanSquad = new HumanSquad();
 			break;
 		}
 	}
 
-	public void spawnSecondSquad() {
+	public void spawnHordeSquad() {
 		Random random = new Random();
 		switch (random.nextInt(NUMBER_OF_HORDE_SQUADS) + 1) {
 		case 1:
-			horde = new ElfSquad();
+			orcSquad = new OrcSquad();
 			break;
 		case 2:
-			horde = new HumanSquad();
+			undeadSquad = new UndeadSquad();
 			break;
 		}
 	}

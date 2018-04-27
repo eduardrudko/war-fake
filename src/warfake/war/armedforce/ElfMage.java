@@ -46,6 +46,10 @@ public class ElfMage extends Elf {
 		System.out.println(elf2.getHealth());
 		elf.heal(elf2);
 		System.out.println(elf2.getHealth());
+		
+		System.out.println();
+		System.out.println(elf2.getAccuracy());
+		
 
 	}
 }

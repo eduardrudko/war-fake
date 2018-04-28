@@ -6,14 +6,13 @@ import warfake.war.battlefield.ElfSquad;
 import warfake.war.battlefield.HumanSquad;
 import warfake.war.battlefield.OrcSquad;
 import warfake.war.battlefield.UndeadSquad;
-import warfake.war.race.Elf;
+import warfake.war.classes.Elf;
 
 public class Game {
 
 	public static void main(String[] args) {
 		Game game = new Game();
-		game.spawnAlianceSquad();
-		game.spawnHordeSquad();
+		game.spawnSquads();
 		
 	}
 
@@ -30,7 +29,7 @@ public class Game {
 		return logs;
 	}
 
-	public void spawnAlianceSquad() {
+	public void spawnSquads() {
 		switch (random.nextInt(NUMBER_OF_ALIANCE_SQUADS) + 1) {
 		case 1:
 			elfSquad = new ElfSquad();
@@ -39,9 +38,6 @@ public class Game {
 			humanSquad = new HumanSquad();
 			break;
 		}
-	}
-
-	public void spawnHordeSquad() {
 		switch (random.nextInt(NUMBER_OF_HORDE_SQUADS) + 1) {
 		case 1:
 			orcSquad = new OrcSquad();

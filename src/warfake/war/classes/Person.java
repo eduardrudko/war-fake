@@ -55,32 +55,32 @@ public abstract class Person {
 	}
 	
 	protected void logStrikeAction(int turnId, String attackerName, String actionType,  Person target, float strikePowerr, int accuracy) {
-		System.out.println("Move #" + turnId + ". " + attackerName + actionType + target.getName() + " with the " + accuracy + "% accuracy" + " and deal "
-				+ Math.round((strikePowerr * accuracy) / 100) + " damage! ");
-		Game.logs.append("Move #" + turnId + ". " + attackerName + actionType + target.getName() + " with the " + accuracy + "% accuracy" + " and deal "
-				+ Math.round((strikePowerr * accuracy) / 100) + " damage! ");
-		System.out.println(target.getName() + " has " + target.getHealth() + " HP left!");
+		System.out.println("[Move #" + turnId + "] " + attackerName + actionType + target.getName() + " with the " + accuracy + "% accuracy" + " and deal "
+				+ Math.round((strikePowerr * accuracy) / 100) + " damage!");
+		Game.logs.append("[Move #" + turnId + "] " + attackerName + actionType + target.getName() + " with the " + accuracy + "% accuracy" + " and deal "
+				+ Math.round((strikePowerr * accuracy) / 100) + " damage!");
+		System.out.println(target.getName() + " has " + target.getHealth() + " HP left!\n");
 		Game.logs.append(target.getName() + " has " + target.getHealth() + " HP left!");
 	}
 	
 	protected void logHealAction(int turnId, String name, Person target, float currentHealth, float healPower) {
-		System.out.println("Move #" + turnId + ". " + name + " lays a healing power upon " + target.getName() + " and heals " + ((MAX_HP * healPower) / 100) + " HP!");
-		Game.logs.append("Move #" + turnId + ". " + name + " lays a healing power upon " + target.getName() + " and heals " + ((MAX_HP * healPower) / 100) + " HP!");
-		System.out.println(target.getName() + " has " + target.getHealth() + " HP now!");
+		System.out.println("[Move #" + turnId + "] " + name + " lays a healing power upon " + target.getName() + " and heals " + ((MAX_HP * healPower) / 100) + " HP!");
+		Game.logs.append("[Move #" + turnId + "] " + name + " lays a healing power upon " + target.getName() + " and heals " + ((MAX_HP * healPower) / 100) + " HP!");
+		System.out.println(target.getName() + " has " + target.getHealth() + " HP now!\n");
 		Game.logs.append(target.getName() + " has " + target.getHealth() + " HP now!");
 	}
 	
 	protected void logEnhanceActionForRangers(int turnId, String name, Person target, int currentAccuracy, int enhancePower) {
-		System.out.println("Move #" + turnId + ". " + name + " lays an enhancing power upon " + target.getName() + " and increaces accuracy by " + enhancePower +  "%");
-		Game.logs.append("Move #" + turnId + ". " + name + " lays an enhancing power upon " + target.getName() + " and increaces accuracy by " + enhancePower +  "%");
-		System.out.println(target.getName() + " has +" + target.getAccuracy() + "% accuracy passive bonus now!");
+		System.out.println("[Move #" + turnId + "] " + name + " lays an enhancing power upon " + target.getName() + " and increaces accuracy by " + enhancePower +  "%");
+		Game.logs.append("[Move #" + turnId + "] " + name + " lays an enhancing power upon " + target.getName() + " and increaces accuracy by " + enhancePower +  "%");
+		System.out.println(target.getName() + " has +" + target.getAccuracy() + "% accuracy passive bonus now!\n");
 		Game.logs.append(target.getName() + " has +" + target.getAccuracy() + "% accuracy passive bonus now!");
 	}
 	
 	protected void logEnhanceActionForMelee(int turnId, String name, Person target, int currentPower, int enhancePower) {
-		System.out.println("Move #" + turnId + ". " + name + " lays an enhancing power upon " + target.getName() + " and increaces melee power by " + enhancePower +  "%");
-		Game.logs.append("Move #" + turnId + ". " + name + " lays an enhancing power upon " + target.getName() + " and increaces melee power by " + enhancePower +  "%");
-		System.out.println(target.getName() + " has " + target.getSwordStrikePower() + " attack power now!");
+		System.out.println("[Move #" + turnId + "] " + name + " lays an enhancing power upon " + target.getName() + " and increaces melee power by " + enhancePower +  "%");
+		Game.logs.append("[Move #" + turnId + "] " + name + " lays an enhancing power upon " + target.getName() + " and increaces melee power by " + enhancePower +  "%");
+		System.out.println(target.getName() + " has " + target.getSwordStrikePower() + " attack power now!\n");
 		Game.logs.append(target.getName() + " has " + target.getSwordStrikePower() + " attack power now!");
 	}
 	

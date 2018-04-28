@@ -6,25 +6,25 @@ import warfake.war.battlefield.ElfSquad;
 import warfake.war.battlefield.HumanSquad;
 import warfake.war.battlefield.OrcSquad;
 import warfake.war.battlefield.UndeadSquad;
-import warfake.war.classes.Elf;
 
 public class Game {
 
 	public static void main(String[] args) {
 		Game game = new Game();
 		game.spawnSquads();
-		
+
 	}
 
 	private static final short NUMBER_OF_ALIANCE_SQUADS = 2;
 	private static final short NUMBER_OF_HORDE_SQUADS = 2;
 	private static Random random = new Random();
 	public static StringBuilder logs = new StringBuilder();
+	public static int numberOfTurns = 0;
 	private ElfSquad elfSquad;
 	private HumanSquad humanSquad;
 	private OrcSquad orcSquad;
 	private UndeadSquad undeadSquad;
-	
+
 	public StringBuilder getStringBuilder() {
 		return logs;
 	}

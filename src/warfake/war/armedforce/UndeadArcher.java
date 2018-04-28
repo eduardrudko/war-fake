@@ -1,6 +1,6 @@
 package warfake.war.armedforce;
 
-import warfake.war.race.Undead;
+import warfake.war.classes.Undead;
 
 public class UndeadArcher extends Undead {
 

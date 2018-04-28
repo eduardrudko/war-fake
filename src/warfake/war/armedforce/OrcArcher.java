@@ -1,6 +1,6 @@
 package warfake.war.armedforce;
 
-import warfake.war.race.Orc;
+import warfake.war.classes.Orc;
 
 public class OrcArcher extends Orc {
 

@@ -1,6 +1,6 @@
-package warfake.war.race;
+package warfake.war.classes;
 
-public class Orc {
+public class Undead {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

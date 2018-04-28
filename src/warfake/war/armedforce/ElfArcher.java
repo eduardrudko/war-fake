@@ -15,14 +15,14 @@ public class ElfArcher extends Person {
 		Game.numberOfTurns++;
 		int accuracy = getRandomAccuracy();
 		dealDamage(target, SHOT_POWER, accuracy);
-		logStrikeAction(Game.numberOfTurns, getName(), " shoot an arrow in ", target, SHOT_POWER, accuracy);
+		logStrikeAction(Game.numberOfTurns, getName(), " shoots a poisonous arrow in ", target, SHOT_POWER, accuracy);
 	}
 
-	public void strike(Person target) {
+	public void daggerStab(Person target) {
 		Game.numberOfTurns++;
-		int accuracy = getRandomAccuracy();
+		int accuracy = 100;
 		dealDamage(target, STRIKE_POWER,accuracy);
-		logStrikeAction(Game.numberOfTurns, getName(), " strikes ", target, STRIKE_POWER, accuracy);
+		logStrikeAction(Game.numberOfTurns, getName(), " stabs with an elven dagger ", target, STRIKE_POWER, accuracy);
 	}
 
 	public static void main(String[] args) {
@@ -30,10 +30,10 @@ public class ElfArcher extends Person {
 		ElfArcher elf2 = new ElfArcher();
 		ElfMage mage = new ElfMage();
 		elf1.bowShot(elf2);
-		elf2.strike(elf1);
-		elf2.strike(elf1);
+		elf2.daggerStab(elf1);
+		elf2.daggerStab(elf1);
 		mage.enhanceSkill(elf2);
-		elf2.strike(elf1);
+		elf2.daggerStab(elf1);
 		elf1.bowShot(elf2);
 		elf1.bowShot(elf2);
 		mage.enhanceSkill(elf1);

@@ -1,6 +1,7 @@
 package warfake.war.armedforce;
 
 import warfake.war.battlefield.HumanSquadFactory;
+import warfake.war.battlefield.OrcSquadFactory;
 import warfake.war.battlefield.Squad;
 import warfake.war.classes.and.races.Mage;
 import warfake.war.classes.and.races.Person;
@@ -46,11 +47,13 @@ public class HumanMage extends Person implements Mage {
 
 	public static void main(String[] args) {
 		Squad squad = HumanSquadFactory.generateHumanSquad();
+		Squad orcs = OrcSquadFactory.generateOrcSquad();
 		System.out.println(squad.getArchers().toString());
 		System.out.println(squad.getWarriors().toString());
 		HumanMage mage = new HumanMage();
 		mage.applyImprovement(squad);
 		System.out.println(squad.getSuperArchers().toString());
 		System.out.println(squad.getSuperWarriors().toString());
+		mage.useMagic(orcs);
 	}
 }

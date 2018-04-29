@@ -32,12 +32,6 @@ public class HumanWarrior extends Person implements Warrior{
 	}
 
 	public static void main(String[] args) {
-//		HumanWarrior warrior = new HumanWarrior();
-//		HumanWarrior warriro2 = new HumanWarrior();
-//		warrior.broadSwordStrike(warriro2);
-//		warrior.broadSwordStrike(warriro2);
-//		warrior.broadSwordStrike(warriro2);
-//		warrior.broadSwordStrike(warriro2);
 
 	}
 

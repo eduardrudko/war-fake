@@ -1,5 +1,6 @@
 package warfake.war.armedforce;
 
+import warfake.war.battlefield.OrcSquadFactory;
 import warfake.war.battlefield.Squad;
 import warfake.war.classes.and.races.Archer;
 import warfake.war.classes.and.races.Person;
@@ -32,11 +33,15 @@ public class HumanCrossbowman extends Person implements Archer {
 	}
 
 	public static void main(String[] args) {
-//		HumanCrossbowman human = new HumanCrossbowman();
-//		HumanCrossbowman human2 = new HumanCrossbowman();
-//		human.archeryShot(human2);
-//		human.archeryShot(human2);
-//		human.archeryShot(human2);
+		Squad squad = OrcSquadFactory.generateOrcSquad();
+		HumanCrossbowman human1 = new HumanCrossbowman();
+		human1.archeryShot(squad);
+		human1.archeryShot(squad);
+		human1.archeryShot(squad);
+		human1.meleeStab(squad);
+		human1.meleeStab(squad);
+		human1.meleeStab(squad);
+		human1.meleeStab(squad);
 
 	}
 

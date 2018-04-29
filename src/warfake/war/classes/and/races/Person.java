@@ -1,14 +1,15 @@
 package warfake.war.classes.and.races;
 
+import warfake.war.battlefield.Squad;
 import warfake.war.game.Game;
 
-public abstract class Person {
+public abstract class Person implements Mage, Archer, Warrior {
 	private String name;
 	private int HP = 100;
 	private static final int MAX_HP = 100;
 	private int accuracy;
 	private static final int MAX_ACCURACY = 100;
-	private int swordStrikePower = 20;
+	private float strikePower;
 
 	public String getName() {
 		return name;
@@ -42,12 +43,37 @@ public abstract class Person {
 		this.accuracy = accuracy;
 	}
 	
-	public int getSwordStrikePower() {
-		return swordStrikePower;
+	public float getStrikePower() {
+		return strikePower;
+	}
+
+	public void setStrikePower(float strikePower) {
+		this.strikePower = strikePower;
+	}
+
+	@Override
+	public void applyImprovement(Squad targets) {
+		
+	}
+
+	@Override
+	public void useMagic(Squad targets) {
+		
 	}
 	
-	public void setSwordStrikePower(int power) {
-		this.swordStrikePower = power;
+	@Override
+	public void archeryShot(Squad targets) {
+		
+	}
+	
+	@Override
+	public void meleeStab(Squad targets) {
+		
+	}
+	
+	@Override
+	public void meleeStrike(Squad targets) {
+		
 	}
 
 	protected void dealDamage(Person target, float power, int accuracy) {
@@ -77,11 +103,11 @@ public abstract class Person {
 		Game.logs.append(target.getName() + " has +" + target.getAccuracy() + "% accuracy passive bonus now!");
 	}
 	
-	protected void logEnhanceActionForMelee(int turnId, String name, Person target, int currentPower, int enhancePower) {
+	protected void logEnhanceActionForMelee(int turnId, String name, Person target, float currentPower, int enhancePower) {
 		System.out.println("[Move #" + turnId + "] " + name + " lays an enhancing power upon " + target.getName() + " and increaces melee power by " + enhancePower +  "%");
 		Game.logs.append("[Move #" + turnId + "] " + name + " lays an enhancing power upon " + target.getName() + " and increaces melee power by " + enhancePower +  "%");
-		System.out.println(target.getName() + " has " + target.getSwordStrikePower() + " attack power now!\n");
-		Game.logs.append(target.getName() + " has " + target.getSwordStrikePower() + " attack power now!");
+		System.out.println(target.getName() + " has " + target.getStrikePower() + " attack power now!\n");
+		Game.logs.append(target.getName() + " has " + target.getStrikePower() + " attack power now!");
 	}
 	
 	protected int getRandomAccuracy() {

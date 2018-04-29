@@ -1,9 +1,12 @@
 package warfake.war.battlefield;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Random;
 
 import warfake.war.classes.and.races.Archer;
 import warfake.war.classes.and.races.Mage;
+import warfake.war.classes.and.races.Person;
 import warfake.war.classes.and.races.Warrior;
 
 public abstract class Squad {
@@ -17,7 +20,7 @@ public abstract class Squad {
 	private LinkedList<Warrior> warriors = new LinkedList<>();
 	private LinkedList<Warrior> superWarriors = new LinkedList<>();
 
-	public Squad(LinkedList<Mage> mages, LinkedList<Archer> archers, LinkedList<Warrior> warrios) {
+	public Squad(LinkedList<Mage> mages, LinkedList<Archer> archers, LinkedList<Warrior> warriors) {
 		for (int i = 0; i < NUMBER_OF_MAGES; i++) {
 			this.mages.add(mages.get(i));
 		}
@@ -27,7 +30,6 @@ public abstract class Squad {
 		for (int i = 0; i < NUMBER_OF_WARRIORS; i++) {
 			this.warriors.add(warriors.get(i));
 		}
-
 	}
 
 	public static short getNumberOfMages() {
@@ -82,7 +84,7 @@ public abstract class Squad {
 		warriors.add(warrior);
 	}
 
-	public LinkedList<Warrior> getSuperwarriors() {
+	public LinkedList<Warrior> getSuperWarriors() {
 		return superWarriors;
 	}
 
@@ -90,11 +92,45 @@ public abstract class Squad {
 		superWarriors.add(warrior);
 	}
 
-//	public void performActions() {
-//		
-//	}
-	
-//	public Person getRandomTarget() {
-//		
-//	}
+	// public void performActions() {
+	// тут все персонажы выполн€ют рендомное действие в рандомном пор€дке. —начала
+	// идут супер персонажы, а потом обычные
+	//
+	// }
+
+	public Person getRandomTarget() {
+		ArrayList<Person> targetsPull = new ArrayList<>();
+		Random random = new Random();
+		for (Mage value : mages) {
+			targetsPull.add((Person) value);
+		}
+		for (Mage value : superMages) {
+			targetsPull.add((Person) value);
+		}
+		for (Archer value : archers) {
+			targetsPull.add((Person) value);
+		}
+		for (Archer value : superArchers) {
+			targetsPull.add((Person) value);
+		}
+		for (Warrior value : warriors) {
+			targetsPull.add((Person) value);
+		}
+		for (Warrior value : superWarriors) {
+			targetsPull.add((Person) value);
+		}
+		return targetsPull.get(random.nextInt(targetsPull.size()));
+	}
+
+	public Person getRandomImprovableTarget() {
+		ArrayList<Person> targetsPull = new ArrayList<>();
+		Random random = new Random();
+		for (Archer value : archers) {
+			targetsPull.add((Person) value);
+		}
+		for (Warrior value : warriors) {
+			targetsPull.add((Person) value);
+		}
+		return targetsPull.get(random.nextInt(targetsPull.size()));
+	}
 }

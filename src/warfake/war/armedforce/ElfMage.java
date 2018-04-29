@@ -1,19 +1,19 @@
 package warfake.war.armedforce;
 
-import java.util.ArrayList;
 import java.util.Random;
 
+import warfake.war.battlefield.ElfSquadFactory;
+import warfake.war.battlefield.OrcSquadFactory;
 import warfake.war.battlefield.Squad;
+import warfake.war.classes.and.races.Archer;
 import warfake.war.classes.and.races.Mage;
 import warfake.war.classes.and.races.Person;
 import warfake.war.game.Game;
 
 public class ElfMage extends Person implements Mage {
 	private static final int HEAL_POWER = 20;
-	private static final int ENHANCE_CROSSBOWMANS_POWER = 10;
 	private static final int ENHANCE_WARRIOR_POWER = 20;
 	private static final int ENHANCE_ARCHER_POWER = 10;
-	private static final int ENHANCE_GOBLIN_POWER = 20;
 	private static Random random = new Random();
 	
 	public ElfMage() {
@@ -21,7 +21,8 @@ public class ElfMage extends Person implements Mage {
 	}
 	
 	@Override
-	public void useMagic(Person target) {
+	public void useMagic(Squad targets) {
+		Person target = targets.getRandomTarget();
 		int currentHealth = target.getHealth();
 		if (currentHealth < getMaxHealth()) {
 			Game.numberOfTurns++;
@@ -33,34 +34,35 @@ public class ElfMage extends Person implements Mage {
 			Game.logs.append("[Move #" + Game.numberOfTurns + "] " + getName() + " tries to use healing power but spell doesn't have any effect! " + target.getName() + " is healthy!\n");
 		}
 	}
-	
-	public void applyImprovement(ArrayList<ElfArcher> archers, ArrayList<ElfArcher> superArchers) {
-		int archerIndex = random.nextInt(Squad.getNumberOfArchers());
-		ElfArcher archer = archers.get(archerIndex);
-		if (archer.getAccuracy() != 100) {
+	@Override
+	public void applyImprovement(Squad targets) {
+		Person target = targets.getRandomImprovableTarget();
+		if (target instanceof ElfArcher) {
 			Game.numberOfTurns++;
-			enhanceSkillRanger(archer, ENHANCE_ARCHER_POWER);
-			logEnhanceActionForRangers(Game.numberOfTurns, getName(), archer, archer.getAccuracy(),
+			target.setAccuracy(Math.min((target.getAccuracy() + (target.getMaxAccuracy() * ENHANCE_ARCHER_POWER) / 100), getMaxAccuracy()));
+			logEnhanceActionForRangers(Game.numberOfTurns, getName(), target, target.getAccuracy(),
 					ENHANCE_ARCHER_POWER);
-			superArchers.add(archer);
-			archers.remove(archer);
+			targets.getSuperArchers().add(target);
+			targets.getArchers().remove(target);
 		} else {
-			accuracyLimit(archer);
+			Game.numberOfTurns++;
+			target.setStrikePower((target.getStrikePower() + (target.getStrikePower() * ENHANCE_WARRIOR_POWER) / 100));
+			logEnhanceActionForMelee(Game.numberOfTurns, getName(), target, target.getStrikePower(),
+					ENHANCE_WARRIOR_POWER);
+			targets.getSuperWarriors().add(target);
+			targets.getWarriors().remove(target);
 		}
 		
 	}
 
 	public static void main(String[] args) {
-		ElfMage elf = new ElfMage();
-		ElfArcher elf2 = new ElfArcher();
-		elf2.setHealth(1);
-		elf.useMagic(elf2);
-		elf.useMagic(elf2);
-		elf.useMagic(elf2);
-		elf.useMagic(elf2);
-		elf.useMagic(elf2);
-		elf.useMagic(elf2);
-		elf.useMagic(elf2);
-		elf.useMagic(elf2);
+		Squad squad = ElfSquadFactory.generateElfSquad();
+		System.out.println(squad.getArchers().toString());
+		System.out.println(squad.getWarriors().toString());
+		ElfMage elf1 = new ElfMage();
+		elf1.applyImprovement(squad);
+		System.out.println(squad.getSuperArchers().toString());
+		System.out.println(squad.getSuperWarriors().toString());
+
 	}
 }

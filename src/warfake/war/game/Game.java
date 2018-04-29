@@ -2,10 +2,11 @@ package warfake.war.game;
 
 import java.util.Random;
 
-import warfake.war.battlefield.ElfSquad;
-import warfake.war.battlefield.HumanSquad;
-import warfake.war.battlefield.OrcSquad;
-import warfake.war.battlefield.UndeadSquad;
+import warfake.war.battlefield.ElfSquadFactory;
+import warfake.war.battlefield.HumanSquadFactory;
+import warfake.war.battlefield.OrcSquadFactory;
+import warfake.war.battlefield.Squad;
+import warfake.war.battlefield.UndeadSquadFactory;
 
 public class Game {
 
@@ -20,10 +21,8 @@ public class Game {
 	private static Random random = new Random();
 	public static StringBuilder logs = new StringBuilder();
 	public static int numberOfTurns = 0;
-	private ElfSquad elfSquad;
-	private HumanSquad humanSquad;
-	private OrcSquad orcSquad;
-	private UndeadSquad undeadSquad;
+	private Squad aliance;
+	private Squad horde;
 
 	public StringBuilder getStringBuilder() {
 		return logs;
@@ -32,18 +31,18 @@ public class Game {
 	public void spawnSquads() {
 		switch (random.nextInt(NUMBER_OF_ALIANCE_SQUADS) + 1) {
 		case 1:
-			elfSquad = new ElfSquad();
+			aliance = ElfSquadFactory.generateElfSquad();
 			break;
 		case 2:
-			humanSquad = new HumanSquad();
+			aliance = HumanSquadFactory.generateHumanSquad();
 			break;
 		}
 		switch (random.nextInt(NUMBER_OF_HORDE_SQUADS) + 1) {
 		case 1:
-			orcSquad = new OrcSquad();
+			horde = OrcSquadFactory.generateOrcSquad();
 			break;
 		case 2:
-			undeadSquad = new UndeadSquad();
+			horde = UndeadSquadFactory.generateUndeadSquad();
 			break;
 		}
 	}

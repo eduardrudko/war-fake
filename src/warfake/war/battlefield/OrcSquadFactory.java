@@ -1,52 +1,34 @@
 package warfake.war.battlefield;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 import warfake.war.armedforce.OrcArcher;
 import warfake.war.armedforce.OrcGoblin;
 import warfake.war.armedforce.OrcShaman;
+import warfake.war.classes.and.races.Archer;
+import warfake.war.classes.and.races.Mage;
+import warfake.war.classes.and.races.Warrior;
 
-public class OrcSquad extends Squad {
-	private ArrayList<OrcShaman> orcShamans = new ArrayList<>();
-	private ArrayList<OrcShaman> superOrcShamans = new ArrayList<>();
-	private ArrayList<OrcArcher> orcArchers = new ArrayList<>();
-	private ArrayList<OrcArcher> superOrcArchers = new ArrayList<>();
-	private ArrayList<OrcGoblin> orcGoblins = new ArrayList<>();
-	private ArrayList<OrcGoblin> superOrcGoblins = new ArrayList<>();
+public class OrcSquadFactory extends Squad {
 
-	public OrcSquad() {
-		for (int i = 0; i < Squad.getNumberOfMages(); i++) {
-			orcShamans.add(new OrcShaman());
+	public OrcSquadFactory(LinkedList<Mage> orcMages, LinkedList<Archer> orcArchers, LinkedList<Warrior> orcWarriors) {
+		super(orcMages, orcArchers, orcWarriors);
+	}
+	
+	public static OrcSquadFactory generateOrcSquad() {
+		LinkedList<Mage> orcMages = new LinkedList<>();
+		LinkedList<Archer> orcArchers = new LinkedList<>();
+		LinkedList<Warrior> orcWarriors = new LinkedList<>();
+
+		for (int i = 0; i < getNumberOfMages(); i++) {
+			orcMages.add(new OrcShaman());
 		}
-		for (int i = 0; i < Squad.getNumberOfArchers(); i++) {
+		for (int i = 0; i < getNumberOfArchers(); i++) {
 			orcArchers.add(new OrcArcher());
 		}
-		for (int i = 0; i < Squad.getNumberOfWarriors(); i++) {
-			orcGoblins.add(new OrcGoblin());
+		for (int i = 0; i < getNumberOfArchers(); i++) {
+			orcWarriors.add(new OrcGoblin());
 		}
-	}
-
-	public ArrayList<OrcShaman> getOrcShamans() {
-		return orcShamans;
-	}
-
-	public ArrayList<OrcShaman> getSuperOrcShamans() {
-		return superOrcShamans;
-	}
-
-	public ArrayList<OrcArcher> getOrcArchers() {
-		return orcArchers;
-	}
-
-	public ArrayList<OrcArcher> getSuperOrcArchers() {
-		return superOrcArchers;
-	}
-
-	public ArrayList<OrcGoblin> getOrcGoblins() {
-		return orcGoblins;
-	}
-
-	public ArrayList<OrcGoblin> getSuperOrcGoblins() {
-		return superOrcGoblins;
+		return new OrcSquadFactory(orcMages, orcArchers, orcWarriors);
 	}
 }

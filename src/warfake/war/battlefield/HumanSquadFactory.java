@@ -1,52 +1,35 @@
 package warfake.war.battlefield;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 import warfake.war.armedforce.HumanCrossbowman;
 import warfake.war.armedforce.HumanMage;
 import warfake.war.armedforce.HumanWarrior;
+import warfake.war.classes.and.races.Archer;
+import warfake.war.classes.and.races.Mage;
+import warfake.war.classes.and.races.Warrior;
 
-public class HumanSquad extends Squad {
-	private ArrayList<HumanMage> humanMages = new ArrayList<>();
-	private ArrayList<HumanMage> superHumanMages = new ArrayList<>();
-	private ArrayList<HumanCrossbowman> humanCrossbowmans = new ArrayList<>();
-	private ArrayList<HumanCrossbowman> superHumanCrossbowmans = new ArrayList<>();
-	private ArrayList<HumanWarrior> humanWarriors = new ArrayList<>();
-	private ArrayList<HumanWarrior> superHumanWarriors = new ArrayList<>();
+public class HumanSquadFactory extends Squad {
 
-	public HumanSquad() {
-		for (int i = 0; i < Squad.getNumberOfMages(); i++) {
+	public HumanSquadFactory(LinkedList<Mage> humanMages, LinkedList<Archer> humanArchers, LinkedList<Warrior> humanWarriors) {
+		super(humanMages, humanArchers, humanWarriors);
+	}
+	
+	public static ElfSquadFactory generateHumanSquad() {
+		LinkedList<Mage> humanMages = new LinkedList<>();
+		LinkedList<Archer> humanArchers = new LinkedList<>();
+		LinkedList<Warrior> humanWarriors = new LinkedList<>();
+
+		for (int i = 0; i < getNumberOfMages(); i++) {
 			humanMages.add(new HumanMage());
 		}
-		for (int i = 0; i < Squad.getNumberOfArchers(); i++) {
-			humanCrossbowmans.add(new HumanCrossbowman());
+		for (int i = 0; i < getNumberOfArchers(); i++) {
+			humanArchers.add(new HumanCrossbowman());
 		}
-		for (int i = 0; i < Squad.getNumberOfWarriors(); i++) {
+		for (int i = 0; i < getNumberOfArchers(); i++) {
 			humanWarriors.add(new HumanWarrior());
 		}
+		return new ElfSquadFactory(humanMages, humanArchers, humanWarriors);
 	}
 
-	public ArrayList<HumanMage> getHumanMages() {
-		return humanMages;
-	}
-
-	public ArrayList<HumanMage> getSuperHumanMages() {
-		return superHumanMages;
-	}
-
-	public ArrayList<HumanCrossbowman> getHumanCrossbowmans() {
-		return humanCrossbowmans;
-	}
-
-	public ArrayList<HumanCrossbowman> getSuperHumanCrossbowmans() {
-		return superHumanCrossbowmans;
-	}
-
-	public ArrayList<HumanWarrior> getHumanWarriors() {
-		return humanWarriors;
-	}
-
-	public ArrayList<HumanWarrior> getSuperHumanWarriors() {
-		return superHumanWarriors;
-	}
 }

@@ -1,52 +1,34 @@
 package warfake.war.battlefield;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 import warfake.war.armedforce.ElfArcher;
 import warfake.war.armedforce.ElfMage;
 import warfake.war.armedforce.ElfWarrior;
+import warfake.war.classes.and.races.Archer;
+import warfake.war.classes.and.races.Mage;
+import warfake.war.classes.and.races.Warrior;
 
-public class ElfSquad extends Squad {
-	private ArrayList<ElfMage> elfMages = new ArrayList<>();
-	private ArrayList<ElfMage> superElfMages = new ArrayList<>();
-	private ArrayList<ElfArcher> elfArchers = new ArrayList<>();
-	private ArrayList<ElfArcher> superElfArchers = new ArrayList<>();
-	private ArrayList<ElfWarrior> elfWarriors = new ArrayList<>();
-	private ArrayList<ElfWarrior> superElfWarriors = new ArrayList<>();
+public class ElfSquadFactory extends Squad {
 
-	public ElfSquad() {
-		for (int i = 0; i < Squad.getNumberOfMages(); i++) {
+	public ElfSquadFactory(LinkedList<Mage> elfMages, LinkedList<Archer> elfArchers, LinkedList<Warrior> elfWarriors) {
+		super(elfMages, elfArchers, elfWarriors);
+	}
+
+	public static ElfSquadFactory generateElfSquad() {
+		LinkedList<Mage> elfMages = new LinkedList<>();
+		LinkedList<Archer> elfArchers = new LinkedList<>();
+		LinkedList<Warrior> elfWarriors = new LinkedList<>();
+
+		for (int i = 0; i < getNumberOfMages(); i++) {
 			elfMages.add(new ElfMage());
 		}
-		for (int i = 0; i < Squad.getNumberOfArchers(); i++) {
+		for (int i = 0; i < getNumberOfArchers(); i++) {
 			elfArchers.add(new ElfArcher());
 		}
-		for (int i = 0; i < Squad.getNumberOfWarriors(); i++) {
+		for (int i = 0; i < getNumberOfArchers(); i++) {
 			elfWarriors.add(new ElfWarrior());
 		}
-	}
-
-	public ArrayList<ElfMage> getElfMages() {
-		return elfMages;
-	}
-
-	public ArrayList<ElfMage> getSuperElfMages() {
-		return superElfMages;
-	}
-
-	public ArrayList<ElfArcher> getElfArchers() {
-		return elfArchers;
-	}
-
-	public ArrayList<ElfArcher> getSuperElfArchers() {
-		return superElfArchers;
-	}
-
-	public ArrayList<ElfWarrior> getElfWarriors() {
-		return elfWarriors;
-	}
-
-	public ArrayList<ElfWarrior> getSuperElfWarriors() {
-		return superElfWarriors;
+		return new ElfSquadFactory(elfMages, elfArchers, elfWarriors);
 	}
 }

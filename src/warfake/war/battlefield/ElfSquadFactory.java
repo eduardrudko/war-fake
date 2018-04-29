@@ -26,7 +26,7 @@ public class ElfSquadFactory extends Squad {
 		for (int i = 0; i < getNumberOfArchers(); i++) {
 			elfArchers.add(new ElfArcher());
 		}
-		for (int i = 0; i < getNumberOfArchers(); i++) {
+		for (int i = 0; i < getNumberOfWarriors(); i++) {
 			elfWarriors.add(new ElfWarrior());
 		}
 		return new ElfSquadFactory(elfMages, elfArchers, elfWarriors);

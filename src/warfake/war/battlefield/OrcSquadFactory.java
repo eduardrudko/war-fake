@@ -26,7 +26,7 @@ public class OrcSquadFactory extends Squad {
 		for (int i = 0; i < getNumberOfArchers(); i++) {
 			orcArchers.add(new OrcArcher());
 		}
-		for (int i = 0; i < getNumberOfArchers(); i++) {
+		for (int i = 0; i < getNumberOfWarriors(); i++) {
 			orcWarriors.add(new OrcGoblin());
 		}
 		return new OrcSquadFactory(orcMages, orcArchers, orcWarriors);

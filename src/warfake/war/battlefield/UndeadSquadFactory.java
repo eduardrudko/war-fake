@@ -26,7 +26,7 @@ public class UndeadSquadFactory extends Squad {
 		for (int i = 0; i < getNumberOfArchers(); i++) {
 			undeadArchers.add(new OrcArcher());
 		}
-		for (int i = 0; i < getNumberOfArchers(); i++) {
+		for (int i = 0; i < getNumberOfWarriors(); i++) {
 			undeadWarriors.add(new OrcGoblin());
 		}
 		return new UndeadSquadFactory(undeadMages, undeadArchers, undeadWarriors);

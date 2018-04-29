@@ -20,6 +20,16 @@ public class HumanWarrior extends Person implements Warrior{
 		dealDamage(target, strikePower, accuracy);
 		logStrikeAction(Game.numberOfTurns, getName(), " strikes with a broadsword ", target, strikePower, accuracy);
 	}
+	
+	@Override
+	public float getStrikePower() {
+		return strikePower;
+	}
+
+	@Override
+	public void setStrikePower(float strikePower) {
+		this.strikePower = strikePower;
+	}
 
 	public static void main(String[] args) {
 //		HumanWarrior warrior = new HumanWarrior();

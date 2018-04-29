@@ -48,8 +48,8 @@ public class HumanMage extends Person implements Mage {
 		Squad squad = HumanSquadFactory.generateHumanSquad();
 		System.out.println(squad.getArchers().toString());
 		System.out.println(squad.getWarriors().toString());
-		ElfMage elf1 = new ElfMage();
-		elf1.applyImprovement(squad);
+		HumanMage mage = new HumanMage();
+		mage.applyImprovement(squad);
 		System.out.println(squad.getSuperArchers().toString());
 		System.out.println(squad.getSuperWarriors().toString());
 	}

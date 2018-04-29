@@ -1,5 +1,7 @@
 package warfake.war.classes.and.races;
 
-public interface Warrior {
+import warfake.war.battlefield.Squad;
 
+public interface Warrior {
+	void meleeStrike(Squad targets);
 }

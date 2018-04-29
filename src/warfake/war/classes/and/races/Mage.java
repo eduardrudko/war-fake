@@ -1,8 +1,8 @@
 package warfake.war.classes.and.races;
 
-import java.util.ArrayList;
+import warfake.war.battlefield.Squad;
 
 public interface Mage {
-//	void applyImprovement(ArrayList<Person> persons, ArrayList<Person> superPersons);
-//	void useMagic(Person target);
+	void applyImprovement(Squad targets);
+	void useMagic(Squad targets);
 }

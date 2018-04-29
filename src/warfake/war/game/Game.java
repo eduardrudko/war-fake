@@ -28,6 +28,14 @@ public class Game {
 		return logs;
 	}
 
+	public Squad getAlianceSquad() {
+		return aliance;
+	}
+
+	public Squad getHordeSquad() {
+		return horde;
+	}
+
 	public void spawnSquads() {
 		switch (random.nextInt(NUMBER_OF_ALIANCE_SQUADS) + 1) {
 		case 1:

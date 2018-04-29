@@ -1,5 +1,6 @@
 package warfake.war.armedforce;
 
+import warfake.war.battlefield.Squad;
 import warfake.war.classes.and.races.Archer;
 import warfake.war.classes.and.races.Person;
 import warfake.war.game.Game;
@@ -13,7 +14,8 @@ public class HumanCrossbowman extends Person implements Archer {
 	}
 	
 	@Override
-	public void archeryShot(Person target) {
+	public void archeryShot(Squad targets) {
+		Person target = targets.getRandomTarget();
 		Game.numberOfTurns++;
 		int accuracy = getRandomAccuracy();
 		dealDamage(target, SHOT_POWER, accuracy);
@@ -21,7 +23,8 @@ public class HumanCrossbowman extends Person implements Archer {
 	}
 
 	@Override
-	public void meleeStab(Person target) {
+	public void meleeStab(Squad targets) {
+		Person target = targets.getRandomTarget();
 		Game.numberOfTurns++;
 		int accuracy = 100;
 		dealDamage(target, STRIKE_POWER,accuracy);
@@ -29,11 +32,11 @@ public class HumanCrossbowman extends Person implements Archer {
 	}
 
 	public static void main(String[] args) {
-		HumanCrossbowman human = new HumanCrossbowman();
-		HumanCrossbowman human2 = new HumanCrossbowman();
-		human.archeryShot(human2);
-		human.archeryShot(human2);
-		human.archeryShot(human2);
+//		HumanCrossbowman human = new HumanCrossbowman();
+//		HumanCrossbowman human2 = new HumanCrossbowman();
+//		human.archeryShot(human2);
+//		human.archeryShot(human2);
+//		human.archeryShot(human2);
 
 	}
 

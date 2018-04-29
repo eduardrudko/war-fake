@@ -1,9 +1,10 @@
 package warfake.war.armedforce;
 
-import warfake.war.classes.Person;
+import warfake.war.classes.and.races.Person;
+import warfake.war.classes.and.races.Warrior;
 import warfake.war.game.Game;
 
-public class ElfWarrior extends Person {
+public class ElfWarrior extends Person implements Warrior{
 	
 	public ElfWarrior() {
 		setName("Fillip");

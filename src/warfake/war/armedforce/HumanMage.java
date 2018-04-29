@@ -1,10 +1,10 @@
 package warfake.war.armedforce;
 
-import warfake.war.classes.Mage;
-import warfake.war.classes.Person;
+import warfake.war.classes.and.races.Mage;
+import warfake.war.classes.and.races.Person;
 import warfake.war.game.Game;
 
-public class HumanMage extends Mage {
+public class HumanMage extends Person implements Mage {
 	private static final int MAGIC_POWER = 20;
 	
 	public HumanMage() {

@@ -1,24 +1,27 @@
 package warfake.war.armedforce;
 
-import warfake.war.classes.Person;
+import warfake.war.classes.and.races.Archer;
+import warfake.war.classes.and.races.Person;
 import warfake.war.game.Game;
 
-public class ElfArcher extends Person {
+public class ElfArcher extends Person implements Archer {
 	private static final float SHOT_POWER = 15;
 	private static final float STRIKE_POWER = 2;
 
 	public ElfArcher() {
 		setName("ElfArcher one");
 	}
-
-	public void bowShot(Person target) {
+	
+	@Override
+	public void archeryShot(Person target) {
 		Game.numberOfTurns++;
 		int accuracy = getRandomAccuracy();
 		dealDamage(target, SHOT_POWER, accuracy);
 		logStrikeAction(Game.numberOfTurns, getName(), " shoots a poisonous arrow in ", target, SHOT_POWER, accuracy);
 	}
 
-	public void daggerStab(Person target) {
+	@Override
+	public void meleeStab(Person target) {
 		Game.numberOfTurns++;
 		int accuracy = 100;
 		dealDamage(target, STRIKE_POWER,accuracy);
@@ -27,32 +30,12 @@ public class ElfArcher extends Person {
 
 	public static void main(String[] args) {
 		ElfArcher elf1 = new ElfArcher();
-		ElfArcher elf2 = new ElfArcher();
-		ElfMage mage = new ElfMage();
-		elf1.bowShot(elf2);
-		elf2.daggerStab(elf1);
-		elf2.daggerStab(elf1);
-		mage.enhanceSkill(elf2);
-		elf2.daggerStab(elf1);
-		elf1.bowShot(elf2);
-		elf1.bowShot(elf2);
-		mage.enhanceSkill(elf1);
-		elf1.bowShot(elf2);
-		elf1.bowShot(elf2);
-		elf1.bowShot(elf2);
-		mage.enhanceSkill(elf1);
-		mage.enhanceSkill(elf1);
-		mage.enhanceSkill(elf1);
-		mage.enhanceSkill(elf1);
-		mage.enhanceSkill(elf1);
-		mage.enhanceSkill(elf1);
-		mage.enhanceSkill(elf1);
-		mage.enhanceSkill(elf1);
-		mage.enhanceSkill(elf1);
-		mage.enhanceSkill(elf1);
-		elf1.bowShot(elf2);
-		elf1.bowShot(elf2);
-		elf1.bowShot(elf2);
-		elf1.bowShot(elf2);
+		OrcShaman sham = new OrcShaman();
+		elf1.archeryShot(sham);
+		elf1.archeryShot(sham);
+		elf1.archeryShot(sham);
+		elf1.archeryShot(sham);
+		
+		
 	}
 }

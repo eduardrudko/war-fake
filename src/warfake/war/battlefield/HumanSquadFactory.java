@@ -11,11 +11,11 @@ import warfake.war.classes.and.races.Warrior;
 
 public class HumanSquadFactory extends Squad {
 
-	public HumanSquadFactory(LinkedList<Mage> humanMages, LinkedList<Archer> humanArchers, LinkedList<Warrior> humanWarriors) {
+	private HumanSquadFactory(LinkedList<Mage> humanMages, LinkedList<Archer> humanArchers, LinkedList<Warrior> humanWarriors) {
 		super(humanMages, humanArchers, humanWarriors);
 	}
 	
-	public static ElfSquadFactory generateHumanSquad() {
+	public static HumanSquadFactory generateHumanSquad() {
 		LinkedList<Mage> humanMages = new LinkedList<>();
 		LinkedList<Archer> humanArchers = new LinkedList<>();
 		LinkedList<Warrior> humanWarriors = new LinkedList<>();
@@ -29,7 +29,7 @@ public class HumanSquadFactory extends Squad {
 		for (int i = 0; i < getNumberOfWarriors(); i++) {
 			humanWarriors.add(new HumanWarrior());
 		}
-		return new ElfSquadFactory(humanMages, humanArchers, humanWarriors);
+		return new HumanSquadFactory(humanMages, humanArchers, humanWarriors);
 	}
 
 }

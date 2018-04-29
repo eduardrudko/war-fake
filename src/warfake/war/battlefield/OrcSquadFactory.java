@@ -11,7 +11,7 @@ import warfake.war.classes.and.races.Warrior;
 
 public class OrcSquadFactory extends Squad {
 
-	public OrcSquadFactory(LinkedList<Mage> orcMages, LinkedList<Archer> orcArchers, LinkedList<Warrior> orcWarriors) {
+	private OrcSquadFactory(LinkedList<Mage> orcMages, LinkedList<Archer> orcArchers, LinkedList<Warrior> orcWarriors) {
 		super(orcMages, orcArchers, orcWarriors);
 	}
 	

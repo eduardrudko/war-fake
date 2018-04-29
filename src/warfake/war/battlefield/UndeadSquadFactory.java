@@ -11,7 +11,7 @@ import warfake.war.classes.and.races.Warrior;
 
 public class UndeadSquadFactory extends Squad {
 	
-	public UndeadSquadFactory(LinkedList<Mage> undeadMages, LinkedList<Archer> undeadArchers, LinkedList<Warrior> undeadWarriors) {
+	private UndeadSquadFactory(LinkedList<Mage> undeadMages, LinkedList<Archer> undeadArchers, LinkedList<Warrior> undeadWarriors) {
 		super(undeadMages, undeadArchers, undeadWarriors);
 	}
 

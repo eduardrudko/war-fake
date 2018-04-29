@@ -1,4 +1,4 @@
-package warfake.war.classes;
+package warfake.war.classes.and.races;
 
 import warfake.war.game.Game;
 

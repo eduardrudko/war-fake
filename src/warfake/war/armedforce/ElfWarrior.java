@@ -9,7 +9,7 @@ import warfake.war.game.Game;
 
 public class ElfWarrior extends Person implements Warrior{
 	private float strikePower = 20;
-	private static ElfWeapons longSword = ElfWeapons.BOW;
+	private static ElfWeapons longSword = ElfWeapons.ELVEN_LONGSWORD;
 	
 	public ElfWarrior() {
 		setName("Fillip");

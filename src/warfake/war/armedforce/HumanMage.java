@@ -1,5 +1,6 @@
 package warfake.war.armedforce;
 
+import warfake.war.armory.HumanWeapons;
 import warfake.war.battlefield.HumanSquadFactory;
 import warfake.war.battlefield.OrcSquadFactory;
 import warfake.war.battlefield.Squad;
@@ -11,6 +12,7 @@ public class HumanMage extends Person implements Mage {
 	private static final int MAGIC_POWER = 20;
 	private static final int ENHANCE_WARRIOR_POWER = 20;
 	private static final int ENHANCE_CROSSBOWMAN_POWER = 10;
+	private static HumanWeapons fireBallSpell = HumanWeapons.FIREBALL;
 	
 	public HumanMage() {
 		setName("Mage");
@@ -22,7 +24,7 @@ public class HumanMage extends Person implements Mage {
 		Game.numberOfTurns++;
 		int accuracy = getRandomAccuracy();
 		dealDamage(target, MAGIC_POWER, accuracy);
-		logStrikeAction(Game.numberOfTurns, getName(), " casts a fireball in ", target, MAGIC_POWER, accuracy);
+		logStrikeAction(Game.numberOfTurns, getName(), fireBallSpell.getWeaponAction(), target, MAGIC_POWER, accuracy);
 	}
 	
 	@Override

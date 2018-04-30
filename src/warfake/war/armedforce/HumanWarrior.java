@@ -1,5 +1,6 @@
 package warfake.war.armedforce;
 
+import warfake.war.armory.HumanWeapons;
 import warfake.war.battlefield.Squad;
 import warfake.war.classes.and.races.Person;
 import warfake.war.classes.and.races.Warrior;
@@ -7,6 +8,7 @@ import warfake.war.game.Game;
 
 public class HumanWarrior extends Person implements Warrior{
 	private float strikePower = 20;
+	private static HumanWeapons broadsword = HumanWeapons.BROADSWORD;
 	
 	public HumanWarrior() {
 		setName("Fillip");
@@ -18,7 +20,7 @@ public class HumanWarrior extends Person implements Warrior{
 		Game.numberOfTurns++;
 		int accuracy = getRandomAccuracy();
 		dealDamage(target, strikePower, accuracy);
-		logStrikeAction(Game.numberOfTurns, getName(), " strikes with a broadsword ", target, strikePower, accuracy);
+		logStrikeAction(Game.numberOfTurns, getName(), broadsword.getWeaponAction(), target, strikePower, accuracy);
 	}
 	
 	@Override

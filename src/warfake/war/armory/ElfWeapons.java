@@ -1,7 +1,7 @@
 package warfake.war.armory;
 
 public enum ElfWeapons {
-	BOW(" shoots a poisonous arrow in "),
+	ELVEN_BOW(" shoots a poisonous arrow in "),
 	ELVEN_DAGGER(" stabs with an elven dagger "),
 	ELVEN_LONGSWORD(" strikes with an elven longsword ");
 	
@@ -14,5 +14,4 @@ public enum ElfWeapons {
 	public String getWeaponAction() {
 		return weaponAction;
 	}
-
 }

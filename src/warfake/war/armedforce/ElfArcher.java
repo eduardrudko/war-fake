@@ -10,7 +10,7 @@ import warfake.war.game.Game;
 public class ElfArcher extends Person implements Archer {
 	private static final float SHOT_POWER = 15;
 	private static final float STAB_POWER = 2;
-	private static ElfWeapons elvenBow = ElfWeapons.BOW;
+	private static ElfWeapons elvenBow = ElfWeapons.ELVEN_BOW;
 	private static ElfWeapons elvenDagger = ElfWeapons.ELVEN_DAGGER;
 
 	public ElfArcher() {

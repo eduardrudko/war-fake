@@ -28,8 +28,8 @@ public class ElfMage extends Person implements Mage {
 			logHealAction(Game.numberOfTurns, getName(), target, currentHealth, HEAL_POWER);
 		} else {
 			Game.numberOfTurns++;
-			System.out.println("[Move #" + Game.numberOfTurns + "] " + getName() + " tries to use healing power but spell doesn't have any effect! " + target.getName() + " is healthy!\n");
-			Game.logs.append("[Move #" + Game.numberOfTurns + "] " + getName() + " tries to use healing power but spell doesn't have any effect! " + target.getName() + " is healthy!\n");
+			System.out.println("[Move #" + Game.numberOfTurns + "] " + "\"" + getName() + "\"" + " tries to use healing power but spell doesn't have any effect! " + "\"" + target.getName() + "\"" + " is healthy!\n");
+			Game.logs.append("[Move #" + Game.numberOfTurns + "] " + "\"" + getName() + "\"" + " tries to use healing power but spell doesn't have any effect! " + "\"" + target.getName() + "\"" + " is healthy!\n");
 		}
 	}
 	@Override

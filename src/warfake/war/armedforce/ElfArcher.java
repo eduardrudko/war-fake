@@ -46,7 +46,5 @@ public class ElfArcher extends Person implements Archer {
 		elf1.meleeStab(squad);
 		elf1.meleeStab(squad);
 		elf1.meleeStab(squad);
-		
-		
 	}
 }

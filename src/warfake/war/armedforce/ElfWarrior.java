@@ -1,5 +1,6 @@
 package warfake.war.armedforce;
 
+import warfake.war.armory.ElfWeapons;
 import warfake.war.battlefield.Squad;
 import warfake.war.classes.and.races.Person;
 import warfake.war.classes.and.races.Warrior;
@@ -7,6 +8,7 @@ import warfake.war.game.Game;
 
 public class ElfWarrior extends Person implements Warrior{
 	private float strikePower = 20;
+	private static ElfWeapons longSword = ElfWeapons.BOW;
 	
 	public ElfWarrior() {
 		setName("Fillip");
@@ -18,7 +20,7 @@ public class ElfWarrior extends Person implements Warrior{
 		Game.numberOfTurns++;
 		int accuracy = getRandomAccuracy();
 		dealDamage(target, strikePower, accuracy);
-		logStrikeAction(Game.numberOfTurns, getName(), " strikes with an elven longsword ", target, strikePower, accuracy);
+		logStrikeAction(Game.numberOfTurns, getName(), longSword.getWeaponAction(), target, strikePower, accuracy);
 	}
 
 	public float getStrikePower() {

@@ -3,9 +3,7 @@ package warfake.war.armedforce;
 import java.util.Random;
 
 import warfake.war.battlefield.ElfSquadFactory;
-import warfake.war.battlefield.OrcSquadFactory;
 import warfake.war.battlefield.Squad;
-import warfake.war.classes.and.races.Archer;
 import warfake.war.classes.and.races.Mage;
 import warfake.war.classes.and.races.Person;
 import warfake.war.game.Game;

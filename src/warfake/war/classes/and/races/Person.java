@@ -28,7 +28,7 @@ public abstract class Person implements Mage, Archer, Warrior {
 	}
 
 	public void setHealth(int health) {
-		this.HP = health;
+		HP = health;
 	}
 
 	public int getAccuracy() {

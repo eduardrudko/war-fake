@@ -12,7 +12,7 @@ public class ElfMage extends Person implements Mage {
 	private static final int HEAL_POWER = 20;
 	private static final int ENHANCE_WARRIOR_POWER = 20;
 	private static final int ENHANCE_ARCHER_POWER = 10;
-	private static Random random = new Random();
+	private static final int NUMBER_OF_SKILLS = 2;
 	
 	public ElfMage() {
 		setName("ElfMage");
@@ -40,27 +40,38 @@ public class ElfMage extends Person implements Mage {
 			target.setAccuracy(Math.min((target.getAccuracy() + (target.getMaxAccuracy() * ENHANCE_ARCHER_POWER) / 100), getMaxAccuracy()));
 			logEnhanceActionForRangers(Game.numberOfTurns, getName(), target, target.getAccuracy(),
 					ENHANCE_ARCHER_POWER);
-			targets.getSuperArchers().add(target);
-			targets.getArchers().remove(target);
+			targets.getSuperPersons().add(target);
+			targets.getRegularPersons().remove(target);
 		} else {
 			Game.numberOfTurns++;
 			target.setStrikePower((target.getStrikePower() + (target.getStrikePower() * ENHANCE_WARRIOR_POWER) / 100));
 			logEnhanceActionForMelee(Game.numberOfTurns, getName(), target, target.getStrikePower(),
 					ENHANCE_WARRIOR_POWER);
-			targets.getSuperWarriors().add(target);
-			targets.getWarriors().remove(target);
+			targets.getSuperPersons().add(target);
+			targets.getRegularPersons().remove(target);
 		}
 		
+	}
+	
+	@Override
+	public void performRandomAction(Squad aliance, Squad horde) {
+		Random rnd = new Random();
+		switch (rnd.nextInt(NUMBER_OF_SKILLS) + 1) {
+		case 1:
+			useMagic(aliance);
+			break;
+		case 2:
+			applyImprovement(aliance);
+			break;
+		}
 	}
 
 	public static void main(String[] args) {
 		Squad squad = ElfSquadFactory.generateElfSquad();
-		System.out.println(squad.getArchers().toString());
-		System.out.println(squad.getWarriors().toString());
+		System.out.println(squad.getRegularPersons().toString());
 		ElfMage elf1 = new ElfMage();
 		elf1.applyImprovement(squad);
-		System.out.println(squad.getSuperArchers().toString());
-		System.out.println(squad.getSuperWarriors().toString());
-
+		System.out.println(squad.getRegularPersons().toString());
+		System.out.println(squad.getSuperPersons().toString());
 	}
 }

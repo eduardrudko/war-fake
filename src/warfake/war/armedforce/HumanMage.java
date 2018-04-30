@@ -1,5 +1,7 @@
 package warfake.war.armedforce;
 
+import java.util.Random;
+
 import warfake.war.armory.HumanWeapons;
 import warfake.war.battlefield.HumanSquadFactory;
 import warfake.war.battlefield.OrcSquadFactory;
@@ -13,6 +15,7 @@ public class HumanMage extends Person implements Mage {
 	private static final int ENHANCE_WARRIOR_POWER = 20;
 	private static final int ENHANCE_CROSSBOWMAN_POWER = 10;
 	private static HumanWeapons fireBallSpell = HumanWeapons.FIREBALL;
+	private static final int NUMBER_OF_SKILLS = 2;
 	
 	public HumanMage() {
 		setName("Mage");
@@ -35,27 +38,39 @@ public class HumanMage extends Person implements Mage {
 			target.setAccuracy(Math.min((target.getAccuracy() + (target.getMaxAccuracy() * ENHANCE_CROSSBOWMAN_POWER) / 100), getMaxAccuracy()));
 			logEnhanceActionForRangers(Game.numberOfTurns, getName(), target, target.getAccuracy(),
 					ENHANCE_CROSSBOWMAN_POWER);
-			targets.getSuperArchers().add(target);
-			targets.getArchers().remove(target);
+			targets.getSuperPersons().add(target);
+			targets.getRegularPersons().remove(target);
 		} else {
 			Game.numberOfTurns++;
 			target.setStrikePower((target.getStrikePower() + (target.getStrikePower() * ENHANCE_WARRIOR_POWER) / 100));
 			logEnhanceActionForMelee(Game.numberOfTurns, getName(), target, target.getStrikePower(),
 					ENHANCE_WARRIOR_POWER);
-			targets.getSuperWarriors().add(target);
-			targets.getWarriors().remove(target);
+			targets.getSuperPersons().add(target);
+			targets.getRegularPersons().remove(target);
+		}
+	}
+	
+	@Override
+	public void performRandomAction(Squad aliance, Squad horde) {
+		Random rnd = new Random();
+		switch (rnd.nextInt(NUMBER_OF_SKILLS) + 1) {
+		case 1:
+			useMagic(horde);
+			break;
+		case 2:
+			applyImprovement(aliance);
+			break;
 		}
 	}
 
 	public static void main(String[] args) {
 		Squad squad = HumanSquadFactory.generateHumanSquad();
 		Squad orcs = OrcSquadFactory.generateOrcSquad();
-		System.out.println(squad.getArchers().toString());
-		System.out.println(squad.getWarriors().toString());
+		System.out.println(squad.getRegularPersons().toString());
 		HumanMage mage = new HumanMage();
 		mage.applyImprovement(squad);
-		System.out.println(squad.getSuperArchers().toString());
-		System.out.println(squad.getSuperWarriors().toString());
+		System.out.println(squad.getRegularPersons().toString());
+		System.out.println(squad.getSuperPersons().toString());
 		mage.useMagic(orcs);
 	}
 }

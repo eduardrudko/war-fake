@@ -54,4 +54,8 @@ public class Game {
 			break;
 		}
 	}
+	
+	public void startGame(Squad aliance, Squad horde) {
+		
+	}
 }

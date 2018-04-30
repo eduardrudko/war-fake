@@ -1,5 +1,8 @@
 package warfake.war.armedforce;
 
+import java.util.Random;
+
+import warefake.war.markers.Improvable;
 import warfake.war.armory.OrcWeapons;
 import warfake.war.battlefield.ElfSquadFactory;
 import warfake.war.battlefield.Squad;
@@ -7,11 +10,12 @@ import warfake.war.classes.and.races.Archer;
 import warfake.war.classes.and.races.Person;
 import warfake.war.game.Game;
 
-public class OrcArcher extends Person implements Archer {
+public class OrcArcher extends Person implements Archer, Improvable {
 	private static final float SHOT_POWER = 17;
 	private static final float STRIKE_POWER = 2;
 	private static OrcWeapons bow = OrcWeapons.BOW;
 	private static OrcWeapons axe = OrcWeapons.AXE;
+	private static final int NUMBER_OF_SKILLS = 2;
 
 
 	@Override
@@ -32,6 +36,19 @@ public class OrcArcher extends Person implements Archer {
 		dealDamage(target, STRIKE_POWER,accuracy);
 		logStrikeAction(Game.numberOfTurns, getName(), axe.getWeaponAction(), target, STRIKE_POWER, accuracy);
 		
+	}
+	
+	@Override
+	public void performRandomAction(Squad aliance, Squad horde) {
+		Random rnd = new Random();
+		switch (rnd.nextInt(NUMBER_OF_SKILLS) + 1) {
+		case 1:
+			archeryShot(aliance);
+			break;
+		case 2:
+			meleeStab(aliance);
+			break;
+		}
 	}
 	
 	public static void main(String[] args) {

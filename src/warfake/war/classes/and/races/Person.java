@@ -75,6 +75,8 @@ public abstract class Person implements Mage, Archer, Warrior {
 	public void meleeStrike(Squad targets) {
 		
 	}
+	
+	public abstract void performRandomAction(Squad aliance, Squad horde);
 
 	protected void dealDamage(Person target, float power, int accuracy) {
 		target.setHealth(Math.max((target.getHealth() - Math.round((power * accuracy) / 100)), 0));

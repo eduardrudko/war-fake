@@ -2,39 +2,43 @@ package warfake.war.armedforce;
 
 import java.util.Random;
 
+import warefake.war.markers.Horde;
 import warefake.war.markers.Improvable;
 import warfake.war.armory.OrcWeapons;
 import warfake.war.battlefield.ElfSquadFactory;
 import warfake.war.battlefield.Squad;
 import warfake.war.classes.and.races.Archer;
 import warfake.war.classes.and.races.Person;
-import warfake.war.game.Game;
 
-public class OrcArcher extends Person implements Archer, Improvable {
+public class OrcArcher extends Person implements Archer, Horde, Improvable {
 	private static final float SHOT_POWER = 17;
 	private static final float STRIKE_POWER = 2;
 	private static OrcWeapons bow = OrcWeapons.BOW;
 	private static OrcWeapons axe = OrcWeapons.AXE;
 	private static final int NUMBER_OF_SKILLS = 2;
+	private static int id = 1;
+	private int name = id++;
+	
+	public OrcArcher() {
+		setName("Orc Archer " + name);
+	}
 
 
 	@Override
 	public void archeryShot(Squad targets) {
 		Person target = targets.getRandomTarget();
-		Game.numberOfTurns++;
 		int accuracy = getRandomAccuracy();
 		dealDamage(target, SHOT_POWER, accuracy);
-		logStrikeAction(Game.numberOfTurns, getName(), bow.getWeaponAction(), target, SHOT_POWER, accuracy);
+		logStrikeAction(getName(), bow.getWeaponAction(), target, SHOT_POWER, accuracy);
 		
 	}
 
 	@Override
 	public void meleeStab(Squad targets) {
 		Person target = targets.getRandomTarget();
-		Game.numberOfTurns++;
 		int accuracy = 100;
 		dealDamage(target, STRIKE_POWER,accuracy);
-		logStrikeAction(Game.numberOfTurns, getName(), axe.getWeaponAction(), target, STRIKE_POWER, accuracy);
+		logStrikeAction(getName(), axe.getWeaponAction(), target, STRIKE_POWER, accuracy);
 		
 	}
 	
@@ -50,7 +54,7 @@ public class OrcArcher extends Person implements Archer, Improvable {
 			break;
 		}
 	}
-	
+
 	public static void main(String[] args) {
 		Squad squad = ElfSquadFactory.generateElfSquad();
 		OrcArcher orc = new OrcArcher();

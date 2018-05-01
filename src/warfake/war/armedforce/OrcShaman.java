@@ -2,16 +2,18 @@ package warfake.war.armedforce;
 
 import java.util.Random;
 
-import warfake.war.battlefield.ElfSquadFactory;
+import warefake.war.markers.Horde;
 import warfake.war.battlefield.Squad;
 import warfake.war.classes.and.races.Mage;
 import warfake.war.classes.and.races.Person;
 
-public class OrcShaman extends Person implements Mage {
+public class OrcShaman extends Person implements Mage, Horde {
 	private static final int NUMBER_OF_SKILLS = 2;
+	private static int id = 1;
+	private int name = id++;
 	
 	public OrcShaman() {
-		setName("Dublser");
+		setName("Orc Shaman" + name);
 	}
 	
 	@Override

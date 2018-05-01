@@ -2,41 +2,42 @@ package warfake.war.armedforce;
 
 import java.util.Random;
 
+import warefake.war.markers.Aliance;
 import warefake.war.markers.Improvable;
 import warfake.war.armory.HumanWeapons;
+import warfake.war.battlefield.ElfSquadFactory;
 import warfake.war.battlefield.OrcSquadFactory;
 import warfake.war.battlefield.Squad;
 import warfake.war.classes.and.races.Archer;
 import warfake.war.classes.and.races.Person;
-import warfake.war.game.Game;
 
-public class HumanCrossbowman extends Person implements Archer, Improvable {
+public class HumanCrossbowman extends Person implements Archer, Aliance, Improvable {
 	private static final float SHOT_POWER = 15;
 	private static final float STRIKE_POWER = 5;
 	private static HumanWeapons sword = HumanWeapons.SWORD;
 	private static HumanWeapons broadsword = HumanWeapons.BROADSWORD;
 	private static final int NUMBER_OF_SKILLS = 2;
+	private static int id = 1;
+	private int name = id++;
 	
 	public HumanCrossbowman() {
-		setName("Human cross bow man");
+		setName("Human crossbowman");
 	}
 	
 	@Override
 	public void archeryShot(Squad targets) {
 		Person target = targets.getRandomTarget();
-		Game.numberOfTurns++;
 		int accuracy = getRandomAccuracy();
 		dealDamage(target, SHOT_POWER, accuracy);
-		logStrikeAction(Game.numberOfTurns, getName(), sword.getWeaponAction(), target, SHOT_POWER, accuracy);
+		logStrikeAction(getName(), sword.getWeaponAction(), target, SHOT_POWER, accuracy);
 	}
 
 	@Override
 	public void meleeStab(Squad targets) {
 		Person target = targets.getRandomTarget();
-		Game.numberOfTurns++;
 		int accuracy = 100;
 		dealDamage(target, STRIKE_POWER,accuracy);
-		logStrikeAction(Game.numberOfTurns, getName(), broadsword.getWeaponAction(), target, STRIKE_POWER, accuracy);
+		logStrikeAction(getName(), broadsword.getWeaponAction(), target, STRIKE_POWER, accuracy);
 	}
 	
 	@Override
@@ -54,14 +55,12 @@ public class HumanCrossbowman extends Person implements Archer, Improvable {
 
 	public static void main(String[] args) {
 		Squad squad = OrcSquadFactory.generateOrcSquad();
-		HumanCrossbowman human1 = new HumanCrossbowman();
-		human1.archeryShot(squad);
-		human1.archeryShot(squad);
-		human1.archeryShot(squad);
-		human1.meleeStab(squad);
-		human1.meleeStab(squad);
-		human1.meleeStab(squad);
-		human1.meleeStab(squad);
+		Squad squad1 = ElfSquadFactory.generateElfSquad();
+		HumanCrossbowman elf1 = new HumanCrossbowman();
+		elf1.performRandomAction(squad, squad1);
+		elf1.performRandomAction(squad, squad1);
+		elf1.performRandomAction(squad, squad1);
+		elf1.performRandomAction(squad, squad1);
 
 	}
 }

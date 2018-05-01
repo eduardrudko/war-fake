@@ -13,20 +13,35 @@ public class Game {
 	public static void main(String[] args) {
 		Game game = new Game();
 		game.spawnSquads();
-
+		System.out.println("[Move #" + ++numberOfTurns);
+		Squad.performActions(aliance, horde);
+		System.out.println("[Move #" + ++numberOfTurns);
+		Squad.performActions(aliance, horde);
+		System.out.println("[Move #" + ++numberOfTurns);
+		Squad.performActions(aliance, horde);
+		System.out.println("[Move #" + ++numberOfTurns);
+		Squad.performActions(aliance, horde);
+		System.out.println("[Move #" + ++numberOfTurns);
+		Squad.performActions(aliance, horde);
+		System.out.println("[Move #" + ++numberOfTurns);
+		Squad.performActions(aliance, horde);
+		System.out.println("[Move #" + ++numberOfTurns);
+		Squad.performActions(aliance, horde);
+		System.out.println("[Move #" + ++numberOfTurns);
+		Squad.performActions(aliance, horde);
+		System.out.println("[Move #" + ++numberOfTurns);
+		Squad.performActions(aliance, horde);
+		System.out.println("[Move #" + ++numberOfTurns);
+		Squad.performActions(aliance, horde);
 	}
 
-	private static final short NUMBER_OF_ALIANCE_SQUADS = 2;
-	private static final short NUMBER_OF_HORDE_SQUADS = 2;
+	private static final short NUMBER_OF_ALIANCE_SQUADS = 1; // change after debug on 2
+	private static final short NUMBER_OF_HORDE_SQUADS = 1; // change after debug on 2
 	private static Random random = new Random();
 	public static StringBuilder logs = new StringBuilder();
 	public static int numberOfTurns = 0;
-	private Squad aliance;
-	private Squad horde;
-
-	public StringBuilder getStringBuilder() {
-		return logs;
-	}
+	private static Squad aliance;
+	private static Squad horde;
 
 	public Squad getAlianceSquad() {
 		return aliance;
@@ -56,6 +71,9 @@ public class Game {
 	}
 	
 	public void startGame(Squad aliance, Squad horde) {
-		
+		while (aliance.getNumberOfSoldiers(aliance) != 0 || horde.getNumberOfSoldiers(horde) != 0) {
+			System.out.println("[Move #" + ++numberOfTurns);
+			Squad.performActions(aliance, horde);
+		}
 	}
 }

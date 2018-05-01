@@ -2,15 +2,15 @@ package warfake.war.armedforce;
 
 import java.util.Random;
 
+import warefake.war.markers.Aliance;
 import warfake.war.armory.HumanWeapons;
 import warfake.war.battlefield.HumanSquadFactory;
 import warfake.war.battlefield.OrcSquadFactory;
 import warfake.war.battlefield.Squad;
 import warfake.war.classes.and.races.Mage;
 import warfake.war.classes.and.races.Person;
-import warfake.war.game.Game;
 
-public class HumanMage extends Person implements Mage {
+public class HumanMage extends Person implements Mage, Aliance {
 	private static final int MAGIC_POWER = 20;
 	private static final int ENHANCE_WARRIOR_POWER = 20;
 	private static final int ENHANCE_CROSSBOWMAN_POWER = 10;
@@ -24,26 +24,23 @@ public class HumanMage extends Person implements Mage {
 	@Override
 	public void useMagic(Squad targets) {
 		Person target = targets.getRandomTarget();
-		Game.numberOfTurns++;
 		int accuracy = getRandomAccuracy();
 		dealDamage(target, MAGIC_POWER, accuracy);
-		logStrikeAction(Game.numberOfTurns, getName(), fireBallSpell.getWeaponAction(), target, MAGIC_POWER, accuracy);
+		logStrikeAction(getName(), fireBallSpell.getWeaponAction(), target, MAGIC_POWER, accuracy);
 	}
 	
 	@Override
 	public void applyImprovement(Squad targets) {
 		Person target = targets.getRandomImprovableTarget();
 		if (target instanceof HumanCrossbowman) {
-			Game.numberOfTurns++;
 			target.setAccuracy(Math.min((target.getAccuracy() + (target.getMaxAccuracy() * ENHANCE_CROSSBOWMAN_POWER) / 100), getMaxAccuracy()));
-			logEnhanceActionForRangers(Game.numberOfTurns, getName(), target, target.getAccuracy(),
+			logEnhanceActionForRangers(getName(), target, target.getAccuracy(),
 					ENHANCE_CROSSBOWMAN_POWER);
 			targets.getSuperPersons().add(target);
 			targets.getRegularPersons().remove(target);
 		} else {
-			Game.numberOfTurns++;
 			target.setStrikePower((target.getStrikePower() + (target.getStrikePower() * ENHANCE_WARRIOR_POWER) / 100));
-			logEnhanceActionForMelee(Game.numberOfTurns, getName(), target, target.getStrikePower(),
+			logEnhanceActionForMelee(getName(), target, target.getStrikePower(),
 					ENHANCE_WARRIOR_POWER);
 			targets.getSuperPersons().add(target);
 			targets.getRegularPersons().remove(target);

@@ -2,20 +2,23 @@ package warfake.war.armedforce;
 
 import java.util.Random;
 
+import warefake.war.markers.Aliance;
 import warfake.war.battlefield.ElfSquadFactory;
 import warfake.war.battlefield.Squad;
 import warfake.war.classes.and.races.Mage;
 import warfake.war.classes.and.races.Person;
 import warfake.war.game.Game;
 
-public class ElfMage extends Person implements Mage {
+public class ElfMage extends Person implements Mage, Aliance {
 	private static final int HEAL_POWER = 20;
 	private static final int ENHANCE_WARRIOR_POWER = 20;
 	private static final int ENHANCE_ARCHER_POWER = 10;
 	private static final int NUMBER_OF_SKILLS = 2;
+	private static int id = 1;
+	private int name = id++;
 	
 	public ElfMage() {
-		setName("ElfMage");
+		setName("ElfMage " + name);
 	}
 	
 	@Override
@@ -23,32 +26,28 @@ public class ElfMage extends Person implements Mage {
 		Person target = targets.getRandomTarget();
 		int currentHealth = target.getHealth();
 		if (currentHealth < getMaxHealth()) {
-			Game.numberOfTurns++;
 			target.setHealth((Math.min((Math.round((currentHealth + (getMaxHealth() * HEAL_POWER) / 100))), getMaxHealth())));
-			logHealAction(Game.numberOfTurns, getName(), target, currentHealth, HEAL_POWER);
+			logHealAction(getName(), target, currentHealth, HEAL_POWER);
 		} else {
-			Game.numberOfTurns++;
-			System.out.println("[Move #" + Game.numberOfTurns + "] " + "\"" + getName() + "\"" + " tries to use healing power but spell doesn't have any effect! " + "\"" + target.getName() + "\"" + " is healthy!\n");
-			Game.logs.append("[Move #" + Game.numberOfTurns + "] " + "\"" + getName() + "\"" + " tries to use healing power but spell doesn't have any effect! " + "\"" + target.getName() + "\"" + " is healthy!\n");
+			System.out.println("\"" + getName() + "\"" + " tries to use healing power but spell doesn't have any effect! " + "\"" + target.getName() + "\"" + " is healthy!\n");
+			Game.logs.append("\"" + getName() + "\"" + " tries to use healing power but spell doesn't have any effect! " + "\"" + target.getName() + "\"" + " is healthy!\n");
 		}
 	}
 	@Override
 	public void applyImprovement(Squad targets) {
 		Person target = targets.getRandomImprovableTarget();
 		if (target instanceof ElfArcher) {
-			Game.numberOfTurns++;
+			target.setAccuracy(getAccuracy());
 			target.setAccuracy(Math.min((target.getAccuracy() + (target.getMaxAccuracy() * ENHANCE_ARCHER_POWER) / 100), getMaxAccuracy()));
-			logEnhanceActionForRangers(Game.numberOfTurns, getName(), target, target.getAccuracy(),
+			logEnhanceActionForRangers(getName(), target, target.getAccuracy(),
 					ENHANCE_ARCHER_POWER);
-			targets.getSuperPersons().add(target);
-			targets.getRegularPersons().remove(target);
+			targets.swapPersons(target);
 		} else {
-			Game.numberOfTurns++;
+			target.setStrikePower(target.getStrikePower());
 			target.setStrikePower((target.getStrikePower() + (target.getStrikePower() * ENHANCE_WARRIOR_POWER) / 100));
-			logEnhanceActionForMelee(Game.numberOfTurns, getName(), target, target.getStrikePower(),
+			logEnhanceActionForMelee(getName(), target, target.getStrikePower(),
 					ENHANCE_WARRIOR_POWER);
-			targets.getSuperPersons().add(target);
-			targets.getRegularPersons().remove(target);
+			targets.swapPersons(target);
 		}
 		
 	}
@@ -65,7 +64,7 @@ public class ElfMage extends Person implements Mage {
 			break;
 		}
 	}
-
+	
 	public static void main(String[] args) {
 		Squad squad = ElfSquadFactory.generateElfSquad();
 		System.out.println(squad.getRegularPersons().toString());

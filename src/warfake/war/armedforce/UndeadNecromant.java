@@ -2,11 +2,12 @@ package warfake.war.armedforce;
 
 import java.util.Random;
 
+import warefake.war.markers.Horde;
 import warfake.war.battlefield.Squad;
 import warfake.war.classes.and.races.Mage;
 import warfake.war.classes.and.races.Person;
 
-public class UndeadNecromant extends Person implements Mage {
+public class UndeadNecromant extends Person implements Mage, Horde {
 	private static final int NUMBER_OF_SKILLS = 2;
 	
 	@Override

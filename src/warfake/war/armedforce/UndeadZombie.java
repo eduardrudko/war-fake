@@ -2,11 +2,12 @@ package warfake.war.armedforce;
 
 import java.util.Random;
 
+import warefake.war.markers.Horde;
 import warfake.war.battlefield.Squad;
 import warfake.war.classes.and.races.Person;
 import warfake.war.classes.and.races.Warrior;
 
-public class UndeadZombie extends Person implements Warrior {
+public class UndeadZombie extends Person implements Warrior, Horde {
 	private static final int NUMBER_OF_SKILLS = 1;
 	
 	@Override

@@ -2,14 +2,16 @@ package warfake.war.armedforce;
 
 import java.util.Random;
 
-import warefake.war.markers.Aliance;
-import warefake.war.markers.Improvable;
+import warefake.helpers.markers.Aliance;
+import warefake.helpers.markers.Improvable;
+import warefake.helpers.markers.NoEnemiesException;
 import warfake.war.armory.ElfWeapons;
 import warfake.war.battlefield.ElfSquadFactory;
 import warfake.war.battlefield.OrcSquadFactory;
 import warfake.war.battlefield.Squad;
 import warfake.war.classes.and.races.Archer;
 import warfake.war.classes.and.races.Person;
+import warfake.war.game.Game;
 
 public class ElfArcher extends Person implements Archer, Aliance, Improvable {
 	private static final float SHOT_POWER = 15;
@@ -23,23 +25,41 @@ public class ElfArcher extends Person implements Archer, Aliance, Improvable {
 	public ElfArcher() {
 		setName("Elf Archer " + name);
 	}
-	
+
 	@Override
 	public void archeryShot(Squad targets) {
-		Person target = targets.getRandomTarget();
-		int accuracy = getRandomAccuracy();
-		dealDamage(target, SHOT_POWER, accuracy);
-		logStrikeAction(getName(), elvenBow.getWeaponAction(), target, SHOT_POWER, accuracy);
+		try {
+			Person target = targets.getRandomTarget();
+			int accuracy = getRandomAccuracy();
+			dealDamage(target, SHOT_POWER, accuracy);
+			logStrikeAction(getName(), elvenBow.getWeaponAction(), target, SHOT_POWER, accuracy);
+			if (target.isDead()) {
+				targets.removePerson(target);
+			}
+		} catch (NoEnemiesException e) {
+			logElfsWin();
+			Game.gameProcess = false;
+			System.exit(0);
+		}
 	}
 
 	@Override
 	public void meleeStab(Squad targets) {
-		Person target = targets.getRandomTarget();
-		int accuracy = 100;
-		dealDamage(target, STAB_POWER,accuracy);
-		logStrikeAction(getName(), elvenDagger.getWeaponAction(), target, STAB_POWER, accuracy);
+		try {
+			Person target = targets.getRandomTarget();
+			int accuracy = 100;
+			dealDamage(target, STAB_POWER, accuracy);
+			logStrikeAction(getName(), elvenDagger.getWeaponAction(), target, STAB_POWER, accuracy);
+			if (target.isDead()) {
+				targets.removePerson(target);
+			}
+		} catch (NoEnemiesException e) {
+			logElfsWin();
+			Game.gameProcess = false;
+			System.exit(0);
+		}
 	}
-	
+
 	@Override
 	public void performRandomAction(Squad aliance, Squad horde) {
 		Random rnd = new Random();

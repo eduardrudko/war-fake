@@ -10,6 +10,8 @@ public abstract class Person implements Mage, Archer, Warrior {
 	private int accuracy;
 	private static final int MAX_ACCURACY = 100;
 	private float strikePower;
+	private boolean isDead;
+	private boolean isImproved;
 
 	public String getName() {
 		return name;
@@ -76,6 +78,24 @@ public abstract class Person implements Mage, Archer, Warrior {
 		
 	}
 	
+	public boolean isImproved() {
+		return isImproved;
+	}
+	
+	public void setIsImproved(boolean state) {
+		isImproved = state;
+	}
+	
+	public boolean isDead() {
+		if (HP == 0) {
+			isDead = true;
+			return isDead;
+		}
+		else {
+			return isDead;
+		}
+	}
+	
 	public abstract void performRandomAction(Squad aliance, Squad horde);
 
 	protected void dealDamage(Person target, float power, int accuracy) {
@@ -86,32 +106,59 @@ public abstract class Person implements Mage, Archer, Warrior {
 		System.out.println("\"" + attackerName + "\"" + actionType + "\"" + target.getName() + "\"" + " with the accuracy of " + accuracy + "%" + " and deal "
 				+ Math.round((strikePowerr * accuracy) / 100) + " damage!");
 		Game.logs.append("\"" + attackerName + "\"" + actionType + target.getName() + " with the accuracy of " + accuracy + "%" + " and deal "
-				+ Math.round((strikePowerr * accuracy) / 100) + " damage!");
+				+ Math.round((strikePowerr * accuracy) / 100) + " damage!\n");
 		System.out.println("\"" + target.getName() + "\"" + " has " + "[" + target.getHealth() + "/" + target.getMaxHealth() + "]" + " HP left!\n");
-		Game.logs.append("\"" + target.getName() + "\"" + " has " + "[" + target.getHealth() + "/" + target.getMaxHealth() + "]" + " HP left!");
+		Game.logs.append("\"" + target.getName() + "\"" + " has " + "[" + target.getHealth() + "/" + target.getMaxHealth() + "]" + " HP left!\n");
 	}
 	
 	protected void logHealAction(String name, Person target, float currentHealth, float healPower) {
 		System.out.println("\"" + name + "\"" + " lays healing power upon " + "\"" + target.getName() + "\"" + " and heals " + ((MAX_HP * healPower) / 100) + " HP!");
-		Game.logs.append("\"" + name + "\"" + " lays healing power upon " + "\"" + target.getName() + "\"" + " and heals " + ((MAX_HP * healPower) / 100) + " HP!");
+		Game.logs.append("\"" + name + "\"" + " lays healing power upon " + "\"" + target.getName() + "\"" + " and heals " + ((MAX_HP * healPower) / 100) + " HP!\n");
 		System.out.println(target.getName() + " has " + "[" + target.getHealth() + "/" + target.getMaxHealth() + "]" + " HP now!\n");
-		Game.logs.append(target.getName() + " has " + "[" + target.getHealth() + "/" + target.getMaxHealth() + "]" + " HP now!");
+		Game.logs.append(target.getName() + " has " + "[" + target.getHealth() + "/" + target.getMaxHealth() + "]" + " HP now!\n");
 	}
 	
 	protected void logEnhanceActionForRangers(String name, Person target, int currentAccuracy, int enhancePower) {
 		System.out.println("\"" + name + "\"" + " lays enhancing power upon " + "\"" + target.getName() + "\"" + " and increaces accuracy by " + enhancePower +  "%");
 		Game.logs.append("\"" + name + "\"" + " lays enhancing power upon " + target.getName() + " and increaces accuracy by " + enhancePower +  "%");
 		System.out.println("\"" + target.getName() + "\"" + " has +" + target.getAccuracy() + "% accuracy passive bonus now!\n");
-		Game.logs.append("\"" + target.getName() + "\"" + " has +" + target.getAccuracy() + "% accuracy passive bonus now!");
+		Game.logs.append("\"" + target.getName() + "\"" + " has +" + target.getAccuracy() + "% accuracy passive bonus now!\n");
 	}
 	
 	protected void logEnhanceActionForMelee(String name, Person target, float currentPower, int enhancePower) {
 		System.out.println("\"" + name + "\"" + " lays enhancing power upon " + "\"" + target.getName() + "\"" + " and increaces melee power by " + enhancePower +  "%");
 		Game.logs.append("\"" + name + "\"" + " lays enhancing power upon " + "\"" + target.getName() + "\"" + " and increaces melee power by " + enhancePower +  "%");
 		System.out.println("\"" + target.getName() + "\"" + " has " + target.getStrikePower() + " attack power now!\n");
-		Game.logs.append("\"" + target.getName() + "\"" + " has " + target.getStrikePower() + " attack power now!");
+		Game.logs.append("\"" + target.getName() + "\"" + " has " + target.getStrikePower() + " attack power now!\n");
 	}
 	
+	protected void logElfsWin() {
+		System.out.println("No enemies left!");
+		Game.logs.append("No enemies left!");
+		System.out.println("Elfs won!");
+		Game.logs.append("Elfs won!");
+	}
+	
+	protected void logHumansWin() {
+		System.out.println("No enemies left!");
+		Game.logs.append("No enemies left!");
+		System.out.println("Humans won!");
+		Game.logs.append("Humans won!");
+	}
+	
+	protected void logOrcsWin() {
+		System.out.println("No enemies left!");
+		Game.logs.append("No enemies left!");
+		System.out.println("Orcs won!");
+		Game.logs.append("Orcs won!");
+	}
+	
+	protected void logUndeadWin() {
+		System.out.println("No enemies left!");
+		Game.logs.append("No enemies left!");
+		System.out.println("Undeads won!");
+		Game.logs.append("Undeads won!");
+	}
 	protected int getRandomAccuracy() {
 		return (int)(Math.min((Math.random() * getMaxAccuracy() + getAccuracy()), 100));
 	}

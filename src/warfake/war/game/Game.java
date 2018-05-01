@@ -12,27 +12,14 @@ public class Game {
 
 	public static void main(String[] args) {
 		Game game = new Game();
+		System.out.println("Let the game begin!");
+		logs.append("Let the game begin!");
+		System.out.println("************************");
+		System.out.println();
 		game.spawnSquads();
-		System.out.println("[Move #" + ++numberOfTurns);
-		Squad.performActions(aliance, horde);
-		System.out.println("[Move #" + ++numberOfTurns);
-		Squad.performActions(aliance, horde);
-		System.out.println("[Move #" + ++numberOfTurns);
-		Squad.performActions(aliance, horde);
-		System.out.println("[Move #" + ++numberOfTurns);
-		Squad.performActions(aliance, horde);
-		System.out.println("[Move #" + ++numberOfTurns);
-		Squad.performActions(aliance, horde);
-		System.out.println("[Move #" + ++numberOfTurns);
-		Squad.performActions(aliance, horde);
-		System.out.println("[Move #" + ++numberOfTurns);
-		Squad.performActions(aliance, horde);
-		System.out.println("[Move #" + ++numberOfTurns);
-		Squad.performActions(aliance, horde);
-		System.out.println("[Move #" + ++numberOfTurns);
-		Squad.performActions(aliance, horde);
-		System.out.println("[Move #" + ++numberOfTurns);
-		Squad.performActions(aliance, horde);
+		System.out.println();
+		System.out.println("************************");
+		game.beginWar(aliance, horde);
 	}
 
 	private static final short NUMBER_OF_ALIANCE_SQUADS = 1; // change after debug on 2
@@ -40,6 +27,7 @@ public class Game {
 	private static Random random = new Random();
 	public static StringBuilder logs = new StringBuilder();
 	public static int numberOfTurns = 0;
+	public static boolean gameProcess = true;
 	private static Squad aliance;
 	private static Squad horde;
 
@@ -54,26 +42,34 @@ public class Game {
 	public void spawnSquads() {
 		switch (random.nextInt(NUMBER_OF_ALIANCE_SQUADS) + 1) {
 		case 1:
+			System.out.print("Elfs fighting against");
+			logs.append("Elfs fighting against");
 			aliance = ElfSquadFactory.generateElfSquad();
 			break;
 		case 2:
+			System.out.print("Humans againsts ");
+			logs.append("Human againsts ");
 			aliance = HumanSquadFactory.generateHumanSquad();
 			break;
 		}
 		switch (random.nextInt(NUMBER_OF_HORDE_SQUADS) + 1) {
 		case 1:
+			System.out.println(" Orcs!");
+			logs.append(" Orcs!");
 			horde = OrcSquadFactory.generateOrcSquad();
 			break;
 		case 2:
+			System.out.print(" Undeads!");
+			logs.append(" Undeads!");
 			horde = UndeadSquadFactory.generateUndeadSquad();
 			break;
 		}
 	}
 	
-	public void startGame(Squad aliance, Squad horde) {
-		while (aliance.getNumberOfSoldiers(aliance) != 0 || horde.getNumberOfSoldiers(horde) != 0) {
-			System.out.println("[Move #" + ++numberOfTurns);
+	public void beginWar(Squad aliance, Squad horde) {
+		do {
+			System.out.println("[Move #" + ++numberOfTurns + "]");
 			Squad.performActions(aliance, horde);
-		}
+		}while (gameProcess);
 	}
 }

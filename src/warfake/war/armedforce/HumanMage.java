@@ -2,13 +2,15 @@ package warfake.war.armedforce;
 
 import java.util.Random;
 
-import warefake.war.markers.Aliance;
+import warefake.helpers.markers.Aliance;
+import warefake.helpers.markers.NoEnemiesException;
 import warfake.war.armory.HumanWeapons;
 import warfake.war.battlefield.HumanSquadFactory;
 import warfake.war.battlefield.OrcSquadFactory;
 import warfake.war.battlefield.Squad;
 import warfake.war.classes.and.races.Mage;
 import warfake.war.classes.and.races.Person;
+import warfake.war.game.Game;
 
 public class HumanMage extends Person implements Mage, Aliance {
 	private static final int MAGIC_POWER = 20;
@@ -16,37 +18,46 @@ public class HumanMage extends Person implements Mage, Aliance {
 	private static final int ENHANCE_CROSSBOWMAN_POWER = 10;
 	private static HumanWeapons fireBallSpell = HumanWeapons.FIREBALL;
 	private static final int NUMBER_OF_SKILLS = 2;
-	
+	private static int id = 1;
+	private int name = id++;
+
 	public HumanMage() {
-		setName("Mage");
+		setName("Human Mage " + name);
 	}
-	
+
 	@Override
 	public void useMagic(Squad targets) {
-		Person target = targets.getRandomTarget();
-		int accuracy = getRandomAccuracy();
-		dealDamage(target, MAGIC_POWER, accuracy);
-		logStrikeAction(getName(), fireBallSpell.getWeaponAction(), target, MAGIC_POWER, accuracy);
+		try {
+			Person target = targets.getRandomTarget();
+			int accuracy = getRandomAccuracy();
+			dealDamage(target, MAGIC_POWER, accuracy);
+			logStrikeAction(getName(), fireBallSpell.getWeaponAction(), target, MAGIC_POWER, accuracy);
+		} catch (NoEnemiesException e) {
+			logHumansWin();
+			Game.gameProcess = false;
+			System.exit(0);
+		}
+
 	}
-	
+
 	@Override
 	public void applyImprovement(Squad targets) {
 		Person target = targets.getRandomImprovableTarget();
 		if (target instanceof HumanCrossbowman) {
-			target.setAccuracy(Math.min((target.getAccuracy() + (target.getMaxAccuracy() * ENHANCE_CROSSBOWMAN_POWER) / 100), getMaxAccuracy()));
-			logEnhanceActionForRangers(getName(), target, target.getAccuracy(),
-					ENHANCE_CROSSBOWMAN_POWER);
+			target.setAccuracy(
+					Math.min((target.getAccuracy() + (target.getMaxAccuracy() * ENHANCE_CROSSBOWMAN_POWER) / 100),
+							getMaxAccuracy()));
+			logEnhanceActionForRangers(getName(), target, target.getAccuracy(), ENHANCE_CROSSBOWMAN_POWER);
 			targets.getSuperPersons().add(target);
 			targets.getRegularPersons().remove(target);
 		} else {
 			target.setStrikePower((target.getStrikePower() + (target.getStrikePower() * ENHANCE_WARRIOR_POWER) / 100));
-			logEnhanceActionForMelee(getName(), target, target.getStrikePower(),
-					ENHANCE_WARRIOR_POWER);
+			logEnhanceActionForMelee(getName(), target, target.getStrikePower(), ENHANCE_WARRIOR_POWER);
 			targets.getSuperPersons().add(target);
 			targets.getRegularPersons().remove(target);
 		}
 	}
-	
+
 	@Override
 	public void performRandomAction(Squad aliance, Squad horde) {
 		Random rnd = new Random();

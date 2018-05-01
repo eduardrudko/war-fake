@@ -2,13 +2,15 @@ package warfake.war.armedforce;
 
 import java.util.Random;
 
-import warefake.war.markers.Horde;
-import warefake.war.markers.Improvable;
+import warefake.helpers.markers.Horde;
+import warefake.helpers.markers.Improvable;
+import warefake.helpers.markers.NoEnemiesException;
 import warfake.war.armory.OrcWeapons;
 import warfake.war.battlefield.ElfSquadFactory;
 import warfake.war.battlefield.Squad;
 import warfake.war.classes.and.races.Archer;
 import warfake.war.classes.and.races.Person;
+import warfake.war.game.Game;
 
 public class OrcArcher extends Person implements Archer, Horde, Improvable {
 	private static final float SHOT_POWER = 17;
@@ -18,30 +20,46 @@ public class OrcArcher extends Person implements Archer, Horde, Improvable {
 	private static final int NUMBER_OF_SKILLS = 2;
 	private static int id = 1;
 	private int name = id++;
-	
+
 	public OrcArcher() {
 		setName("Orc Archer " + name);
 	}
 
-
 	@Override
 	public void archeryShot(Squad targets) {
-		Person target = targets.getRandomTarget();
-		int accuracy = getRandomAccuracy();
-		dealDamage(target, SHOT_POWER, accuracy);
-		logStrikeAction(getName(), bow.getWeaponAction(), target, SHOT_POWER, accuracy);
-		
+		try {
+			Person target = targets.getRandomTarget();
+			int accuracy = getRandomAccuracy();
+			dealDamage(target, SHOT_POWER, accuracy);
+			logStrikeAction(getName(), bow.getWeaponAction(), target, SHOT_POWER, accuracy);
+			if (target.isDead()) {
+				targets.removePerson(target);
+			}
+		} catch (NoEnemiesException e) {
+			logOrcsWin();
+			Game.gameProcess = false;
+			System.exit(0);
+		}
+
 	}
 
 	@Override
 	public void meleeStab(Squad targets) {
-		Person target = targets.getRandomTarget();
-		int accuracy = 100;
-		dealDamage(target, STRIKE_POWER,accuracy);
-		logStrikeAction(getName(), axe.getWeaponAction(), target, STRIKE_POWER, accuracy);
-		
+		try {
+			Person target = targets.getRandomTarget();
+			int accuracy = 100;
+			dealDamage(target, STRIKE_POWER, accuracy);
+			logStrikeAction(getName(), axe.getWeaponAction(), target, STRIKE_POWER, accuracy);
+			if (target.isDead()) {
+				targets.removePerson(target);
+			}
+		} catch (NoEnemiesException e) {
+			logOrcsWin();
+			Game.gameProcess = false;
+			System.exit(0);
+		}
 	}
-	
+
 	@Override
 	public void performRandomAction(Squad aliance, Squad horde) {
 		Random rnd = new Random();

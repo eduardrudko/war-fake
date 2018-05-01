@@ -4,12 +4,14 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Random;
 
-import warefake.war.markers.Aliance;
-import warefake.war.markers.Improvable;
+import warefake.helpers.markers.Aliance;
+import warefake.helpers.markers.Improvable;
+import warefake.helpers.markers.NoEnemiesException;
 import warfake.war.classes.and.races.Archer;
 import warfake.war.classes.and.races.Mage;
 import warfake.war.classes.and.races.Person;
 import warfake.war.classes.and.races.Warrior;
+import warfake.war.game.Game;
 
 public abstract class Squad {
 	private static final short NUMBER_OF_MAGES = 1;
@@ -17,6 +19,7 @@ public abstract class Squad {
 	private static final short NUMBER_OF_WARRIORS = 4;
 	private LinkedList<Person> regularPersons = new LinkedList<>();
 	private LinkedList<Person> superPersons = new LinkedList<>();
+	private LinkedList<Person> deadCorpses = new LinkedList<>();
 
 	public Squad(LinkedList<Mage> mages, LinkedList<Archer> archers, LinkedList<Warrior> warriors) {
 		for (int i = 0; i < NUMBER_OF_MAGES; i++) {
@@ -50,11 +53,27 @@ public abstract class Squad {
 		return regularPersons;
 	}
 
+	public LinkedList<Person> getDeadCorpes() {
+		return deadCorpses;
+	}
+
 	public int getNumberOfSoldiers(Squad squad) {
 		return squad.regularPersons.size() + squad.superPersons.size();
 	}
 
-	public static void performActions(Squad aliance, Squad horde) {
+	public void removePerson(Person person) {
+		if (superPersons.contains(person)) {
+			superPersons.remove(person);
+			deadCorpses.add(person);
+		} else {
+			regularPersons.remove(person);
+			deadCorpses.add(person);
+		}
+		System.out.println("\"" + person.getName() + "\"" + " is dead!\n");
+		Game.logs.append("\"" + person.getName() + "\"" + " is dead!\n");
+	}
+
+	public static void performActions(Squad aliance, Squad horde) throws NullPointerException{
 		LinkedList<Person> generalSuperPersonsPull = gatherSuperPersons(aliance, horde);
 		LinkedList<Person> generalRegularPersonsPull = gatherRegularPersons(aliance, horde);
 		if (generalSuperPersonsPull.size() != 0) {
@@ -62,7 +81,11 @@ public abstract class Squad {
 			System.out.println("Super characters are move first:");
 			for (int i = 0; i < generalSuperPersonsPull.size(); i++) {
 				Person person = generalSuperPersonsPull.get(i);
-				person.performRandomAction(aliance, horde);
+				if (person.isDead()) {
+					continue;
+				} else {
+					person.performRandomAction(aliance, horde);
+				}
 				if (person instanceof Aliance) {
 					aliance.superPersons.remove(person);
 					aliance.regularPersons.add(person);
@@ -74,24 +97,50 @@ public abstract class Squad {
 			Collections.shuffle(generalRegularPersonsPull);
 			System.out.println("Regular character moves:");
 			for (int k = 0; k < generalRegularPersonsPull.size(); k++) {
-				generalRegularPersonsPull.get(k).performRandomAction(aliance, horde);
+				Person person = generalRegularPersonsPull.get(k);
+				if (person.isDead()) {
+					continue;
+				} else {
+					person.performRandomAction(aliance, horde);
+				}
 			}
 		} else {
 			Collections.shuffle(generalRegularPersonsPull);
 			System.out.println("Regular character moves:");
 			for (int i = 0; i < generalRegularPersonsPull.size(); i++) {
-				generalRegularPersonsPull.get(i).performRandomAction(aliance, horde);
+				Person person = generalRegularPersonsPull.get(i);
+				if (person.isDead()) {
+					continue;
+				} else {
+					person.performRandomAction(aliance, horde);
+				}
 			}
 		}
 	}
 
-	public Person getRandomTarget() {
+	public void performActionsForRegularPersons(LinkedList<Person> pull, Squad aliance, Squad horde) {
+		Collections.shuffle(pull);
+		System.out.println("Regular character moves:");
+		for (int i = 0; i < pull.size(); i++) {
+			Person person = pull.get(i);
+			if (person.isDead()) {
+				continue;
+			} else {
+				person.performRandomAction(aliance, horde);
+			}
+		}
+	}
+
+	public Person getRandomTarget() throws NoEnemiesException{
 		LinkedList<Person> targetsPull = new LinkedList<>();
 		Random random = new Random();
 		gatherSquad(targetsPull);
-		return targetsPull.get(random.nextInt(targetsPull.size()));
+		if (targetsPull.size() != 0) {
+			return targetsPull.get(random.nextInt(targetsPull.size()));
+		}
+		throw new NoEnemiesException();
 	}
-	
+
 	public void swapPersons(Person person) {
 		this.regularPersons.remove(person);
 		this.superPersons.add(person);

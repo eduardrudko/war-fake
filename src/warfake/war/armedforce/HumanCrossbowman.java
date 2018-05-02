@@ -47,7 +47,7 @@ public class HumanCrossbowman extends Person implements Archer, Aliance, Improva
 	public void meleeStab(Squad targets) {
 		try {
 			Person target = targets.getRandomTarget();
-			int accuracy = 100;
+			int accuracy = getMaxAccuracy();
 			dealDamage(target, STRIKE_POWER, accuracy);
 			logStrikeAction(getName(), sword.getWeaponAction(), target, STRIKE_POWER, accuracy);
 			if (target.isDead()) {

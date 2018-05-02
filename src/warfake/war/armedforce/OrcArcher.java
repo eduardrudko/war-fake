@@ -47,7 +47,7 @@ public class OrcArcher extends Person implements Archer, Horde, Improvable {
 	public void meleeStab(Squad targets) {
 		try {
 			Person target = targets.getRandomTarget();
-			int accuracy = 100;
+			int accuracy = getMaxAccuracy();
 			dealDamage(target, STRIKE_POWER, accuracy);
 			logStrikeAction(getName(), axe.getWeaponAction(), target, STRIKE_POWER, accuracy);
 			if (target.isDead()) {

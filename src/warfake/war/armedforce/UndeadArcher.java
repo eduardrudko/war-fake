@@ -45,7 +45,7 @@ public class UndeadArcher extends Person implements Archer, Horde {
 	public void meleeStab(Squad targets) {
 		try {
 			Person target = targets.getRandomTarget();
-			int accuracy = 100;
+			int accuracy = getMaxAccuracy();
 			dealDamage(target, STAB_POWER, accuracy);
 			logStrikeAction(getName(), knife.getWeaponAction(), target, STAB_POWER, accuracy);
 			if (target.isDead()) {

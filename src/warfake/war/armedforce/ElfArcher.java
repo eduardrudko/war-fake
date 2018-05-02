@@ -47,7 +47,7 @@ public class ElfArcher extends Person implements Archer, Aliance, Improvable {
 	public void meleeStab(Squad targets) {
 		try {
 			Person target = targets.getRandomTarget();
-			int accuracy = 100;
+			int accuracy = getMaxAccuracy();
 			dealDamage(target, STAB_POWER, accuracy);
 			logStrikeAction(getName(), elvenDagger.getWeaponAction(), target, STAB_POWER, accuracy);
 			if (target.isDead()) {

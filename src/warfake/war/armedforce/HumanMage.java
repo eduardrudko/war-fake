@@ -4,7 +4,7 @@ import java.util.Random;
 
 import warefake.helpers.markers.Aliance;
 import warefake.helpers.markers.NoEnemiesException;
-import warefake.helpers.markers.NoImprovableTargets;
+import warefake.helpers.markers.NoImprovableTargetsException;
 import warfake.war.armory.HumanWeapons;
 import warfake.war.battlefield.HumanSquadFactory;
 import warfake.war.battlefield.OrcSquadFactory;
@@ -58,7 +58,7 @@ public class HumanMage extends Person implements Mage, Aliance {
 				targets.swapPersons(target);
 			}
 		}
-		catch(NoImprovableTargets e) {
+		catch(NoImprovableTargetsException e) {
 			useMagic(targets);
 		}
 		

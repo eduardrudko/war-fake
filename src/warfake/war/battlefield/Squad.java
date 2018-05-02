@@ -8,7 +8,7 @@ import java.util.Random;
 import warefake.helpers.markers.Aliance;
 import warefake.helpers.markers.Improvable;
 import warefake.helpers.markers.NoEnemiesException;
-import warefake.helpers.markers.NoImprovableTargets;
+import warefake.helpers.markers.NoImprovableTargetsException;
 import warfake.war.classes.and.races.Archer;
 import warfake.war.classes.and.races.Mage;
 import warfake.war.classes.and.races.Person;
@@ -118,7 +118,7 @@ public abstract class Squad {
 		this.superPersons.add(person);
 	}
 
-	public Person getRandomImprovableTarget() throws NoImprovableTargets {
+	public Person getRandomImprovableTarget() throws NoImprovableTargetsException {
 		LinkedList<Person> improvableTargets = new LinkedList<>();
 		Random random = new Random();
 		for (Person value : regularPersons) {
@@ -130,7 +130,7 @@ public abstract class Squad {
 			return improvableTargets.get(random.nextInt(improvableTargets.size())); // bug is here IllegalArgumentException
 		}
 		else {
-			throw new NoImprovableTargets();
+			throw new NoImprovableTargetsException();
 		}
 	}
 

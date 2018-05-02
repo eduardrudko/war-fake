@@ -4,7 +4,7 @@ import java.util.Random;
 
 import warefake.helpers.markers.Aliance;
 import warefake.helpers.markers.NoEnemiesException;
-import warefake.helpers.markers.NoImprovableTargets;
+import warefake.helpers.markers.NoImprovableTargetsException;
 import warfake.war.battlefield.ElfSquadFactory;
 import warfake.war.battlefield.Squad;
 import warfake.war.classes.and.races.Mage;
@@ -64,7 +64,7 @@ public class ElfMage extends Person implements Mage, Aliance {
 				targets.swapPersons(target);
 			}
 		}
-		catch(NoImprovableTargets e) {
+		catch(NoImprovableTargetsException e) {
 			useMagic(targets);
 		}
 

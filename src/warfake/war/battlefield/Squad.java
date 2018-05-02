@@ -57,8 +57,8 @@ public abstract class Squad {
 		return deadCorpses;
 	}
 
-	public int getNumberOfSoldiers(Squad squad) {
-		return squad.regularPersons.size() + squad.superPersons.size();
+	public int getNumberOfSoldiers() {
+		return this.regularPersons.size() + this.superPersons.size();
 	}
 
 	public void removePerson(Person person) {
@@ -73,7 +73,7 @@ public abstract class Squad {
 		Game.logs.append("\"" + person.getName() + "\"" + " is dead!\n");
 	}
 
-	public static void performActions(Squad aliance, Squad horde) throws NullPointerException{
+	public static void performActions(Squad aliance, Squad horde) {
 		LinkedList<Person> generalSuperPersonsPull = gatherSuperPersons(aliance, horde);
 		LinkedList<Person> generalRegularPersonsPull = gatherRegularPersons(aliance, horde);
 		if (generalSuperPersonsPull.size() != 0) {

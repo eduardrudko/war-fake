@@ -8,6 +8,7 @@ import java.util.Random;
 import warefake.helpers.markers.Aliance;
 import warefake.helpers.markers.Improvable;
 import warefake.helpers.markers.NoEnemiesException;
+import warefake.helpers.markers.NoImprovableTargets;
 import warfake.war.classes.and.races.Archer;
 import warfake.war.classes.and.races.Mage;
 import warfake.war.classes.and.races.Person;
@@ -80,7 +81,6 @@ public abstract class Squad {
 		ArrayList<Person> generalRegularPersonsPull = gatherRegularPersons(aliance, horde);
 		if (generalSuperPersonsPull.size() != 0) {
 			Collections.shuffle(generalSuperPersonsPull);
-			System.out.println("Super characters are move first:");
 			for (int i = 0; i < generalSuperPersonsPull.size(); i++) {
 				Person person = generalSuperPersonsPull.get(i);
 				if (person.isDead()) {
@@ -118,7 +118,7 @@ public abstract class Squad {
 		this.superPersons.add(person);
 	}
 
-	public Person getRandomImprovableTarget() {
+	public Person getRandomImprovableTarget() throws NoImprovableTargets {
 		LinkedList<Person> improvableTargets = new LinkedList<>();
 		Random random = new Random();
 		for (Person value : regularPersons) {
@@ -126,7 +126,12 @@ public abstract class Squad {
 				improvableTargets.add(value);
 			}
 		}
-		return improvableTargets.get(random.nextInt(improvableTargets.size())); // bug is here IllegalArgumentException
+		if (improvableTargets.size() != 0) {
+			return improvableTargets.get(random.nextInt(improvableTargets.size())); // bug is here IllegalArgumentException
+		}
+		else {
+			throw new NoImprovableTargets();
+		}
 	}
 
 	private void gatherSquad(LinkedList<Person> personPull) {
@@ -163,7 +168,6 @@ public abstract class Squad {
 	private static void performRegularActions(ArrayList<Person> generalRegularPersonsPull, Squad aliance,
 			Squad horde) {
 		Collections.shuffle(generalRegularPersonsPull);
-		System.out.println("Regular character moves:");
 		for (int i = 0; i < generalRegularPersonsPull.size(); i++) {
 			Person person = generalRegularPersonsPull.get(i);
 			if (person.isDead()) {

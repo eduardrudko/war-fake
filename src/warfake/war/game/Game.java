@@ -2,7 +2,6 @@ package warfake.war.game;
 
 import java.util.Random;
 
-import warefake.helpers.markers.NoEnemiesException;
 import warfake.war.battlefield.ElfSquadFactory;
 import warfake.war.battlefield.HumanSquadFactory;
 import warfake.war.battlefield.OrcSquadFactory;

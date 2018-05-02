@@ -4,6 +4,7 @@ import java.util.Random;
 
 import warefake.helpers.markers.Aliance;
 import warefake.helpers.markers.NoEnemiesException;
+import warefake.helpers.markers.NoImprovableTargets;
 import warfake.war.armory.HumanWeapons;
 import warfake.war.battlefield.HumanSquadFactory;
 import warfake.war.battlefield.OrcSquadFactory;
@@ -42,19 +43,25 @@ public class HumanMage extends Person implements Mage, Aliance {
 
 	@Override
 	public void applyImprovement(Squad targets) {
-		Person target = targets.getRandomImprovableTarget();
-		if (target instanceof HumanCrossbowman) {
-			target.setAccuracy(getAccuracy());
-			target.setAccuracy(Math.min((target.getAccuracy() + (target.getMaxAccuracy() * ENHANCE_CROSSBOWMAN_POWER) / 100),
-					getMaxAccuracy()));
-			logEnhanceActionForRangers(getName(), target, target.getAccuracy(), ENHANCE_CROSSBOWMAN_POWER);
-			targets.swapPersons(target);
-		} else {
-			target.setIsImproved(true);
-			target.setStrikePower((target.getStrikePower() + (target.getStrikePower() * ENHANCE_WARRIOR_POWER) / 100));
-			logEnhanceActionForMelee(getName(), target, target.getStrikePower(), ENHANCE_WARRIOR_POWER);
-			targets.swapPersons(target);
+		try {
+			Person target = targets.getRandomImprovableTarget();
+			if (target instanceof HumanCrossbowman) {
+				target.setAccuracy(getAccuracy());
+				target.setAccuracy(Math.min((target.getAccuracy() + (target.getMaxAccuracy() * ENHANCE_CROSSBOWMAN_POWER) / 100),
+						getMaxAccuracy()));
+				logEnhanceActionForRangers(getName(), target, target.getAccuracy(), ENHANCE_CROSSBOWMAN_POWER);
+				targets.swapPersons(target);
+			} else {
+				target.setIsImproved(true);
+				target.setStrikePower((target.getStrikePower() + (target.getStrikePower() * ENHANCE_WARRIOR_POWER) / 100));
+				logEnhanceActionForMelee(getName(), target, target.getStrikePower(), ENHANCE_WARRIOR_POWER);
+				targets.swapPersons(target);
+			}
 		}
+		catch(NoImprovableTargets e) {
+			useMagic(targets);
+		}
+		
 	}
 
 	@Override

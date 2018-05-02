@@ -40,6 +40,7 @@ public class OrcGoblin extends Person implements Warrior, Horde, Improvable {
 		} catch (NoEnemiesException e) {
 			logHordeVictory();
 			Game.gameProcess = false;
+			Game.createResults();
 			System.exit(0);
 		}
 	}
@@ -54,6 +55,16 @@ public class OrcGoblin extends Person implements Warrior, Horde, Improvable {
 		}
 	}
 
+	@Override
+	public float getStrikePower() {
+		return strikePower;
+	}
+
+	@Override
+	public void setStrikePower(float strikePower) {
+		this.strikePower = strikePower;
+	}
+	
 	public float getDefaultStrikePower() {
 		return DEFAULT_STIKE_POWER;
 	}

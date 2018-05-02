@@ -39,6 +39,7 @@ public class ElfArcher extends Person implements Archer, Aliance, Improvable {
 		} catch (NoEnemiesException e) {
 			logAlianceVictory();
 			Game.gameProcess = false;
+			Game.createResults();
 			System.exit(0);
 		}
 	}
@@ -56,6 +57,7 @@ public class ElfArcher extends Person implements Archer, Aliance, Improvable {
 		} catch (NoEnemiesException e) {
 			logAlianceVictory();
 			Game.gameProcess = false;
+			Game.createResults();
 			System.exit(0);
 		}
 	}

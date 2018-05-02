@@ -7,8 +7,10 @@ import java.util.Random;
 
 import warefake.helpers.markers.Aliance;
 import warefake.helpers.markers.Improvable;
+import warefake.helpers.markers.NoDeadBodiesException;
 import warefake.helpers.markers.NoEnemiesException;
 import warefake.helpers.markers.NoImprovableTargetsException;
+import warefake.helpers.markers.NoImprovedTargetsException;
 import warfake.war.classes.and.races.Archer;
 import warfake.war.classes.and.races.Mage;
 import warfake.war.classes.and.races.Person;
@@ -77,6 +79,7 @@ public abstract class Squad {
 
 	public static void performActions(Squad aliance, Squad horde) {
 		System.out.println("[Move #" + ++Game.numberOfTurns + "]");
+		Game.logs.append("[Move #" + Game.numberOfTurns + "]\n");
 		ArrayList<Person> generalSuperPersonsPull = gatherSuperPersons(aliance, horde);
 		ArrayList<Person> generalRegularPersonsPull = gatherRegularPersons(aliance, horde);
 		if (generalSuperPersonsPull.size() != 0) {
@@ -113,9 +116,14 @@ public abstract class Squad {
 		throw new NoEnemiesException();
 	}
 
-	public void swapPersons(Person person) {
+	public void promotePerson(Person person) {
 		this.regularPersons.remove(person);
 		this.superPersons.add(person);
+	}
+	
+	public void demotePerson(Person person) {
+		this.superPersons.remove(person);
+		this.regularPersons.add(person);
 	}
 
 	public Person getRandomImprovableTarget() throws NoImprovableTargetsException {
@@ -131,6 +139,34 @@ public abstract class Squad {
 		}
 		else {
 			throw new NoImprovableTargetsException();
+		}
+	}
+	
+	public Person getRandomImprovedTarget() throws NoImprovedTargetsException {
+		LinkedList<Person> improvedTargets = new LinkedList<>();
+		Random random = new Random();
+		if (superPersons.size() != 0) {
+			for (Person value: this.superPersons) {
+				improvedTargets.add(value);
+			}
+			return improvedTargets.get(random.nextInt(improvedTargets.size()));
+		}
+		else {
+			throw new NoImprovedTargetsException();
+		}
+	}
+	
+	public Person getRandomDeadTarget() throws NoDeadBodiesException {
+		LinkedList<Person> deadBodies = new LinkedList<>();
+		Random random = new Random();
+		if (deadCorpses.size() != 0) {
+			for (Person value: this.deadCorpses) {
+				deadBodies.add(value);
+			}
+			return deadBodies.get(random.nextInt(deadBodies.size()));
+		}
+		else {
+			throw new NoDeadBodiesException();
 		}
 	}
 

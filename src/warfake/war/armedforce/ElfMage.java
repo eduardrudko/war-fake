@@ -43,6 +43,7 @@ public class ElfMage extends Person implements Mage, Aliance {
 		} catch (NoEnemiesException e) {
 			logAlianceVictory();
 			Game.gameProcess = false;
+			Game.createResults();
 			System.exit(0);
 		}
 	}
@@ -52,19 +53,21 @@ public class ElfMage extends Person implements Mage, Aliance {
 		try {
 			Person target = targets.getRandomImprovableTarget();
 			if (target instanceof ElfArcher) {
+				target.setIsImproved(true);
 				target.setAccuracy(getAccuracy());
-				target.setAccuracy(Math.min((target.getAccuracy() + (target.getMaxAccuracy() * ENHANCE_ARCHER_POWER) / 100),
-						getMaxAccuracy()));
+				target.setAccuracy(
+						Math.min((target.getAccuracy() + (target.getMaxAccuracy() * ENHANCE_ARCHER_POWER) / 100),
+								getMaxAccuracy()));
 				logEnhanceActionForRangers(getName(), target, target.getAccuracy(), ENHANCE_ARCHER_POWER);
-				targets.swapPersons(target);
+				targets.promotePerson(target);
 			} else {
 				target.setIsImproved(true);
-				target.setStrikePower((target.getStrikePower() + (target.getStrikePower() * ENHANCE_WARRIOR_POWER) / 100));
+				target.setStrikePower(
+						(target.getStrikePower() + (target.getStrikePower() * ENHANCE_WARRIOR_POWER) / 100));
 				logEnhanceActionForMelee(getName(), target, target.getStrikePower(), ENHANCE_WARRIOR_POWER);
-				targets.swapPersons(target);
+				targets.promotePerson(target);
 			}
-		}
-		catch(NoImprovableTargetsException e) {
+		} catch (NoImprovableTargetsException e) {
 			useMagic(targets);
 		}
 

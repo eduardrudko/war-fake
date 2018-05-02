@@ -36,6 +36,7 @@ public class UndeadArcher extends Person implements Archer, Horde {
 		} catch (NoEnemiesException e) {
 			logHordeVictory();
 			Game.gameProcess = false;
+			Game.createResults();
 			System.exit(0);
 		}
 
@@ -53,6 +54,7 @@ public class UndeadArcher extends Person implements Archer, Horde {
 			}
 		} catch (NoEnemiesException e) {
 			logHordeVictory();
+			Game.createResults();
 			Game.gameProcess = false;
 			System.exit(0);
 		}

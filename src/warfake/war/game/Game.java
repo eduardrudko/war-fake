@@ -1,5 +1,9 @@
 package warfake.war.game;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Random;
 
 import warfake.war.battlefield.ElfSquadFactory;
@@ -13,7 +17,7 @@ public class Game {
 	public static void main(String[] args) {
 		Game game = new Game();
 		System.out.println("Let the game begin!");
-		logs.append("Let the game begin!");
+		logs.append("Let the game begin!\n");
 		System.out.println("************************");
 		System.out.println();
 		game.spawnSquads();
@@ -22,10 +26,10 @@ public class Game {
 		game.beginWar(aliance, horde);
 	}
 
-	private static final short NUMBER_OF_ALIANCE_SQUADS = 1; // change after debug on 2
+	private static final short NUMBER_OF_ALIANCE_SQUADS = 2; // change after debug on 2
 	private static final short NUMBER_OF_HORDE_SQUADS = 1; // change after debug on 2
 	private static Random random = new Random();
-	public static StringBuilder logs = new StringBuilder();
+	public static StringBuilder logs = new StringBuilder("");
 	public static int numberOfTurns = 0;
 	public static boolean gameProcess = true;
 	private static Squad aliance;
@@ -39,7 +43,7 @@ public class Game {
 		return horde;
 	}
 
-	public void spawnSquads() {
+	private void spawnSquads() {
 		switch (random.nextInt(NUMBER_OF_ALIANCE_SQUADS) + 1) {
 		case 1:
 			System.out.print("Elfs fighting against");
@@ -47,8 +51,8 @@ public class Game {
 			aliance = ElfSquadFactory.generateElfSquad();
 			break;
 		case 2:
-			System.out.print("Humans againsts ");
-			logs.append("Human againsts ");
+			System.out.print("Humans fighting againsts");
+			logs.append("Human fighting againsts");
 			aliance = HumanSquadFactory.generateHumanSquad();
 			break;
 		}
@@ -66,9 +70,18 @@ public class Game {
 		}
 	}
 
-	public void beginWar(Squad aliance, Squad horde) {
+	private void beginWar(Squad aliance, Squad horde) {
 		do {
 			Squad.performActions(aliance, horde);
 		} while (gameProcess);
+	}
+	
+	public static void createResults() {
+		File results = new File("results.txt");
+		try (BufferedWriter bw = new BufferedWriter(new FileWriter(results))) {
+			bw.write(logs.toString());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

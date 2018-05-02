@@ -38,6 +38,7 @@ public class HumanCrossbowman extends Person implements Archer, Aliance, Improva
 			}
 		} catch (NoEnemiesException e) {
 			logAlianceVictory();
+			Game.createResults();
 			Game.gameProcess = false;
 			System.exit(0);
 		}
@@ -56,6 +57,7 @@ public class HumanCrossbowman extends Person implements Archer, Aliance, Improva
 		} catch (NoEnemiesException e) {
 			logAlianceVictory();
 			Game.gameProcess = false;
+			Game.createResults();
 			System.exit(0);
 		}
 	}

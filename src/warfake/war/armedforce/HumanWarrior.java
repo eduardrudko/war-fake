@@ -40,6 +40,7 @@ public class HumanWarrior extends Person implements Warrior, Aliance, Improvable
 		} catch (NoEnemiesException e) {
 			logAlianceVictory();
 			Game.gameProcess = false;
+			Game.createResults();
 			System.exit(0);
 		}
 	}

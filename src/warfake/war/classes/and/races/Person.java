@@ -132,6 +132,16 @@ public abstract class Person implements Mage, Archer, Warrior {
 		Game.logs.append("\"" + target.getName() + "\"" + " has " + target.getStrikePower() + " attack power now!\n");
 	}
 	
+	protected void logCurseAction(String name, Person target) {
+		System.out.println("\"" + name + "\"" + " curses the " + "\"" + target.getName() + "\"" + " and absorb all status bonuses!\n");
+		Game.logs.append("\"" + name + "\"" + " curses the " + "\"" + target.getName() + "\"" + " and absorb all status bonuses!\n");
+	}
+	
+	protected void logFailedCurseAction(String name) {
+		System.out.println("\"" + name + "\"" + " tries to use black curse but it's failed! There are no improved enemies!\n");
+		Game.logs.append("\"" + name + "\"" + " tries to use black curse but it's failed! There are no improved enemies!\n");
+	}
+	
 	protected void logAlianceVictory() {
 		System.out.println("No enemies left!");
 		Game.logs.append("No enemies left!");
@@ -142,7 +152,7 @@ public abstract class Person implements Mage, Archer, Warrior {
 	
 	protected void logHordeVictory() {
 		System.out.println("No enemies left!");
-		Game.logs.append("No enemies left!");
+		Game.logs.append("No enemies left!\n");
 		System.out.println("Horde won!");
 		Game.logs.append("Horde won!");
 	}

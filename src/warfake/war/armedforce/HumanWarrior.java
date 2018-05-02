@@ -13,6 +13,7 @@ import warfake.war.game.Game;
 
 public class HumanWarrior extends Person implements Warrior, Aliance, Improvable {
 	private float strikePower = 20;
+	private static final float DEFAULT_STIKE_POWER = 20;
 	private static HumanWeapons broadsword = HumanWeapons.BROADSWORD;
 	private static final int NUMBER_OF_SKILLS = 1;
 	private static int id = 1;
@@ -29,8 +30,15 @@ public class HumanWarrior extends Person implements Warrior, Aliance, Improvable
 			int accuracy = getRandomAccuracy();
 			dealDamage(target, strikePower, accuracy);
 			logStrikeAction(getName(), broadsword.getWeaponAction(), target, strikePower, accuracy);
+			if (target.isDead()) {
+				targets.removePerson(target);
+			}
+			if (this.isImproved()) {
+				this.setIsImproved(false);
+				this.setStrikePower(DEFAULT_STIKE_POWER);
+			}
 		} catch (NoEnemiesException e) {
-			logHumansWin();
+			logAlianceVictory();
 			Game.gameProcess = false;
 			System.exit(0);
 		}

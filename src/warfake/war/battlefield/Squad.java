@@ -1,5 +1,6 @@
 package warfake.war.battlefield;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Random;
@@ -74,8 +75,9 @@ public abstract class Squad {
 	}
 
 	public static void performActions(Squad aliance, Squad horde) {
-		LinkedList<Person> generalSuperPersonsPull = gatherSuperPersons(aliance, horde);
-		LinkedList<Person> generalRegularPersonsPull = gatherRegularPersons(aliance, horde);
+		System.out.println("[Move #" + ++Game.numberOfTurns + "]");
+		ArrayList<Person> generalSuperPersonsPull = gatherSuperPersons(aliance, horde);
+		ArrayList<Person> generalRegularPersonsPull = gatherRegularPersons(aliance, horde);
 		if (generalSuperPersonsPull.size() != 0) {
 			Collections.shuffle(generalSuperPersonsPull);
 			System.out.println("Super characters are move first:");
@@ -94,44 +96,14 @@ public abstract class Squad {
 					horde.superPersons.add(person);
 				}
 			}
-			Collections.shuffle(generalRegularPersonsPull);
-			System.out.println("Regular character moves:");
-			for (int k = 0; k < generalRegularPersonsPull.size(); k++) {
-				Person person = generalRegularPersonsPull.get(k);
-				if (person.isDead()) {
-					continue;
-				} else {
-					person.performRandomAction(aliance, horde);
-				}
-			}
+			performRegularActions(generalRegularPersonsPull, aliance, horde);
 		} else {
-			Collections.shuffle(generalRegularPersonsPull);
-			System.out.println("Regular character moves:");
-			for (int i = 0; i < generalRegularPersonsPull.size(); i++) {
-				Person person = generalRegularPersonsPull.get(i);
-				if (person.isDead()) {
-					continue;
-				} else {
-					person.performRandomAction(aliance, horde);
-				}
-			}
+			performRegularActions(generalRegularPersonsPull, aliance, horde);
 		}
 	}
 
-	public void performActionsForRegularPersons(LinkedList<Person> pull, Squad aliance, Squad horde) {
-		Collections.shuffle(pull);
-		System.out.println("Regular character moves:");
-		for (int i = 0; i < pull.size(); i++) {
-			Person person = pull.get(i);
-			if (person.isDead()) {
-				continue;
-			} else {
-				person.performRandomAction(aliance, horde);
-			}
-		}
-	}
 
-	public Person getRandomTarget() throws NoEnemiesException{
+	public Person getRandomTarget() throws NoEnemiesException {
 		LinkedList<Person> targetsPull = new LinkedList<>();
 		Random random = new Random();
 		gatherSquad(targetsPull);
@@ -154,7 +126,7 @@ public abstract class Squad {
 				improvableTargets.add(value);
 			}
 		}
-		return improvableTargets.get(random.nextInt(improvableTargets.size()));
+		return improvableTargets.get(random.nextInt(improvableTargets.size())); // bug is here IllegalArgumentException
 	}
 
 	private void gatherSquad(LinkedList<Person> personPull) {
@@ -166,8 +138,8 @@ public abstract class Squad {
 		}
 	}
 
-	private static LinkedList<Person> gatherSuperPersons(Squad aliance, Squad horde) {
-		LinkedList<Person> temp = new LinkedList<>();
+	private static ArrayList<Person> gatherSuperPersons(Squad aliance, Squad horde) {
+		ArrayList<Person> temp = new ArrayList<>();
 		for (Person value : aliance.superPersons) {
 			temp.add(value);
 		}
@@ -177,8 +149,8 @@ public abstract class Squad {
 		return temp;
 	}
 
-	private static LinkedList<Person> gatherRegularPersons(Squad aliance, Squad horde) {
-		LinkedList<Person> temp = new LinkedList<>();
+	private static ArrayList<Person> gatherRegularPersons(Squad aliance, Squad horde) {
+		ArrayList<Person> temp = new ArrayList<>();
 		for (Person value : aliance.regularPersons) {
 			temp.add(value);
 		}
@@ -186,5 +158,19 @@ public abstract class Squad {
 			temp.add(value);
 		}
 		return temp;
+	}
+
+	private static void performRegularActions(ArrayList<Person> generalRegularPersonsPull, Squad aliance,
+			Squad horde) {
+		Collections.shuffle(generalRegularPersonsPull);
+		System.out.println("Regular character moves:");
+		for (int i = 0; i < generalRegularPersonsPull.size(); i++) {
+			Person person = generalRegularPersonsPull.get(i);
+			if (person.isDead()) {
+				continue;
+			} else {
+				person.performRandomAction(aliance, horde);
+			}
+		}
 	}
 }

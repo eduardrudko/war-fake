@@ -40,7 +40,7 @@ public class ElfWarrior extends Person implements Warrior, Aliance, Improvable {
 				this.setStrikePower(DEFAULT_STIKE_POWER);
 			}
 		} catch (NoEnemiesException e) {
-			logElfsWin();
+			logAlianceVictory();
 			Game.gameProcess = false;
 			System.exit(0);
 		}

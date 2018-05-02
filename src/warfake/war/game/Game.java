@@ -2,6 +2,7 @@ package warfake.war.game;
 
 import java.util.Random;
 
+import warefake.helpers.markers.NoEnemiesException;
 import warfake.war.battlefield.ElfSquadFactory;
 import warfake.war.battlefield.HumanSquadFactory;
 import warfake.war.battlefield.OrcSquadFactory;
@@ -65,11 +66,10 @@ public class Game {
 			break;
 		}
 	}
-	
+
 	public void beginWar(Squad aliance, Squad horde) {
 		do {
-			System.out.println("[Move #" + ++numberOfTurns + "]");
 			Squad.performActions(aliance, horde);
-		}while (gameProcess);
+		} while (gameProcess);
 	}
 }

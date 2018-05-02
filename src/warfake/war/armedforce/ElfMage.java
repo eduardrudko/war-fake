@@ -40,7 +40,7 @@ public class ElfMage extends Person implements Mage, Aliance {
 								+ "\"" + target.getName() + "\"" + " is healthy!\n");
 			}
 		} catch (NoEnemiesException e) {
-			logElfsWin();
+			logAlianceVictory();
 			Game.gameProcess = false;
 			System.exit(0);
 		}

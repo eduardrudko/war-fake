@@ -17,7 +17,7 @@ public class HumanCrossbowman extends Person implements Archer, Aliance, Improva
 	private static final float SHOT_POWER = 15;
 	private static final float STRIKE_POWER = 5;
 	private static HumanWeapons sword = HumanWeapons.SWORD;
-	private static HumanWeapons broadsword = HumanWeapons.BROADSWORD;
+	private static HumanWeapons crossbow = HumanWeapons.CROSSBOW;
 	private static final int NUMBER_OF_SKILLS = 2;
 	private static int id = 1;
 	private int name = id++;
@@ -32,9 +32,12 @@ public class HumanCrossbowman extends Person implements Archer, Aliance, Improva
 			Person target = targets.getRandomTarget();
 			int accuracy = getRandomAccuracy();
 			dealDamage(target, SHOT_POWER, accuracy);
-			logStrikeAction(getName(), sword.getWeaponAction(), target, SHOT_POWER, accuracy);
+			logStrikeAction(getName(), crossbow.getWeaponAction(), target, SHOT_POWER, accuracy);
+			if (target.isDead()) {
+				targets.removePerson(target);
+			}
 		} catch (NoEnemiesException e) {
-			logHumansWin();
+			logAlianceVictory();
 			Game.gameProcess = false;
 			System.exit(0);
 		}
@@ -46,9 +49,13 @@ public class HumanCrossbowman extends Person implements Archer, Aliance, Improva
 			Person target = targets.getRandomTarget();
 			int accuracy = 100;
 			dealDamage(target, STRIKE_POWER, accuracy);
-			logStrikeAction(getName(), broadsword.getWeaponAction(), target, STRIKE_POWER, accuracy);
+			logStrikeAction(getName(), sword.getWeaponAction(), target, STRIKE_POWER, accuracy);
+			if (target.isDead()) {
+				targets.removePerson(target);
+			}
 		} catch (NoEnemiesException e) {
-			logElfsWin();
+			logAlianceVictory();
+			Game.gameProcess = false;
 			System.exit(0);
 		}
 	}

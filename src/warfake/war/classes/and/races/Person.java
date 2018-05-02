@@ -132,33 +132,21 @@ public abstract class Person implements Mage, Archer, Warrior {
 		Game.logs.append("\"" + target.getName() + "\"" + " has " + target.getStrikePower() + " attack power now!\n");
 	}
 	
-	protected void logElfsWin() {
+	protected void logAlianceVictory() {
 		System.out.println("No enemies left!");
 		Game.logs.append("No enemies left!");
-		System.out.println("Elfs won!");
-		Game.logs.append("Elfs won!");
+		System.out.println("Aliance won!");
+		Game.logs.append("Aliance won!");
 	}
 	
-	protected void logHumansWin() {
+	
+	protected void logHordeVictory() {
 		System.out.println("No enemies left!");
 		Game.logs.append("No enemies left!");
-		System.out.println("Humans won!");
-		Game.logs.append("Humans won!");
+		System.out.println("Horde won!");
+		Game.logs.append("Horde won!");
 	}
 	
-	protected void logOrcsWin() {
-		System.out.println("No enemies left!");
-		Game.logs.append("No enemies left!");
-		System.out.println("Orcs won!");
-		Game.logs.append("Orcs won!");
-	}
-	
-	protected void logUndeadWin() {
-		System.out.println("No enemies left!");
-		Game.logs.append("No enemies left!");
-		System.out.println("Undeads won!");
-		Game.logs.append("Undeads won!");
-	}
 	protected int getRandomAccuracy() {
 		return (int)(Math.min((Math.random() * getMaxAccuracy() + getAccuracy()), 100));
 	}

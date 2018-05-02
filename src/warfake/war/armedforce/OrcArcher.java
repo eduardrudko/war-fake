@@ -36,7 +36,7 @@ public class OrcArcher extends Person implements Archer, Horde, Improvable {
 				targets.removePerson(target);
 			}
 		} catch (NoEnemiesException e) {
-			logOrcsWin();
+			logHordeVictory();
 			Game.gameProcess = false;
 			System.exit(0);
 		}
@@ -54,7 +54,7 @@ public class OrcArcher extends Person implements Archer, Horde, Improvable {
 				targets.removePerson(target);
 			}
 		} catch (NoEnemiesException e) {
-			logOrcsWin();
+			logHordeVictory();
 			Game.gameProcess = false;
 			System.exit(0);
 		}

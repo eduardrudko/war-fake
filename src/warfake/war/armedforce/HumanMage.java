@@ -33,7 +33,7 @@ public class HumanMage extends Person implements Mage, Aliance {
 			dealDamage(target, MAGIC_POWER, accuracy);
 			logStrikeAction(getName(), fireBallSpell.getWeaponAction(), target, MAGIC_POWER, accuracy);
 		} catch (NoEnemiesException e) {
-			logHumansWin();
+			logAlianceVictory();
 			Game.gameProcess = false;
 			System.exit(0);
 		}
@@ -44,17 +44,16 @@ public class HumanMage extends Person implements Mage, Aliance {
 	public void applyImprovement(Squad targets) {
 		Person target = targets.getRandomImprovableTarget();
 		if (target instanceof HumanCrossbowman) {
-			target.setAccuracy(
-					Math.min((target.getAccuracy() + (target.getMaxAccuracy() * ENHANCE_CROSSBOWMAN_POWER) / 100),
-							getMaxAccuracy()));
+			target.setAccuracy(getAccuracy());
+			target.setAccuracy(Math.min((target.getAccuracy() + (target.getMaxAccuracy() * ENHANCE_CROSSBOWMAN_POWER) / 100),
+					getMaxAccuracy()));
 			logEnhanceActionForRangers(getName(), target, target.getAccuracy(), ENHANCE_CROSSBOWMAN_POWER);
-			targets.getSuperPersons().add(target);
-			targets.getRegularPersons().remove(target);
+			targets.swapPersons(target);
 		} else {
+			target.setIsImproved(true);
 			target.setStrikePower((target.getStrikePower() + (target.getStrikePower() * ENHANCE_WARRIOR_POWER) / 100));
 			logEnhanceActionForMelee(getName(), target, target.getStrikePower(), ENHANCE_WARRIOR_POWER);
-			targets.getSuperPersons().add(target);
-			targets.getRegularPersons().remove(target);
+			targets.swapPersons(target);
 		}
 	}
 

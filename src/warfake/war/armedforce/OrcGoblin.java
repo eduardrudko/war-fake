@@ -38,7 +38,7 @@ public class OrcGoblin extends Person implements Warrior, Horde, Improvable {
 				this.setStrikePower(DEFAULT_STIKE_POWER);
 			}
 		} catch (NoEnemiesException e) {
-			logOrcsWin();
+			logHordeVictory();
 			Game.gameProcess = false;
 			System.exit(0);
 		}

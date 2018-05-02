@@ -12,7 +12,7 @@ import warfake.war.game.Game;
 
 public class UndeadArcher extends Person implements Archer, Horde {
 	private static final float SHOT_POWER = 15;
-	private static final float STRIKE_POWER = 2;
+	private static final float STAB_POWER = 2;
 	private static UndeadWeapons boneBow = UndeadWeapons.BONE_BOW;
 	private static UndeadWeapons knife = UndeadWeapons.KNIFE;
 	private static final int NUMBER_OF_SKILLS = 2;
@@ -30,9 +30,13 @@ public class UndeadArcher extends Person implements Archer, Horde {
 			int accuracy = getRandomAccuracy();
 			dealDamage(target, SHOT_POWER, accuracy);
 			logStrikeAction(getName(), boneBow.getWeaponAction(), target, SHOT_POWER, accuracy);
+			if (target.isDead()) {
+				targets.removePerson(target);
+			}
 		} catch (NoEnemiesException e) {
-			logUndeadWin();
+			logHordeVictory();
 			Game.gameProcess = false;
+			System.exit(0);
 		}
 
 	}
@@ -42,11 +46,15 @@ public class UndeadArcher extends Person implements Archer, Horde {
 		try {
 			Person target = targets.getRandomTarget();
 			int accuracy = 100;
-			dealDamage(target, STRIKE_POWER, accuracy);
-			logStrikeAction(getName(), knife.getWeaponAction(), target, STRIKE_POWER, accuracy);
+			dealDamage(target, STAB_POWER, accuracy);
+			logStrikeAction(getName(), knife.getWeaponAction(), target, STAB_POWER, accuracy);
+			if (target.isDead()) {
+				targets.removePerson(target);
+			}
 		} catch (NoEnemiesException e) {
-			logUndeadWin();
+			logHordeVictory();
 			Game.gameProcess = false;
+			System.exit(0);
 		}
 	}
 

@@ -10,7 +10,6 @@ import warfake.war.classes.and.races.Mage;
 import warfake.war.classes.and.races.Warrior;
 
 public class UndeadSquadFactory extends Squad {
-	private static final short NUMBER_OF_ZOMBIES = 0;
 	
 	private UndeadSquadFactory(LinkedList<Mage> undeadMages, LinkedList<Archer> undeadArchers, LinkedList<Warrior> undeadWarriors) {
 		super(undeadMages, undeadArchers, undeadWarriors);
@@ -27,7 +26,7 @@ public class UndeadSquadFactory extends Squad {
 		for (int i = 0; i < getNumberOfArchers(); i++) {
 			undeadArchers.add(new UndeadArcher());
 		}
-		for (int i = 0; i < NUMBER_OF_ZOMBIES; i++) {
+		for (int i = 0; i < getNumberOfWarriors(); i++) {
 			undeadWarriors.add(new UndeadZombie());
 		}
 		return new UndeadSquadFactory(undeadMages, undeadArchers, undeadWarriors);

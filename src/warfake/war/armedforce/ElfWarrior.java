@@ -5,6 +5,7 @@ import java.util.Random;
 import warefake.helpers.markers.Aliance;
 import warefake.helpers.markers.Improvable;
 import warefake.helpers.markers.NoEnemiesException;
+import warefake.helpers.markers.Resurectable;
 import warfake.war.armory.ElfWeapons;
 import warfake.war.battlefield.ElfSquadFactory;
 import warfake.war.battlefield.OrcSquadFactory;
@@ -13,9 +14,8 @@ import warfake.war.classes.and.races.Person;
 import warfake.war.classes.and.races.Warrior;
 import warfake.war.game.Game;
 
-public class ElfWarrior extends Person implements Warrior, Aliance, Improvable {
+public class ElfWarrior extends Person implements Warrior, Aliance, Improvable, Resurectable {
 	private float strikePower = 20;
-	private static final float DEFAULT_STIKE_POWER = 20;
 	private static ElfWeapons longSword = ElfWeapons.ELVEN_LONGSWORD;
 	private static final int NUMBER_OF_SKILLS = 1;
 	private static int id = 1;
@@ -37,7 +37,7 @@ public class ElfWarrior extends Person implements Warrior, Aliance, Improvable {
 			}
 			if (this.isImproved()) {
 				this.setIsImproved(false);
-				this.setStrikePower(DEFAULT_STIKE_POWER);
+				this.setStrikePower(getDefaultStrikePowerForWarriors());
 			}
 		} catch (NoEnemiesException e) {
 			logAlianceVictory();
@@ -55,10 +55,6 @@ public class ElfWarrior extends Person implements Warrior, Aliance, Improvable {
 	@Override
 	public void setStrikePower(float strikePower) {
 		this.strikePower = strikePower;
-	}
-
-	public float getDefaultStrikePower() {
-		return DEFAULT_STIKE_POWER;
 	}
 
 	@Override

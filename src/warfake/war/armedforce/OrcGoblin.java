@@ -13,7 +13,6 @@ import warfake.war.game.Game;
 
 public class OrcGoblin extends Person implements Warrior, Horde, Improvable {
 	private float strikePower = 20;
-	private static final float DEFAULT_STIKE_POWER = 20;
 	private static OrcWeapons club = OrcWeapons.CLUB;
 	private static final int NUMBER_OF_SKILLS = 1;
 	private static int id = 1;
@@ -35,7 +34,7 @@ public class OrcGoblin extends Person implements Warrior, Horde, Improvable {
 			}
 			if (this.isImproved()) {
 				this.setIsImproved(false);
-				this.setStrikePower(DEFAULT_STIKE_POWER);
+				this.setStrikePower(getDefaultStrikePowerForWarriors());
 			}
 		} catch (NoEnemiesException e) {
 			logHordeVictory();
@@ -63,10 +62,6 @@ public class OrcGoblin extends Person implements Warrior, Horde, Improvable {
 	@Override
 	public void setStrikePower(float strikePower) {
 		this.strikePower = strikePower;
-	}
-	
-	public float getDefaultStrikePower() {
-		return DEFAULT_STIKE_POWER;
 	}
 
 	public static void main(String[] args) {

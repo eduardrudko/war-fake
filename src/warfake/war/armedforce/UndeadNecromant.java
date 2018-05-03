@@ -3,8 +3,8 @@ package warfake.war.armedforce;
 import java.util.Random;
 
 import warefake.helpers.markers.Horde;
+import warefake.helpers.markers.NoDeadBodiesException;
 import warefake.helpers.markers.NoEnemiesException;
-import warefake.helpers.markers.NoImprovableTargetsException;
 import warfake.war.armory.UndeadWeapons;
 import warfake.war.battlefield.Squad;
 import warfake.war.classes.and.races.Mage;
@@ -38,29 +38,18 @@ public class UndeadNecromant extends Person implements Mage, Horde {
 
 	}
 
-//	@Override
-//	public void applyImprovement(Squad targets) {
-//		try {
-//			Person target = targets.getRandomDeadTarget();
-//			if (target instanceof HumanCrossbowman) {
-//				target.setIsImproved(true);
-//				target.setAccuracy(getAccuracy());
-//				target.setAccuracy(Math.min((target.getAccuracy() + (target.getMaxAccuracy() * ENHANCE_CROSSBOWMAN_POWER) / 100),
-//						getMaxAccuracy()));
-//				logEnhanceActionForRangers(getName(), target, target.getAccuracy(), ENHANCE_CROSSBOWMAN_POWER);
-//				targets.promotePerson(target);
-//			} else {
-//				target.setIsImproved(true);
-//				target.setStrikePower((target.getStrikePower() + (target.getStrikePower() * ENHANCE_WARRIOR_POWER) / 100));
-//				logEnhanceActionForMelee(getName(), target, target.getStrikePower(), ENHANCE_WARRIOR_POWER);
-//				targets.promotePerson(target);
-//			}
-//		}
-//		catch(NoImprovableTargetsException e) {
-//			useMagic(targets);
-//		}
-//		
-//	}
+	@Override
+	public void applyImprovement(Squad targets) {
+		try {
+			Person target = Squad.useRandomDeadTarget();
+			targets.addNewZombie(target);
+			logResurection(getName(), target);
+		}
+		catch(NoDeadBodiesException e) {
+			logFailedUndeadResuraction(getName());
+		}
+		
+	}
 	
 	@Override
 	public void performRandomAction(Squad aliance, Squad horde) {
@@ -73,10 +62,5 @@ public class UndeadNecromant extends Person implements Mage, Horde {
 			applyImprovement(horde);
 			break;
 		}
-	}
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
 	}
 }

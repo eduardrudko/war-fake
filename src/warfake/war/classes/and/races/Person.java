@@ -10,6 +10,7 @@ public abstract class Person implements Mage, Archer, Warrior {
 	private int accuracy;
 	private static final int MAX_ACCURACY = 100;
 	private float strikePower;
+	private static final float DEFAULT_STIKE_POWER_FOR_WARRIORS = 20;
 	private boolean isDead;
 	private boolean isImproved;
 
@@ -51,6 +52,10 @@ public abstract class Person implements Mage, Archer, Warrior {
 
 	public void setStrikePower(float strikePower) {
 		this.strikePower = strikePower;
+	}
+	
+	public float getDefaultStrikePowerForWarriors() {
+		return DEFAULT_STIKE_POWER_FOR_WARRIORS;
 	}
 
 	@Override
@@ -138,8 +143,18 @@ public abstract class Person implements Mage, Archer, Warrior {
 	}
 	
 	protected void logFailedCurseAction(String name) {
-		System.out.println("\"" + name + "\"" + " tries to use black curse but it's failed! There are no improved enemies!\n");
-		Game.logs.append("\"" + name + "\"" + " tries to use black curse but it's failed! There are no improved enemies!\n");
+		System.out.println("\"" + name + "\"" + " tries to use shamany curse but it's failed! There are no improved enemies!\n");
+		Game.logs.append("\"" + name + "\"" + " tries to use shamany curse but it's failed! There are no improved enemies!\n");
+	}
+	
+	protected void logResurection(String name, Person target) {
+		System.out.println("\"" + name + "\"" + " use resurection spell on " + "\"" + target.getName() + "\"" + " and rises it as a zombie!\n");
+		Game.logs.append("\"" + name + "\"" + " use resurection spell on " + "\"" + target.getName() + "\"" + " and rises it as a zombie!\n");
+	}
+	
+	protected void logFailedUndeadResuraction(String name) {
+		System.out.println("\"" + name + "\"" + " tries to use black magic to rise the dead but it's failed! There are no dead bodies around!\n");
+		Game.logs.append("\"" + name + "\"" + " tries to use black magic to rise the dead but it's failed! There are no dead bodies around!\n");
 	}
 	
 	protected void logAlianceVictory() {

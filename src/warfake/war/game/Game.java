@@ -27,7 +27,7 @@ public class Game {
 	}
 
 	private static final short NUMBER_OF_ALIANCE_SQUADS = 2; // change after debug on 2
-	private static final short NUMBER_OF_HORDE_SQUADS = 1; // change after debug on 2
+	private static final short NUMBER_OF_HORDE_SQUADS = 2; // change after debug on 2
 	private static Random random = new Random();
 	public static StringBuilder logs = new StringBuilder("");
 	public static int numberOfTurns = 0;

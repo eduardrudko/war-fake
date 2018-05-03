@@ -5,15 +5,15 @@ import java.util.Random;
 import warefake.helpers.markers.Aliance;
 import warefake.helpers.markers.Improvable;
 import warefake.helpers.markers.NoEnemiesException;
+import warefake.helpers.markers.Resurectable;
 import warfake.war.armory.HumanWeapons;
 import warfake.war.battlefield.Squad;
 import warfake.war.classes.and.races.Person;
 import warfake.war.classes.and.races.Warrior;
 import warfake.war.game.Game;
 
-public class HumanWarrior extends Person implements Warrior, Aliance, Improvable {
+public class HumanWarrior extends Person implements Warrior, Aliance, Improvable, Resurectable {
 	private float strikePower = 20;
-	private static final float DEFAULT_STIKE_POWER = 20;
 	private static HumanWeapons broadsword = HumanWeapons.BROADSWORD;
 	private static final int NUMBER_OF_SKILLS = 1;
 	private static int id = 1;
@@ -35,7 +35,7 @@ public class HumanWarrior extends Person implements Warrior, Aliance, Improvable
 			}
 			if (this.isImproved()) {
 				this.setIsImproved(false);
-				this.setStrikePower(DEFAULT_STIKE_POWER);
+				this.setStrikePower(getDefaultStrikePowerForWarriors());
 			}
 		} catch (NoEnemiesException e) {
 			logAlianceVictory();

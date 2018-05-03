@@ -11,6 +11,8 @@ import warefake.helpers.markers.NoDeadBodiesException;
 import warefake.helpers.markers.NoEnemiesException;
 import warefake.helpers.markers.NoImprovableTargetsException;
 import warefake.helpers.markers.NoImprovedTargetsException;
+import warefake.helpers.markers.Resurectable;
+import warfake.war.armedforce.UndeadZombie;
 import warfake.war.classes.and.races.Archer;
 import warfake.war.classes.and.races.Mage;
 import warfake.war.classes.and.races.Person;
@@ -23,7 +25,7 @@ public abstract class Squad {
 	private static final short NUMBER_OF_WARRIORS = 4;
 	private LinkedList<Person> regularPersons = new LinkedList<>();
 	private LinkedList<Person> superPersons = new LinkedList<>();
-	private LinkedList<Person> deadCorpses = new LinkedList<>();
+	private static LinkedList<Person> deadCorpses = new LinkedList<>();
 
 	public Squad(LinkedList<Mage> mages, LinkedList<Archer> archers, LinkedList<Warrior> warriors) {
 		for (int i = 0; i < NUMBER_OF_MAGES; i++) {
@@ -57,7 +59,7 @@ public abstract class Squad {
 		return regularPersons;
 	}
 
-	public LinkedList<Person> getDeadCorpes() {
+	public static LinkedList<Person> getDeadCorpes() {
 		return deadCorpses;
 	}
 
@@ -76,10 +78,17 @@ public abstract class Squad {
 		System.out.println("\"" + person.getName() + "\"" + " is dead!\n");
 		Game.logs.append("\"" + person.getName() + "\"" + " is dead!\n");
 	}
+	
+	public void resurectPerson(Person person) {
+		deadCorpses.remove(person);
+		
+	}
 
 	public static void performActions(Squad aliance, Squad horde) {
-		System.out.println("[Move #" + ++Game.numberOfTurns + "]");
-		Game.logs.append("[Move #" + Game.numberOfTurns + "]\n");
+		if (aliance.getNumberOfSoldiers() != 0 && horde.getNumberOfSoldiers() != 0) {
+			System.out.println("[Move #" + ++Game.numberOfTurns + "]");
+			Game.logs.append("[Move #" + Game.numberOfTurns + "]\n");
+		}
 		ArrayList<Person> generalSuperPersonsPull = gatherSuperPersons(aliance, horde);
 		ArrayList<Person> generalRegularPersonsPull = gatherRegularPersons(aliance, horde);
 		if (generalSuperPersonsPull.size() != 0) {
@@ -156,18 +165,31 @@ public abstract class Squad {
 		}
 	}
 	
-	public Person getRandomDeadTarget() throws NoDeadBodiesException {
+	public static Person useRandomDeadTarget() throws NoDeadBodiesException {
 		LinkedList<Person> deadBodies = new LinkedList<>();
 		Random random = new Random();
 		if (deadCorpses.size() != 0) {
-			for (Person value: this.deadCorpses) {
-				deadBodies.add(value);
+			for (Person value: deadCorpses) {
+				if(value instanceof Resurectable) {
+					deadBodies.add(value);
+				}
 			}
-			return deadBodies.get(random.nextInt(deadBodies.size()));
+			if (deadBodies.size() != 0) {
+				Person target = deadBodies.get(random.nextInt(deadBodies.size()));
+				deadCorpses.remove(target);
+				return target;
+			}
+			else {
+				throw new NoDeadBodiesException();
+			}
 		}
 		else {
 			throw new NoDeadBodiesException();
 		}
+	}
+	
+	public void addNewZombie(Person person) {
+		regularPersons.add(new UndeadZombie(person));
 	}
 
 	private void gatherSquad(LinkedList<Person> personPull) {

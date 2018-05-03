@@ -4,15 +4,17 @@ import java.util.Random;
 
 import warefake.helpers.markers.Horde;
 import warefake.helpers.markers.NoEnemiesException;
+import warefake.helpers.markers.Resurectable;
 import warfake.war.armory.ElfWeapons;
+import warfake.war.armory.UndeadWeapons;
 import warfake.war.battlefield.Squad;
 import warfake.war.classes.and.races.Person;
 import warfake.war.classes.and.races.Warrior;
 import warfake.war.game.Game;
 
-public class UndeadZombie extends Person implements Warrior, Horde {
+public class UndeadZombie extends Person implements Warrior, Horde, Resurectable {
 	private float strikePower;
-	private static ElfWeapons rottenFist = ElfWeapons.ELVEN_LONGSWORD;
+	private static UndeadWeapons rottenFist = UndeadWeapons.ROTTEN_FIST;
 	private static final int NUMBER_OF_SKILLS = 1;
 	private static final int PRECENT_Of_WEAKNESS = 20;
 	private static int id = 1;
@@ -20,10 +22,11 @@ public class UndeadZombie extends Person implements Warrior, Horde {
 	
 	public UndeadZombie() {
 		setName("Undead Zombie " + name);
+		setStrikePower(getDefaultStrikePowerForWarriors() - (getDefaultStrikePowerForWarriors() * PRECENT_Of_WEAKNESS) / 100);
 	}
 	
 	public UndeadZombie(Person warrior) {
-		setName("Undead Zombie " + name);
+		setName("Resurected " + warrior.getName());
 		setStrikePower(warrior.getStrikePower() - (warrior.getStrikePower() * PRECENT_Of_WEAKNESS) / 100);
 		setHealth(warrior.getMaxHealth() - (warrior.getMaxHealth() * PRECENT_Of_WEAKNESS) / 100);
 	}

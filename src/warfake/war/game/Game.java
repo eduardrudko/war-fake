@@ -12,6 +12,13 @@ import warfake.war.battlefield.OrcSquadFactory;
 import warfake.war.battlefield.Squad;
 import warfake.war.battlefield.UndeadSquadFactory;
 
+/**
+ * The main Game entry point
+ *
+ * @author Eduard Rudko
+ * @version 1.0
+ * @since 03-05-2018
+ */
 public class Game {
 
 	public static void main(String[] args) {
@@ -44,6 +51,9 @@ public class Game {
 		return horde;
 	}
 
+	/**
+	 * This method randomly generates 2 squads of representatives of particular race
+	 */
 	private void spawnSquads() {
 		switch (random.nextInt(NUMBER_OF_ALIANCE_SQUADS) + 1) {
 		case 1:
@@ -71,12 +81,24 @@ public class Game {
 		}
 	}
 
+	/**
+	 * The main method that starts the process of game prototype
+	 * 
+	 * @param aliance
+	 *            the first side of the conflict
+	 * @param horde
+	 *            the second side of the conflict
+	 */
 	private void beginWar(Squad aliance, Squad horde) {
 		do {
 			Squad.performActions(aliance, horde);
 		} while (gameProcess);
 	}
-	
+
+	/**
+	 * Method createResults creates the .txt file which contains all the logs were
+	 * produced during game process
+	 */
 	public static void createResults() {
 		File results = new File("results.txt");
 		try (BufferedWriter bw = new BufferedWriter(new FileWriter(results))) {

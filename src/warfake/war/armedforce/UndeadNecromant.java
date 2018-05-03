@@ -46,10 +46,10 @@ public class UndeadNecromant extends Person implements Mage, Horde {
 		try {
 			Person target = Squad.useRandomDeadTarget();
 			targets.addNewZombie(target);
-			logResurection(getName(), target);
+			logResurrection(getName(), target);
 		}
 		catch(NoDeadBodiesException e) {
-			logFailedUndeadResuraction(getName());
+			logFailedUndeadResurraction(getName());
 		}
 		
 	}

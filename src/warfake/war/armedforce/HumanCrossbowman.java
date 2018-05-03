@@ -5,12 +5,10 @@ import java.util.Random;
 import warfake.exeptions.NoEnemiesException;
 import warfake.markers.Aliance;
 import warfake.markers.Improvable;
+import warfake.war.abstraction.Archer;
+import warfake.war.abstraction.Person;
 import warfake.war.armory.HumanWeapons;
-import warfake.war.battlefield.ElfSquadFactory;
-import warfake.war.battlefield.OrcSquadFactory;
 import warfake.war.battlefield.Squad;
-import warfake.war.classes.and.races.Archer;
-import warfake.war.classes.and.races.Person;
 import warfake.war.game.Game;
 
 public class HumanCrossbowman extends Person implements Archer, Aliance, Improvable {
@@ -73,16 +71,5 @@ public class HumanCrossbowman extends Person implements Archer, Aliance, Improva
 			meleeStab(horde);
 			break;
 		}
-	}
-
-	public static void main(String[] args) {
-		Squad squad = OrcSquadFactory.generateOrcSquad();
-		Squad squad1 = ElfSquadFactory.generateElfSquad();
-		HumanCrossbowman elf1 = new HumanCrossbowman();
-		elf1.performRandomAction(squad, squad1);
-		elf1.performRandomAction(squad, squad1);
-		elf1.performRandomAction(squad, squad1);
-		elf1.performRandomAction(squad, squad1);
-
 	}
 }

@@ -5,10 +5,10 @@ import java.util.Random;
 import warfake.exeptions.NoEnemiesException;
 import warfake.markers.Horde;
 import warfake.markers.Resurectable;
+import warfake.war.abstraction.Person;
+import warfake.war.abstraction.Warrior;
 import warfake.war.armory.UndeadWeapons;
 import warfake.war.battlefield.Squad;
-import warfake.war.classes.and.races.Person;
-import warfake.war.classes.and.races.Warrior;
 import warfake.war.game.Game;
 
 public class UndeadZombie extends Person implements Warrior, Horde, Resurectable {
@@ -27,7 +27,13 @@ public class UndeadZombie extends Person implements Warrior, Horde, Resurectable
 	}
 	
 	public UndeadZombie(Person warrior) {
-		setName("Resurected " + warrior.getName());
+		String name = warrior.getName();
+		if (name.contains("Resurected")) {
+			setName(warrior.getName());
+		}
+		else {
+			setName("Resurected " + warrior.getName());
+		}
 		setStrikePower(warrior.getStrikePower() - (warrior.getStrikePower() * PRECENT_Of_WEAKNESS) / 100);
 		setHealth(ZOMBIE_HEALTH);
 	}
@@ -68,10 +74,5 @@ public class UndeadZombie extends Person implements Warrior, Horde, Resurectable
 			meleeStrike(aliance);
 			break;
 		}
-	}
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
 	}
 }

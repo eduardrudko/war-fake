@@ -4,10 +4,10 @@ import java.util.Random;
 
 import warfake.exeptions.NoEnemiesException;
 import warfake.markers.Horde;
+import warfake.war.abstraction.Archer;
+import warfake.war.abstraction.Person;
 import warfake.war.armory.UndeadWeapons;
 import warfake.war.battlefield.Squad;
-import warfake.war.classes.and.races.Archer;
-import warfake.war.classes.and.races.Person;
 import warfake.war.game.Game;
 
 public class UndeadArcher extends Person implements Archer, Horde {

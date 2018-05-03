@@ -5,10 +5,10 @@ import java.util.Random;
 import warfake.exeptions.NoEnemiesException;
 import warfake.markers.Horde;
 import warfake.markers.Improvable;
+import warfake.war.abstraction.Person;
+import warfake.war.abstraction.Warrior;
 import warfake.war.armory.OrcWeapons;
 import warfake.war.battlefield.Squad;
-import warfake.war.classes.and.races.Person;
-import warfake.war.classes.and.races.Warrior;
 import warfake.war.game.Game;
 
 public class OrcGoblin extends Person implements Warrior, Horde, Improvable {
@@ -19,7 +19,7 @@ public class OrcGoblin extends Person implements Warrior, Horde, Improvable {
 	private int name = id++;
 
 	public OrcGoblin() {
-		setName("Orc Goblin" + name);
+		setName("Orc Goblin " + name);
 	}
 
 	@Override

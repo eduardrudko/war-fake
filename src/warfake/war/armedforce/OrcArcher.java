@@ -5,11 +5,10 @@ import java.util.Random;
 import warfake.exeptions.NoEnemiesException;
 import warfake.markers.Horde;
 import warfake.markers.Improvable;
+import warfake.war.abstraction.Archer;
+import warfake.war.abstraction.Person;
 import warfake.war.armory.OrcWeapons;
-import warfake.war.battlefield.ElfSquadFactory;
 import warfake.war.battlefield.Squad;
-import warfake.war.classes.and.races.Archer;
-import warfake.war.classes.and.races.Person;
 import warfake.war.game.Game;
 
 public class OrcArcher extends Person implements Archer, Horde, Improvable {
@@ -73,18 +72,5 @@ public class OrcArcher extends Person implements Archer, Horde, Improvable {
 			meleeStab(aliance);
 			break;
 		}
-	}
-
-	public static void main(String[] args) {
-		Squad squad = ElfSquadFactory.generateElfSquad();
-		OrcArcher orc = new OrcArcher();
-		orc.archeryShot(squad);
-		orc.archeryShot(squad);
-		orc.archeryShot(squad);
-		orc.archeryShot(squad);
-		orc.meleeStab(squad);
-		orc.meleeStab(squad);
-		orc.meleeStab(squad);
-		orc.meleeStab(squad);
 	}
 }

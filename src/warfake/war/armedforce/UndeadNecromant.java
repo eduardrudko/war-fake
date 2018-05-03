@@ -5,10 +5,10 @@ import java.util.Random;
 import warfake.exeptions.NoDeadBodiesException;
 import warfake.exeptions.NoEnemiesException;
 import warfake.markers.Horde;
+import warfake.war.abstraction.Mage;
+import warfake.war.abstraction.Person;
 import warfake.war.armory.UndeadWeapons;
 import warfake.war.battlefield.Squad;
-import warfake.war.classes.and.races.Mage;
-import warfake.war.classes.and.races.Person;
 import warfake.war.game.Game;
 
 public class UndeadNecromant extends Person implements Mage, Horde {
@@ -29,6 +29,9 @@ public class UndeadNecromant extends Person implements Mage, Horde {
 			int accuracy = getMaxAccuracy();
 			dealDamage(target, POKE_POWER, accuracy);
 			logStrikeAction(getName(), boneStuff.getWeaponAction(), target, POKE_POWER, accuracy);
+			if (target.isDead()) {
+				targets.removePerson(target);
+			}
 		} catch (NoEnemiesException e) {
 			logAlianceVictory();
 			Game.gameProcess = false;

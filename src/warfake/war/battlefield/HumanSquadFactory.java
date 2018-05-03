@@ -2,12 +2,12 @@ package warfake.war.battlefield;
 
 import java.util.LinkedList;
 
+import warfake.war.abstraction.Archer;
+import warfake.war.abstraction.Mage;
+import warfake.war.abstraction.Warrior;
 import warfake.war.armedforce.HumanCrossbowman;
 import warfake.war.armedforce.HumanMage;
 import warfake.war.armedforce.HumanWarrior;
-import warfake.war.classes.and.races.Archer;
-import warfake.war.classes.and.races.Mage;
-import warfake.war.classes.and.races.Warrior;
 
 public class HumanSquadFactory extends Squad {
 

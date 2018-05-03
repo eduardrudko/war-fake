@@ -1,4 +1,4 @@
-package warfake.war.classes.and.races;
+package warfake.war.abstraction;
 
 import warfake.war.battlefield.Squad;
 import warfake.war.game.Game;
@@ -98,6 +98,15 @@ public abstract class Person {
 		Game.logs.append(target.getName() + " has " + "[" + target.getHealth() + "/" + target.getMaxHealth() + "]" + " HP now!\n");
 	}
 	
+	protected void logFailedHealAction(String name, Person target) {
+		System.out.println(
+				"\"" + name + "\"" + " tries to use healing power but spell doesn't have any effect! "
+						+ "\"" + target.getName() + "\"" + " is healthy!\n");
+		Game.logs.append(
+				"\"" + name + "\"" + " tries to use healing power but spell doesn't have any effect! "
+						+ "\"" + target.getName() + "\"" + " is healthy!\n");
+	}
+	
 	protected void logEnhanceActionForRangers(String name, Person target, int currentAccuracy, int enhancePower) {
 		System.out.println("\"" + name + "\"" + " lays enhancing power upon " + "\"" + target.getName() + "\"" + " and increaces accuracy by " + enhancePower +  "%");
 		Game.logs.append("\"" + name + "\"" + " lays enhancing power upon " + target.getName() + " and increaces accuracy by " + enhancePower +  "%");
@@ -128,8 +137,8 @@ public abstract class Person {
 	}
 	
 	protected void logFailedUndeadResuraction(String name) {
-		System.out.println("\"" + name + "\"" + " tries to use black magic to rise the dead but it's failed! There are no dead bodies around!\n");
-		Game.logs.append("\"" + name + "\"" + " tries to use black magic to rise the dead but it's failed! There are no dead bodies around!\n");
+		System.out.println("\"" + name + "\"" + " tries to use black magic to rise a dead but it's failed! There are no dead bodies around!\n");
+		Game.logs.append("\"" + name + "\"" + " tries to use black magic to rise a dead but it's failed! There are no dead bodies around!\n");
 	}
 	
 	protected void logAlianceVictory() {

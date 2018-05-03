@@ -6,12 +6,10 @@ import warfake.exeptions.NoEnemiesException;
 import warfake.markers.Aliance;
 import warfake.markers.Improvable;
 import warfake.markers.Resurectable;
+import warfake.war.abstraction.Person;
+import warfake.war.abstraction.Warrior;
 import warfake.war.armory.ElfWeapons;
-import warfake.war.battlefield.ElfSquadFactory;
-import warfake.war.battlefield.OrcSquadFactory;
 import warfake.war.battlefield.Squad;
-import warfake.war.classes.and.races.Person;
-import warfake.war.classes.and.races.Warrior;
 import warfake.war.game.Game;
 
 public class ElfWarrior extends Person implements Warrior, Aliance, Improvable, Resurectable {
@@ -65,15 +63,5 @@ public class ElfWarrior extends Person implements Warrior, Aliance, Improvable, 
 			meleeStrike(horde);
 			break;
 		}
-	}
-
-	public static void main(String[] args) {
-		Squad squad = OrcSquadFactory.generateOrcSquad();
-		Squad squad1 = ElfSquadFactory.generateElfSquad();
-		ElfWarrior elf1 = new ElfWarrior();
-		elf1.performRandomAction(squad, squad1);
-		elf1.performRandomAction(squad, squad1);
-		elf1.performRandomAction(squad, squad1);
-		elf1.performRandomAction(squad, squad1);
 	}
 }

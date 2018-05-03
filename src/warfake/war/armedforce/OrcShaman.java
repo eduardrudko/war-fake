@@ -5,9 +5,9 @@ import java.util.Random;
 import warfake.exeptions.NoImprovableTargetsException;
 import warfake.exeptions.NoImprovedTargetsException;
 import warfake.markers.Horde;
+import warfake.war.abstraction.Mage;
+import warfake.war.abstraction.Person;
 import warfake.war.battlefield.Squad;
-import warfake.war.classes.and.races.Mage;
-import warfake.war.classes.and.races.Person;
 
 public class OrcShaman extends Person implements Mage, Horde {
 	private static final int ENHANCE_GOBLIN_POWER = 20;
@@ -17,7 +17,7 @@ public class OrcShaman extends Person implements Mage, Horde {
 	private int name = id++;
 
 	public OrcShaman() {
-		setName("Orc Shaman" + name);
+		setName("Orc Shaman " + name);
 	}
 
 	@Override
@@ -67,9 +67,5 @@ public class OrcShaman extends Person implements Mage, Horde {
 			applyImprovement(horde);
 			break;
 		}
-	}
-
-	public static void main(String[] args) {
-
 	}
 }

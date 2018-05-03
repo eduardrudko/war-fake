@@ -5,12 +5,10 @@ import java.util.Random;
 import warfake.exeptions.NoEnemiesException;
 import warfake.exeptions.NoImprovableTargetsException;
 import warfake.markers.Aliance;
+import warfake.war.abstraction.Mage;
+import warfake.war.abstraction.Person;
 import warfake.war.armory.HumanWeapons;
-import warfake.war.battlefield.HumanSquadFactory;
-import warfake.war.battlefield.OrcSquadFactory;
 import warfake.war.battlefield.Squad;
-import warfake.war.classes.and.races.Mage;
-import warfake.war.classes.and.races.Person;
 import warfake.war.game.Game;
 
 public class HumanMage extends Person implements Mage, Aliance {
@@ -33,6 +31,9 @@ public class HumanMage extends Person implements Mage, Aliance {
 			int accuracy = getRandomAccuracy();
 			dealDamage(target, MAGIC_POWER, accuracy);
 			logStrikeAction(getName(), fireBallSpell.getWeaponAction(), target, MAGIC_POWER, accuracy);
+			if (target.isDead()) {
+				targets.removePerson(target);
+			}
 		} catch (NoEnemiesException e) {
 			logAlianceVictory();
 			Game.gameProcess = false;
@@ -77,16 +78,5 @@ public class HumanMage extends Person implements Mage, Aliance {
 			applyImprovement(aliance);
 			break;
 		}
-	}
-
-	public static void main(String[] args) {
-		Squad squad = HumanSquadFactory.generateHumanSquad();
-		Squad orcs = OrcSquadFactory.generateOrcSquad();
-		System.out.println(squad.getRegularPersons().toString());
-		HumanMage mage = new HumanMage();
-		mage.applyImprovement(squad);
-		System.out.println(squad.getRegularPersons().toString());
-		System.out.println(squad.getSuperPersons().toString());
-		mage.useMagic(orcs);
 	}
 }

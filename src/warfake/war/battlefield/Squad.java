@@ -12,15 +12,15 @@ import warfake.exeptions.NoImprovedTargetsException;
 import warfake.markers.Aliance;
 import warfake.markers.Improvable;
 import warfake.markers.Resurectable;
+import warfake.war.abstraction.Archer;
+import warfake.war.abstraction.Mage;
+import warfake.war.abstraction.Person;
+import warfake.war.abstraction.Warrior;
 import warfake.war.armedforce.UndeadZombie;
-import warfake.war.classes.and.races.Archer;
-import warfake.war.classes.and.races.Mage;
-import warfake.war.classes.and.races.Person;
-import warfake.war.classes.and.races.Warrior;
 import warfake.war.game.Game;
 
 public abstract class Squad {
-	private static final short NUMBER_OF_MAGES = 2;
+	private static final short NUMBER_OF_MAGES = 1;
 	private static final short NUMBER_OF_ARCHERS = 3;
 	private static final short NUMBER_OF_WARRIORS = 4;
 	private LinkedList<Person> regularPersons = new LinkedList<>();
@@ -81,12 +81,11 @@ public abstract class Squad {
 	
 	public void resurectPerson(Person person) {
 		deadCorpses.remove(person);
-		
 	}
 
 	public static void performActions(Squad aliance, Squad horde) {
 		if (aliance.getNumberOfSoldiers() != 0 && horde.getNumberOfSoldiers() != 0) {
-			System.out.println("[Move #" + ++Game.numberOfTurns + "]");
+			System.out.println("[Move #" + ++Game.numberOfTurns + "]\n");
 			Game.logs.append("[Move #" + Game.numberOfTurns + "]\n");
 		}
 		ArrayList<Person> generalSuperPersonsPull = gatherSuperPersons(aliance, horde);

@@ -1,4 +1,4 @@
-package warfake.war.classes.and.races;
+package warfake.war.abstraction;
 
 import warfake.war.battlefield.Squad;
 

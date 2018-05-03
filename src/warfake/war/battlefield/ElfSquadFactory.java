@@ -2,12 +2,12 @@ package warfake.war.battlefield;
 
 import java.util.LinkedList;
 
+import warfake.war.abstraction.Archer;
+import warfake.war.abstraction.Mage;
+import warfake.war.abstraction.Warrior;
 import warfake.war.armedforce.ElfArcher;
 import warfake.war.armedforce.ElfMage;
 import warfake.war.armedforce.ElfWarrior;
-import warfake.war.classes.and.races.Archer;
-import warfake.war.classes.and.races.Mage;
-import warfake.war.classes.and.races.Warrior;
 
 public class ElfSquadFactory extends Squad {
 

@@ -6,10 +6,10 @@ import warfake.exeptions.NoEnemiesException;
 import warfake.markers.Aliance;
 import warfake.markers.Improvable;
 import warfake.markers.Resurectable;
+import warfake.war.abstraction.Person;
+import warfake.war.abstraction.Warrior;
 import warfake.war.armory.HumanWeapons;
 import warfake.war.battlefield.Squad;
-import warfake.war.classes.and.races.Person;
-import warfake.war.classes.and.races.Warrior;
 import warfake.war.game.Game;
 
 public class HumanWarrior extends Person implements Warrior, Aliance, Improvable, Resurectable {

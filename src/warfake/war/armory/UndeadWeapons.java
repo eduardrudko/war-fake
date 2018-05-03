@@ -2,9 +2,9 @@ package warfake.war.armory;
 
 public enum UndeadWeapons {
 	BONE_BOW(" shoots a spiky arrow in "),
-	KNIFE(" stabs with an knife "),
+	KNIFE(" stabs with a knife "),
 	BONE_STUFF(" pokes with a stuff "),
-	ROTTEN_FIST(" slams with a rotten fist ");
+	ROTTEN_FIST(" slams with a rotten arm ");
 	
 	private String weaponAction;
 	

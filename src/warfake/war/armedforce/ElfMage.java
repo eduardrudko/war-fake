@@ -5,10 +5,9 @@ import java.util.Random;
 import warfake.exeptions.NoEnemiesException;
 import warfake.exeptions.NoImprovableTargetsException;
 import warfake.markers.Aliance;
-import warfake.war.battlefield.ElfSquadFactory;
+import warfake.war.abstraction.Mage;
+import warfake.war.abstraction.Person;
 import warfake.war.battlefield.Squad;
-import warfake.war.classes.and.races.Mage;
-import warfake.war.classes.and.races.Person;
 import warfake.war.game.Game;
 
 public class ElfMage extends Person implements Mage, Aliance {
@@ -33,12 +32,7 @@ public class ElfMage extends Person implements Mage, Aliance {
 						getMaxHealth())));
 				logHealAction(getName(), target, currentHealth, HEAL_POWER);
 			} else {
-				System.out.println(
-						"\"" + getName() + "\"" + " tries to use healing power but spell doesn't have any effect! "
-								+ "\"" + target.getName() + "\"" + " is healthy!\n");
-				Game.logs.append(
-						"\"" + getName() + "\"" + " tries to use healing power but spell doesn't have any effect! "
-								+ "\"" + target.getName() + "\"" + " is healthy!\n");
+				logFailedHealAction(getName(), target);
 			}
 		} catch (NoEnemiesException e) {
 			logAlianceVictory();
@@ -84,14 +78,5 @@ public class ElfMage extends Person implements Mage, Aliance {
 			applyImprovement(aliance);
 			break;
 		}
-	}
-
-	public static void main(String[] args) {
-		Squad squad = ElfSquadFactory.generateElfSquad();
-		System.out.println(squad.getRegularPersons().toString());
-		ElfMage elf1 = new ElfMage();
-		elf1.applyImprovement(squad);
-		System.out.println(squad.getRegularPersons().toString());
-		System.out.println(squad.getSuperPersons().toString());
 	}
 }

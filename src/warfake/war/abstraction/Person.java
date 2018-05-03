@@ -3,9 +3,7 @@ package warfake.war.abstraction;
 import warfake.war.battlefield.Squad;
 import warfake.war.game.Game;
 
-/**
- * Abstract Person class through which almost all operations are performed
- */
+
 public abstract class Person {
 	private String name;
 	private int HP = 100;

@@ -66,7 +66,11 @@ public abstract class Squad {
 	public int getNumberOfSoldiers() {
 		return this.regularPersons.size() + this.superPersons.size();
 	}
-
+	/**
+	 * Removes a character from the active list either super list or regular list
+	 * add a dead body to the appropriate character list and writes the logs
+	 * @param person that has to be removed
+	 */
 	public void removePerson(Person person) {
 		if (superPersons.contains(person)) {
 			superPersons.remove(person);
@@ -82,7 +86,16 @@ public abstract class Squad {
 	public void resurectPerson(Person person) {
 		deadCorpses.remove(person);
 	}
-
+	/**
+	 * Main algorithm which produce game moves
+	 * 1. Checks if there are soldiers from the both side
+	 * 2. Creates regular and super pulls from both squads
+	 * 3. Takes a random character from super pull and performs random action
+	 * 4. Takes a random character from regular pull and performs random action
+	 * 5. Distributes characters to the relevant list of characters after performing an action
+	 * @param aliance squad of elfs or humans
+	 * @param horde squad of orcs or undeads
+	 */
 	public static void performActions(Squad aliance, Squad horde) {
 		if (aliance.getNumberOfSoldiers() != 0 && horde.getNumberOfSoldiers() != 0) {
 			System.out.println("[Move #" + ++Game.numberOfTurns + "]\n");
@@ -113,7 +126,11 @@ public abstract class Squad {
 		}
 	}
 
-
+	/**
+	 * Produces for characters a random target from a pull
+	 * @return a random person
+	 * @throws NoEnemiesException
+	 */
 	public Person getRandomTarget() throws NoEnemiesException {
 		LinkedList<Person> targetsPull = new LinkedList<>();
 		Random random = new Random();
@@ -134,6 +151,11 @@ public abstract class Squad {
 		this.regularPersons.add(person);
 	}
 
+	/**
+	 * Produces for characters a random improvable target
+	 * @return random improvable target
+	 * @throws NoImprovableTargetsException
+	 */
 	public Person getRandomImprovableTarget() throws NoImprovableTargetsException {
 		LinkedList<Person> improvableTargets = new LinkedList<>();
 		Random random = new Random();
@@ -149,7 +171,11 @@ public abstract class Squad {
 			throw new NoImprovableTargetsException();
 		}
 	}
-	
+	/**
+	 * Produces for characters a random improved character
+	 * @return improved character
+	 * @throws NoImprovedTargetsException
+	 */
 	public Person getRandomImprovedTarget() throws NoImprovedTargetsException {
 		LinkedList<Person> improvedTargets = new LinkedList<>();
 		Random random = new Random();
@@ -163,18 +189,22 @@ public abstract class Squad {
 			throw new NoImprovedTargetsException();
 		}
 	}
-	
+	/**
+	 * Produces for characters a random dead body
+	 * @return random dead body
+	 * @throws NoDeadBodiesException
+	 */
 	public static Person useRandomDeadTarget() throws NoDeadBodiesException {
-		LinkedList<Person> deadBodies = new LinkedList<>();
+		LinkedList<Person> deadCorpsesPull = new LinkedList<>();
 		Random random = new Random();
 		if (deadCorpses.size() != 0) {
 			for (Person value: deadCorpses) {
 				if(value instanceof Resurectable) {
-					deadBodies.add(value);
+					deadCorpsesPull.add(value);
 				}
 			}
-			if (deadBodies.size() != 0) {
-				Person target = deadBodies.get(random.nextInt(deadBodies.size()));
+			if (deadCorpsesPull.size() != 0) {
+				Person target = deadCorpsesPull.get(random.nextInt(deadCorpsesPull.size()));
 				deadCorpses.remove(target);
 				return target;
 			}

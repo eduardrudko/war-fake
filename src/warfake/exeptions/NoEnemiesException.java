@@ -1,4 +1,4 @@
-package warefake.helpers.markers;
+package warfake.exeptions;
 
 @SuppressWarnings("serial")
 public class NoEnemiesException extends Exception {

@@ -3,7 +3,7 @@ package warfake.war.classes.and.races;
 import warfake.war.battlefield.Squad;
 import warfake.war.game.Game;
 
-public abstract class Person implements Mage, Archer, Warrior {
+public abstract class Person {
 	private String name;
 	private int HP = 100;
 	private static final int MAX_HP = 100;
@@ -56,31 +56,6 @@ public abstract class Person implements Mage, Archer, Warrior {
 	
 	public float getDefaultStrikePowerForWarriors() {
 		return DEFAULT_STIKE_POWER_FOR_WARRIORS;
-	}
-
-	@Override
-	public void applyImprovement(Squad targets) {
-		
-	}
-
-	@Override
-	public void useMagic(Squad targets) {
-		
-	}
-	
-	@Override
-	public void archeryShot(Squad targets) {
-		
-	}
-	
-	@Override
-	public void meleeStab(Squad targets) {
-		
-	}
-	
-	@Override
-	public void meleeStrike(Squad targets) {
-		
 	}
 	
 	public boolean isImproved() {

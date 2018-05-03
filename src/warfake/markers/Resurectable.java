@@ -1,3 +1,3 @@
-package warefake.helpers.markers;
+package warfake.markers;
 
 public interface Resurectable {}

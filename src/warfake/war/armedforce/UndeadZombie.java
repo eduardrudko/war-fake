@@ -2,10 +2,9 @@ package warfake.war.armedforce;
 
 import java.util.Random;
 
-import warefake.helpers.markers.Horde;
-import warefake.helpers.markers.NoEnemiesException;
-import warefake.helpers.markers.Resurectable;
-import warfake.war.armory.ElfWeapons;
+import warfake.exeptions.NoEnemiesException;
+import warfake.markers.Horde;
+import warfake.markers.Resurectable;
 import warfake.war.armory.UndeadWeapons;
 import warfake.war.battlefield.Squad;
 import warfake.war.classes.and.races.Person;
@@ -17,18 +16,20 @@ public class UndeadZombie extends Person implements Warrior, Horde, Resurectable
 	private static UndeadWeapons rottenFist = UndeadWeapons.ROTTEN_FIST;
 	private static final int NUMBER_OF_SKILLS = 1;
 	private static final int PRECENT_Of_WEAKNESS = 20;
+	private static final int ZOMBIE_HEALTH = 80;
 	private static int id = 1;
 	private int name = id++;
 	
 	public UndeadZombie() {
 		setName("Undead Zombie " + name);
 		setStrikePower(getDefaultStrikePowerForWarriors() - (getDefaultStrikePowerForWarriors() * PRECENT_Of_WEAKNESS) / 100);
+		setHealth(ZOMBIE_HEALTH);
 	}
 	
 	public UndeadZombie(Person warrior) {
 		setName("Resurected " + warrior.getName());
 		setStrikePower(warrior.getStrikePower() - (warrior.getStrikePower() * PRECENT_Of_WEAKNESS) / 100);
-		setHealth(warrior.getMaxHealth() - (warrior.getMaxHealth() * PRECENT_Of_WEAKNESS) / 100);
+		setHealth(ZOMBIE_HEALTH);
 	}
 	
 	@Override

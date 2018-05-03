@@ -2,10 +2,10 @@ package warfake.war.armedforce;
 
 import java.util.Random;
 
-import warefake.helpers.markers.Aliance;
-import warefake.helpers.markers.Improvable;
-import warefake.helpers.markers.NoEnemiesException;
-import warefake.helpers.markers.Resurectable;
+import warfake.exeptions.NoEnemiesException;
+import warfake.markers.Aliance;
+import warfake.markers.Improvable;
+import warfake.markers.Resurectable;
 import warfake.war.armory.HumanWeapons;
 import warfake.war.battlefield.Squad;
 import warfake.war.classes.and.races.Person;

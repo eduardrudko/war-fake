@@ -5,13 +5,13 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Random;
 
-import warefake.helpers.markers.Aliance;
-import warefake.helpers.markers.Improvable;
-import warefake.helpers.markers.NoDeadBodiesException;
-import warefake.helpers.markers.NoEnemiesException;
-import warefake.helpers.markers.NoImprovableTargetsException;
-import warefake.helpers.markers.NoImprovedTargetsException;
-import warefake.helpers.markers.Resurectable;
+import warfake.exeptions.NoDeadBodiesException;
+import warfake.exeptions.NoEnemiesException;
+import warfake.exeptions.NoImprovableTargetsException;
+import warfake.exeptions.NoImprovedTargetsException;
+import warfake.markers.Aliance;
+import warfake.markers.Improvable;
+import warfake.markers.Resurectable;
 import warfake.war.armedforce.UndeadZombie;
 import warfake.war.classes.and.races.Archer;
 import warfake.war.classes.and.races.Mage;
@@ -20,7 +20,7 @@ import warfake.war.classes.and.races.Warrior;
 import warfake.war.game.Game;
 
 public abstract class Squad {
-	private static final short NUMBER_OF_MAGES = 1;
+	private static final short NUMBER_OF_MAGES = 2;
 	private static final short NUMBER_OF_ARCHERS = 3;
 	private static final short NUMBER_OF_WARRIORS = 4;
 	private LinkedList<Person> regularPersons = new LinkedList<>();

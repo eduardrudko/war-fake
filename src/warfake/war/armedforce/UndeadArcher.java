@@ -2,8 +2,8 @@ package warfake.war.armedforce;
 
 import java.util.Random;
 
-import warefake.helpers.markers.Horde;
-import warefake.helpers.markers.NoEnemiesException;
+import warfake.exeptions.NoEnemiesException;
+import warfake.markers.Horde;
 import warfake.war.armory.UndeadWeapons;
 import warfake.war.battlefield.Squad;
 import warfake.war.classes.and.races.Archer;

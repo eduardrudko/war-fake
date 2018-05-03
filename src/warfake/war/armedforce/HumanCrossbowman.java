@@ -2,9 +2,9 @@ package warfake.war.armedforce;
 
 import java.util.Random;
 
-import warefake.helpers.markers.Aliance;
-import warefake.helpers.markers.Improvable;
-import warefake.helpers.markers.NoEnemiesException;
+import warfake.exeptions.NoEnemiesException;
+import warfake.markers.Aliance;
+import warfake.markers.Improvable;
 import warfake.war.armory.HumanWeapons;
 import warfake.war.battlefield.ElfSquadFactory;
 import warfake.war.battlefield.OrcSquadFactory;

@@ -48,7 +48,6 @@ public class HumanMage extends Person implements Mage, Aliance {
 		try {
 			Person target = targets.getRandomImprovableTarget();
 			if (target instanceof HumanCrossbowman) {
-				target.setIsImproved(true);
 				target.setAccuracy(getAccuracy());
 				target.setAccuracy(Math.min((target.getAccuracy() + (target.getMaxAccuracy() * ENHANCE_CROSSBOWMAN_POWER) / 100),
 						getMaxAccuracy()));

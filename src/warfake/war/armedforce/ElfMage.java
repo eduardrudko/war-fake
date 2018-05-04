@@ -47,7 +47,6 @@ public class ElfMage extends Person implements Mage, Aliance {
 		try {
 			Person target = targets.getRandomImprovableTarget();
 			if (target instanceof ElfArcher) {
-				target.setIsImproved(true);
 				target.setAccuracy(getAccuracy());
 				target.setAccuracy(
 						Math.min((target.getAccuracy() + (target.getMaxAccuracy() * ENHANCE_ARCHER_POWER) / 100),

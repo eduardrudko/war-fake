@@ -117,7 +117,7 @@ public abstract class Squad {
 					aliance.regularPersons.add(person);
 				} else {
 					horde.superPersons.remove(person);
-					horde.superPersons.add(person);
+					horde.regularPersons.add(person);
 				}
 			}
 			performRegularActions(generalRegularPersonsPull, aliance, horde);

@@ -222,9 +222,9 @@ public abstract class Person {
 	 * @param target of the spell
 	 */
 	protected void logResurrection(String name, Person target) {
-		System.out.println("\"" + name + "\"" + " use resurection spell on " + "\"" + target.getName() + "\""
+		System.out.println("\"" + name + "\"" + " use resurrection spell on " + "\"" + target.getName() + "\""
 				+ " and rises it as a zombie!\n");
-		Game.logs.append("\"" + name + "\"" + " use resurection spell on " + "\"" + target.getName() + "\""
+		Game.logs.append("\"" + name + "\"" + " use resurrection spell on " + "\"" + target.getName() + "\""
 				+ " and rises it as a zombie!\n");
 	}
 	/**

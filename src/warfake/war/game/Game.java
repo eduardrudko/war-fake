@@ -74,7 +74,7 @@ public class Game {
 			horde = OrcSquadFactory.generateOrcSquad();
 			break;
 		case 2:
-			System.out.print(" Undeads!");
+			System.out.println(" Undeads!");
 			logs.append(" Undeads!\n");
 			horde = UndeadSquadFactory.generateUndeadSquad();
 			break;

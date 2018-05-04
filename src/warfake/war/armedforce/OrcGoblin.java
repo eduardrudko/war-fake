@@ -12,7 +12,7 @@ import warfake.war.battlefield.Squad;
 import warfake.war.game.Game;
 
 public class OrcGoblin extends Person implements Warrior, Horde, Improvable {
-	private float strikePower = 20;
+	private float strikePower = 10;
 	private static OrcWeapons club = OrcWeapons.CLUB;
 	private static final int NUMBER_OF_SKILLS = 1;
 	private static int id = 1;

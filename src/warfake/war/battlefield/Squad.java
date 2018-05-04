@@ -91,8 +91,9 @@ public abstract class Squad {
 	 * 1. Checks if there are soldiers from the both side
 	 * 2. Creates regular and super pulls from both squads
 	 * 3. Takes a random character from super pull and performs random action
-	 * 4. Takes a random character from regular pull and performs random action
-	 * 5. Distributes characters to the relevant list of characters after performing an action
+	 * 4. Resets stats if character was improved
+	 * 5. Takes a random character from regular pull and performs random action
+	 * 6. Distributes characters to the relevant list of characters after performing an action
 	 * @param aliance squad of elfs or humans
 	 * @param horde squad of orcs or undeads
 	 */
@@ -104,13 +105,19 @@ public abstract class Squad {
 		ArrayList<Person> generalSuperPersonsPull = gatherSuperPersons(aliance, horde);
 		ArrayList<Person> generalRegularPersonsPull = gatherRegularPersons(aliance, horde);
 		if (generalSuperPersonsPull.size() != 0) {
+			System.out.println("Improved characters are move first\n");
+			Game.logs.append("Improved characters are move first\n");
 			Collections.shuffle(generalSuperPersonsPull);
 			for (int i = 0; i < generalSuperPersonsPull.size(); i++) {
 				Person person = generalSuperPersonsPull.get(i);
 				if (person.isDead()) {
 					continue;
-				} else {
+				}
+				else if (person.isImproved()) {
 					person.performRandomAction(aliance, horde);
+					person.setStrikePower(person.getDefaultStrikePower());
+					person.setAccuracy(0);
+					person.setIsImproved(false);
 				}
 				if (person instanceof Aliance) {
 					aliance.superPersons.remove(person);
@@ -254,12 +261,32 @@ public abstract class Squad {
 
 	private static void performRegularActions(ArrayList<Person> generalRegularPersonsPull, Squad aliance,
 			Squad horde) {
+		if (aliance.getNumberOfSoldiers() != 0 && horde.getNumberOfSoldiers() != 0) {
+			System.out.println("Regular characters are moving: \n");
+			Game.logs.append("Regular characters are moving:\n");
+		}
 		Collections.shuffle(generalRegularPersonsPull);
 		for (int i = 0; i < generalRegularPersonsPull.size(); i++) {
 			Person person = generalRegularPersonsPull.get(i);
 			if (person.isDead()) {
 				continue;
-			} else {
+			}
+			else if (person.isCursed()) {
+				person.setStrikePower(person.getDefaultStrikePower());
+				person.setAccuracy(0);
+				person.setIsCursed(false);
+				person.performRandomAction(aliance, horde);
+			}
+			else if (person.isImproved()) {
+				float tempPower = person.getStrikePower();
+				int tempAccuracy = person.getAccuracy();
+				person.setStrikePower(person.getDefaultStrikePower());
+				person.setAccuracy(0);
+				person.performRandomAction(aliance, horde);
+				person.setStrikePower(tempPower);
+				person.setAccuracy(tempAccuracy);
+			}
+			else {
 				person.performRandomAction(aliance, horde);
 			}
 		}

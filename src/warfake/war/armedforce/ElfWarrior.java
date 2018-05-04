@@ -16,6 +16,7 @@ public class ElfWarrior extends Person implements Warrior, Aliance, Improvable, 
 	private float strikePower = 20;
 	private static ElfWeapons longSword = ElfWeapons.ELVEN_LONGSWORD;
 	private static final int NUMBER_OF_SKILLS = 1;
+	private static final float DEFAULT_STIKE_POWER_FOR_WARRIORS = 20;
 	private static int id = 1;
 	private int name = id++;
 
@@ -29,13 +30,10 @@ public class ElfWarrior extends Person implements Warrior, Aliance, Improvable, 
 			Person target = targets.getRandomTarget();
 			int accuracy = getRandomAccuracy();
 			dealDamage(target, strikePower, accuracy);
+			System.out.println("Strike power" + strikePower);
 			logStrikeAction(getName(), longSword.getWeaponAction(), target, strikePower, accuracy);
 			if (target.isDead()) {
 				targets.removePerson(target);
-			}
-			if (this.isImproved()) {
-				this.setIsImproved(false);
-				this.setStrikePower(getDefaultStrikePowerForWarriors());
 			}
 		} catch (NoEnemiesException e) {
 			logAlianceVictory();
@@ -53,6 +51,11 @@ public class ElfWarrior extends Person implements Warrior, Aliance, Improvable, 
 	@Override
 	public void setStrikePower(float strikePower) {
 		this.strikePower = strikePower;
+	}
+	
+	@Override
+	public float getDefaultStrikePower() {
+		return DEFAULT_STIKE_POWER_FOR_WARRIORS;
 	}
 
 	@Override

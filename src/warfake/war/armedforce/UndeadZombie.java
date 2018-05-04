@@ -22,7 +22,7 @@ public class UndeadZombie extends Person implements Warrior, Horde, Resurectable
 	
 	public UndeadZombie() {
 		setName("Undead Zombie " + name);
-		setStrikePower(getDefaultStrikePowerForWarriors() - (getDefaultStrikePowerForWarriors() * PRECENT_Of_WEAKNESS) / 100);
+		setStrikePower(getDefaultStrikePower() - (getDefaultStrikePower() * PRECENT_Of_WEAKNESS) / 100);
 		setHealth(ZOMBIE_HEALTH);
 	}
 	

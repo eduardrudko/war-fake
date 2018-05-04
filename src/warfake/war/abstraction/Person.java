@@ -10,10 +10,11 @@ public abstract class Person {
 	private static final int MAX_HP = 100;
 	private int accuracy;
 	private static final int MAX_ACCURACY = 100;
+	private static final float DEFAULT_STIKE_POWER = 20;
 	private float strikePower;
-	private static final float DEFAULT_STIKE_POWER_FOR_WARRIORS = 20;
 	private boolean isDead;
 	private boolean isImproved;
+	private boolean isCursed;
 
 	public String getName() {
 		return name;
@@ -55,8 +56,8 @@ public abstract class Person {
 		this.strikePower = strikePower;
 	}
 
-	public float getDefaultStrikePowerForWarriors() {
-		return DEFAULT_STIKE_POWER_FOR_WARRIORS;
+	public float getDefaultStrikePower() {
+		return DEFAULT_STIKE_POWER;
 	}
 
 	public boolean isImproved() {
@@ -65,6 +66,14 @@ public abstract class Person {
 
 	public void setIsImproved(boolean state) {
 		isImproved = state;
+	}
+	
+	public boolean isCursed() {
+		return isCursed;
+	}
+	
+	public void setIsCursed(boolean state) {
+		isCursed = state;
 	}
 
 	/**
@@ -168,13 +177,13 @@ public abstract class Person {
 	 */
 	protected void logEnhanceActionForRangers(String name, Person target, int currentAccuracy, int enhancePower) {
 		System.out.println("\"" + name + "\"" + " lays enhancing power upon " + "\"" + target.getName() + "\""
-				+ " and increaces accuracy by " + enhancePower + "%");
+				+ " and increaces accuracy by " + enhancePower + "%!");
 		Game.logs.append("\"" + name + "\"" + " lays enhancing power upon " + target.getName()
-				+ " and increaces accuracy by " + enhancePower + "%");
+				+ " and increaces accuracy by " + enhancePower + "%!");
 		System.out.println(
-				"\"" + target.getName() + "\"" + " has +" + target.getAccuracy() + "% accuracy passive bonus now!\n");
+				"\"" + target.getName() + "\"" + " will have +" + target.getAccuracy() + "% accuracy passive bonus for the next turn!\n");
 		Game.logs.append(
-				"\"" + target.getName() + "\"" + " has +" + target.getAccuracy() + "% accuracy passive bonus now!\n");
+				"\"" + target.getName() + "\"" + " will have +" + target.getAccuracy() + "% accuracy passive bonus for the next turn!\n");
 	}
 	/**
 	 * Directs the logs produced during enhancing meeles power attack to the standard output
@@ -189,8 +198,8 @@ public abstract class Person {
 				+ " and increaces melee power by " + enhancePower + "%");
 		Game.logs.append("\"" + name + "\"" + " lays enhancing power upon " + "\"" + target.getName() + "\""
 				+ " and increaces melee power by " + enhancePower + "%");
-		System.out.println("\"" + target.getName() + "\"" + " has " + target.getStrikePower() + " attack power now!\n");
-		Game.logs.append("\"" + target.getName() + "\"" + " has " + target.getStrikePower() + " attack power now!\n");
+		System.out.println("\"" + target.getName() + "\"" + " will have " + target.getStrikePower() + " attack power for the next turn!\n");
+		Game.logs.append("\"" + target.getName() + "\"" + " will have " + target.getStrikePower() + " attack power for the next turn\n");
 	}
 	/**
 	 * Directs the logs produced during curse spell to the standard output
@@ -200,9 +209,9 @@ public abstract class Person {
 	 */
 	protected void logCurseAction(String name, Person target) {
 		System.out.println("\"" + name + "\"" + " curses the " + "\"" + target.getName() + "\""
-				+ " and absorb all status bonuses!\n");
+				+ " and absorb all status bonuses for the next turn!\n");
 		Game.logs.append("\"" + name + "\"" + " curses the " + "\"" + target.getName() + "\""
-				+ " and absorb all status bonuses!\n");
+				+ " and absorb all status bonuses for the next turn!\n");
 	}
 	/**
 	 * Directs the logs produced during failed curse spell to the standard output
@@ -262,6 +271,7 @@ public abstract class Person {
 	 * Each person is able to get its own accuracy value before performing an action
 	 */
 	protected int getRandomAccuracy() {
+		System.out.println("Getting random accuracy with bonus : " + getAccuracy());
 		return (int) (Math.min((Math.random() * getMaxAccuracy() + getAccuracy()), 100));
 	}
 }

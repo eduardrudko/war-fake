@@ -28,14 +28,11 @@ public class OrcGoblin extends Person implements Warrior, Horde, Improvable {
 		try {
 			Person target = targets.getRandomTarget();
 			int accuracy = getRandomAccuracy();
+			System.out.println("Strike power" + strikePower);
 			dealDamage(target, strikePower, accuracy);
 			logStrikeAction(getName(), club.getWeaponAction(), target, strikePower, accuracy);
 			if (target.isDead()) {
 				targets.removePerson(target);
-			}
-			if (this.isImproved()) {
-				this.setIsImproved(false);
-				this.setStrikePower(DEFAULT_STRIKE_POWER_GOBLIN);
 			}
 		} catch (NoEnemiesException e) {
 			logHordeVictory();
@@ -63,6 +60,11 @@ public class OrcGoblin extends Person implements Warrior, Horde, Improvable {
 	@Override
 	public void setStrikePower(float strikePower) {
 		this.strikePower = strikePower;
+	}
+	
+	@Override
+	public float getDefaultStrikePower() {
+		return DEFAULT_STRIKE_POWER_GOBLIN;
 	}
 
 	public static void main(String[] args) {

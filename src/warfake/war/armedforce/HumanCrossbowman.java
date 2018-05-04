@@ -36,8 +36,8 @@ public class HumanCrossbowman extends Person implements Archer, Aliance, Improva
 			}
 		} catch (NoEnemiesException e) {
 			logAlianceVictory();
-			Game.createResults();
 			Game.gameProcess = false;
+			Game.createResults();
 			System.exit(0);
 		}
 	}

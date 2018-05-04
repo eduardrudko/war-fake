@@ -25,6 +25,7 @@ public class OrcShaman extends Person implements Mage, Horde {
 		try {
 			Person target = targets.getRandomImprovedTarget();
 			targets.demotePerson(target);
+			target.setIsCursed(true);
 			logCurseAction(getName(), target);
 		} 
 		catch (NoImprovedTargetsException e) {
@@ -37,7 +38,7 @@ public class OrcShaman extends Person implements Mage, Horde {
 		try {
 			Person target = targets.getRandomImprovableTarget();
 			if (target instanceof OrcArcher) {
-				target.setAccuracy(getAccuracy());
+				target.setIsImproved(true);
 				target.setAccuracy(
 						Math.min((target.getAccuracy() + (target.getMaxAccuracy() * ENHANCE_ARCHER_POWER) / 100),
 								getMaxAccuracy()));

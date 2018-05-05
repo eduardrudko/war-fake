@@ -88,12 +88,11 @@ public abstract class Squad {
 	}
 	/**
 	 * Main algorithm which produce game moves
-	 * 1. Checks if there are soldiers from the both side
-	 * 2. Creates regular and super pulls from both squads
+	 * 1. Creates regular and super pulls from both squads
 	 * 3. Takes a random character from super pull and performs random action
 	 * 4. Resets stats if character was improved
 	 * 5. Takes a random character from regular pull and performs random action
-	 * 6. Distributes characters to the relevant list of characters after performing an action
+	 * 6. Distributes characters to the relevant lists of characters after performing an action
 	 * @param aliance squad of elfs or humans
 	 * @param horde squad of orcs or undeads
 	 */

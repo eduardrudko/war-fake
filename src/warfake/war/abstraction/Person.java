@@ -275,8 +275,8 @@ public abstract class Person {
 	}
 	
 	protected void logCurrentBonuses(int accuracy, float attackPower) {
-		System.out.print("[AC:" + accuracy + "]");
-		Game.logs.append("[AC:" + accuracy + "]");
+		System.out.print("[AC:" + accuracy + "%]");
+		Game.logs.append("[AC:" + accuracy + "%]");
 		System.out.print("[AP:" + attackPower + "] ");
 		Game.logs.append("[AP:" + attackPower + "] ");
 	}

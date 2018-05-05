@@ -105,8 +105,10 @@ public abstract class Squad {
 		ArrayList<Person> generalSuperPersonsPull = gatherSuperPersons(aliance, horde);
 		ArrayList<Person> generalRegularPersonsPull = gatherRegularPersons(aliance, horde);
 		if (generalSuperPersonsPull.size() != 0) {
-			System.out.println("Improved characters are move first\n");
-			Game.logs.append("Improved characters are move first\n");
+			if (aliance.getNumberOfSoldiers() != 0 && horde.getNumberOfSoldiers() != 0) {
+				System.out.println("Improved characters are moving first\n");
+				Game.logs.append("Improved characters are moving first\n");
+			}
 			Collections.shuffle(generalSuperPersonsPull);
 			for (int i = 0; i < generalSuperPersonsPull.size(); i++) {
 				Person person = generalSuperPersonsPull.get(i);

@@ -13,7 +13,7 @@ import warfake.war.game.Game;
 public class ElfMage extends Person implements Mage, Aliance {
 	private static final int HEAL_POWER = 20;
 	private static final int ENHANCE_WARRIOR_POWER = 20;
-	private static final int ENHANCE_ARCHER_POWER = 10;
+	private static final int ENHANCE_ARCHER_ACCURACY = 10;
 	private static final int NUMBER_OF_SKILLS = 2;
 	private static int id = 1;
 	private int name = id++;
@@ -49,9 +49,9 @@ public class ElfMage extends Person implements Mage, Aliance {
 			if (target instanceof ElfArcher) {
 				target.setIsImproved(true);
 				target.setAccuracy(
-						Math.min((target.getAccuracy() + (target.getMaxAccuracy() * ENHANCE_ARCHER_POWER) / 100),
+						Math.min((target.getAccuracy() + (target.getMaxAccuracy() * ENHANCE_ARCHER_ACCURACY) / 100),
 								getMaxAccuracy()));
-				logEnhanceActionForRangers(getName(), target, target.getAccuracy(), ENHANCE_ARCHER_POWER);
+				logEnhanceActionForRangers(getName(), target, target.getAccuracy(), ENHANCE_ARCHER_ACCURACY);
 				targets.promotePerson(target);
 			} else {
 				target.setIsImproved(true);

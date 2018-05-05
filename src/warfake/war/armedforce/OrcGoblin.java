@@ -15,7 +15,7 @@ public class OrcGoblin extends Person implements Warrior, Horde, Improvable {
 	private float strikePower = 10;
 	private static OrcWeapons club = OrcWeapons.CLUB;
 	private static final int NUMBER_OF_SKILLS = 1;
-	private static final int DEFAULT_STRIKE_POWER_GOBLIN = 10;
+	private static final int DEFAULT_STRIKE_POWER_FOR_GOBLINS = 10;
 	private static int id = 1;
 	private int name = id++;
 
@@ -64,6 +64,6 @@ public class OrcGoblin extends Person implements Warrior, Horde, Improvable {
 	
 	@Override
 	public float getDefaultStrikePower() {
-		return DEFAULT_STRIKE_POWER_GOBLIN;
+		return DEFAULT_STRIKE_POWER_FOR_GOBLINS;
 	}
 }

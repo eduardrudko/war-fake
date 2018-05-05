@@ -44,6 +44,7 @@ public class UndeadZombie extends Person implements Warrior, Horde, Resurectable
 			Person target = targets.getRandomTarget();
 			int accuracy = getRandomAccuracy();
 			dealDamage(target, strikePower, accuracy);
+			logCurrentBonuses(getAccuracy(), strikePower);
 			logStrikeAction(getName(), rottenFist.getWeaponAction(), target, strikePower, accuracy);
 			if (target.isDead()) {
 				targets.removePerson(target);

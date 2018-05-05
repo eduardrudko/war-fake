@@ -30,6 +30,7 @@ public class OrcArcher extends Person implements Archer, Horde, Improvable {
 			Person target = targets.getRandomTarget();
 			int accuracy = getRandomAccuracy();
 			dealDamage(target, SHOT_POWER, accuracy);
+			logCurrentBonuses(getAccuracy(), SHOT_POWER);
 			logStrikeAction(getName(), bow.getWeaponAction(), target, SHOT_POWER, accuracy);
 			if (target.isDead()) {
 				targets.removePerson(target);
@@ -49,6 +50,7 @@ public class OrcArcher extends Person implements Archer, Horde, Improvable {
 			Person target = targets.getRandomTarget();
 			int accuracy = getMaxAccuracy();
 			dealDamage(target, STRIKE_POWER, accuracy);
+			logCurrentBonuses(getAccuracy(), STRIKE_POWER);
 			logStrikeAction(getName(), axe.getWeaponAction(), target, STRIKE_POWER, accuracy);
 			if (target.isDead()) {
 				targets.removePerson(target);

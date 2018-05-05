@@ -127,14 +127,14 @@ public abstract class Person {
  */
 	protected void logStrikeAction(String attackerName, String actionType, Person target, float strikePower,
 			int accuracy) {
-		System.out.println(
+		System.out.println("The " +
 				"\"" + attackerName + "\"" + actionType + "\"" + target.getName() + "\"" + " with the accuracy of "
 						+ accuracy + "%" + " and deal " + Math.round((strikePower * accuracy) / 100) + " damage!");
-		Game.logs.append("\"" + attackerName + "\"" + actionType + target.getName() + " with the accuracy of "
+		Game.logs.append("The " + "\"" + attackerName + "\"" + actionType + target.getName() + " with the accuracy of "
 				+ accuracy + "%" + " and deal " + Math.round((strikePower * accuracy) / 100) + " damage!\n");
-		System.out.println("\"" + target.getName() + "\"" + " has " + "[" + target.getHealth() + "/"
+		System.out.println("The " + "\"" + target.getName() + "\"" + " has " + "[" + target.getHealth() + "/"
 				+ target.getMaxHealth() + "]" + " HP left!\n");
-		Game.logs.append("\"" + target.getName() + "\"" + " has " + "[" + target.getHealth() + "/"
+		Game.logs.append("The " + "\"" + target.getName() + "\"" + " has " + "[" + target.getHealth() + "/"
 				+ target.getMaxHealth() + "]" + " HP left!\n");
 	}
 	/**
@@ -146,13 +146,13 @@ public abstract class Person {
 	 * @param healPower of the caster
 	 */
 	protected void logHealAction(String name, Person target, float currentHealth, float healPower) {
-		System.out.println("\"" + name + "\"" + " lays healing power upon " + "\"" + target.getName() + "\""
+		System.out.println("The " + "\"" + name + "\"" + " lays healing power upon " + "\"" + target.getName() + "\""
 				+ " and heals " + ((MAX_HP * healPower) / 100) + " HP!");
-		Game.logs.append("\"" + name + "\"" + " lays healing power upon " + "\"" + target.getName() + "\""
+		Game.logs.append("The " + "\"" + name + "\"" + " lays healing power upon " + "\"" + target.getName() + "\""
 				+ " and heals " + ((MAX_HP * healPower) / 100) + " HP!\n");
-		System.out.println(target.getName() + " has " + "[" + target.getHealth() + "/" + target.getMaxHealth() + "]"
+		System.out.println("The " + "\"" + target.getName() + "\"" + " has " + "[" + target.getHealth() + "/" + target.getMaxHealth() + "]"
 				+ " HP now!\n");
-		Game.logs.append(target.getName() + " has " + "[" + target.getHealth() + "/" + target.getMaxHealth() + "]"
+		Game.logs.append("The " + "\"" + target.getName() + "\"" + " has " + "[" + target.getHealth() + "/" + target.getMaxHealth() + "]"
 				+ " HP now!\n");
 	}
 	/**
@@ -162,9 +162,9 @@ public abstract class Person {
 	 * @param target of the spell
 	 */
 	protected void logFailedHealAction(String name, Person target) {
-		System.out.println("\"" + name + "\"" + " tries to use healing power but spell doesn't have any effect! " + "\""
+		System.out.println("The " + "\"" + name + "\"" + " tries to use healing power but spell doesn't have any effect! " + "\""
 				+ target.getName() + "\"" + " is healthy!\n");
-		Game.logs.append("\"" + name + "\"" + " tries to use healing power but spell doesn't have any effect! " + "\""
+		Game.logs.append("The " + "\"" + name + "\"" + " tries to use healing power but spell doesn't have any effect! " + "\""
 				+ target.getName() + "\"" + " is healthy!\n");
 	}
 	/**
@@ -176,13 +176,13 @@ public abstract class Person {
 	 * @param enhancePower of the caster
 	 */
 	protected void logEnhanceActionForRangers(String name, Person target, int currentAccuracy, int enhancePower) {
-		System.out.println("\"" + name + "\"" + " lays enhancing power upon " + "\"" + target.getName() + "\""
+		System.out.println("The " + "\"" + name + "\"" + " lays enhancing power upon " + "\"" + target.getName() + "\""
 				+ " and increaces accuracy by " + enhancePower + "%!");
-		Game.logs.append("\"" + name + "\"" + " lays enhancing power upon " + target.getName()
+		Game.logs.append("The " + "\"" + name + "\"" + " lays enhancing power upon " + target.getName()
 				+ " and increaces accuracy by " + enhancePower + "%!");
-		System.out.println(
+		System.out.println("The " + 
 				"\"" + target.getName() + "\"" + " will have +" + target.getAccuracy() + "% accuracy passive bonus for the next turn!\n");
-		Game.logs.append(
+		Game.logs.append("The " + 
 				"\"" + target.getName() + "\"" + " will have +" + target.getAccuracy() + "% accuracy passive bonus for the next turn!\n");
 	}
 	/**
@@ -194,12 +194,12 @@ public abstract class Person {
 	 * @param enhancePower of the caster
 	 */
 	protected void logEnhanceActionForMelee(String name, Person target, float currentPower, int enhancePower) {
-		System.out.println("\"" + name + "\"" + " lays enhancing power upon " + "\"" + target.getName() + "\""
+		System.out.println("The " + "\"" + name + "\"" + " lays enhancing power upon " + "\"" + target.getName() + "\""
 				+ " and increaces melee power by " + enhancePower + "%");
-		Game.logs.append("\"" + name + "\"" + " lays enhancing power upon " + "\"" + target.getName() + "\""
+		Game.logs.append("The " + "\"" + name + "\"" + " lays enhancing power upon " + "\"" + target.getName() + "\""
 				+ " and increaces melee power by " + enhancePower + "%");
-		System.out.println("\"" + target.getName() + "\"" + " will have " + target.getStrikePower() + " attack power for the next turn!\n");
-		Game.logs.append("\"" + target.getName() + "\"" + " will have " + target.getStrikePower() + " attack power for the next turn\n");
+		System.out.println("The " + "\"" + target.getName() + "\"" + " will have " + target.getStrikePower() + " attack power for the next turn!\n");
+		Game.logs.append("The " + "\"" + target.getName() + "\"" + " will have " + target.getStrikePower() + " attack power for the next turn\n");
 	}
 	/**
 	 * Directs the logs produced during curse spell to the standard output
@@ -208,9 +208,9 @@ public abstract class Person {
 	 * @param target of the spell
 	 */
 	protected void logCurseAction(String name, Person target) {
-		System.out.println("\"" + name + "\"" + " curses the " + "\"" + target.getName() + "\""
+		System.out.println("The " + "\"" + name + "\"" + " curses the " + "\"" + target.getName() + "\""
 				+ " and absorb all status bonuses for the next turn!\n");
-		Game.logs.append("\"" + name + "\"" + " curses the " + "\"" + target.getName() + "\""
+		Game.logs.append("The " + "\"" + name + "\"" + " curses the " + "\"" + target.getName() + "\""
 				+ " and absorb all status bonuses for the next turn!\n");
 	}
 	/**
@@ -219,9 +219,9 @@ public abstract class Person {
 	 * @param name of the caster
 	 */
 	protected void logFailedCurseAction(String name) {
-		System.out.println(
+		System.out.println("The " + 
 				"\"" + name + "\"" + " tries to use shamany curse but it's failed! There are no improved enemies!\n");
-		Game.logs.append(
+		Game.logs.append("The " + 
 				"\"" + name + "\"" + " tries to use shamany curse but it's failed! There are no improved enemies!\n");
 	}
 	/**
@@ -231,9 +231,9 @@ public abstract class Person {
 	 * @param target of the spell
 	 */
 	protected void logResurrection(String name, Person target) {
-		System.out.println("\"" + name + "\"" + " use resurrection spell on " + "\"" + target.getName() + "\""
+		System.out.println("The " + "\"" + name + "\"" + " use resurrection spell on " + "\"" + target.getName() + "\""
 				+ " and rises it as a zombie!\n");
-		Game.logs.append("\"" + name + "\"" + " use resurrection spell on " + "\"" + target.getName() + "\""
+		Game.logs.append("The " + "\"" + name + "\"" + " use resurrection spell on " + "\"" + target.getName() + "\""
 				+ " and rises it as a zombie!\n");
 	}
 	/**
@@ -242,9 +242,9 @@ public abstract class Person {
 	 * @param name of the caster
 	 */
 	protected void logFailedUndeadResurraction(String name) {
-		System.out.println("\"" + name + "\""
+		System.out.println("The " + "\"" + name + "\""
 				+ " tries to use black magic to rise a dead but it's failed! There are no dead bodies around!\n");
-		Game.logs.append("\"" + name + "\""
+		Game.logs.append("The " + "\"" + name + "\""
 				+ " tries to use black magic to rise a dead but it's failed! There are no dead bodies around!\n");
 	}
 	/**
@@ -253,7 +253,7 @@ public abstract class Person {
 	 */
 	protected void logAlianceVictory() {
 		System.out.println("No enemies left!");
-		Game.logs.append("No enemies left!");
+		Game.logs.append("No enemies left!\n");
 		System.out.println("Aliance won!");
 		Game.logs.append("Aliance won!");
 	}
@@ -271,7 +271,13 @@ public abstract class Person {
 	 * Each person is able to get its own accuracy value before performing an action
 	 */
 	protected int getRandomAccuracy() {
-		System.out.println("Accuracy bonus: " + getAccuracy());
 		return (int) (Math.min((Math.random() * getMaxAccuracy() + getAccuracy()), 100));
+	}
+	
+	protected void logCurrentBonuses(int accuracy, float attackPower) {
+		System.out.print("[AC:" + accuracy + "]");
+		Game.logs.append("[AC:" + accuracy + "]");
+		System.out.print("[AP:" + attackPower + "] ");
+		Game.logs.append("[AP:" + attackPower + "] ");
 	}
 }

@@ -28,6 +28,7 @@ public class UndeadNecromant extends Person implements Mage, Horde {
 			Person target = targets.getRandomTarget();
 			int accuracy = getMaxAccuracy();
 			dealDamage(target, POKE_POWER, accuracy);
+			logCurrentBonuses(getAccuracy(), POKE_POWER);
 			logStrikeAction(getName(), boneStuff.getWeaponAction(), target, POKE_POWER, accuracy);
 			if (target.isDead()) {
 				targets.removePerson(target);

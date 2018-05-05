@@ -30,6 +30,7 @@ public class HumanMage extends Person implements Mage, Aliance {
 			Person target = targets.getRandomTarget();
 			int accuracy = getRandomAccuracy();
 			dealDamage(target, MAGIC_POWER, accuracy);
+			logCurrentBonuses(getAccuracy(), MAGIC_POWER);
 			logStrikeAction(getName(), fireBallSpell.getWeaponAction(), target, MAGIC_POWER, accuracy);
 			if (target.isDead()) {
 				targets.removePerson(target);

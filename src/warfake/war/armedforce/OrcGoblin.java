@@ -28,7 +28,7 @@ public class OrcGoblin extends Person implements Warrior, Horde, Improvable {
 		try {
 			Person target = targets.getRandomTarget();
 			int accuracy = getRandomAccuracy();
-			System.out.println("Strike power" + strikePower);
+			logCurrentBonuses(getAccuracy(), strikePower);
 			dealDamage(target, strikePower, accuracy);
 			logStrikeAction(getName(), club.getWeaponAction(), target, strikePower, accuracy);
 			if (target.isDead()) {

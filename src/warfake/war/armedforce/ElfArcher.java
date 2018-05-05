@@ -30,7 +30,7 @@ public class ElfArcher extends Person implements Archer, Aliance, Improvable {
 			Person target = targets.getRandomTarget();
 			int accuracy = getRandomAccuracy();
 			dealDamage(target, SHOT_POWER, accuracy);
-			System.out.println("Accuracy " + accuracy);
+			logCurrentBonuses(getAccuracy(), SHOT_POWER);
 			logStrikeAction(getName(), elvenBow.getWeaponAction(), target, SHOT_POWER, accuracy);
 			if (target.isDead()) {
 				targets.removePerson(target);
@@ -49,6 +49,7 @@ public class ElfArcher extends Person implements Archer, Aliance, Improvable {
 			Person target = targets.getRandomTarget();
 			int accuracy = getMaxAccuracy();
 			dealDamage(target, STAB_POWER, accuracy);
+			logCurrentBonuses(getAccuracy(), STAB_POWER);
 			logStrikeAction(getName(), elvenDagger.getWeaponAction(), target, STAB_POWER, accuracy);
 			if (target.isDead()) {
 				targets.removePerson(target);

@@ -30,6 +30,7 @@ public class HumanCrossbowman extends Person implements Archer, Aliance, Improva
 			Person target = targets.getRandomTarget();
 			int accuracy = getRandomAccuracy();
 			dealDamage(target, SHOT_POWER, accuracy);
+			logCurrentBonuses(getAccuracy(), SHOT_POWER);
 			logStrikeAction(getName(), crossbow.getWeaponAction(), target, SHOT_POWER, accuracy);
 			if (target.isDead()) {
 				targets.removePerson(target);
@@ -48,6 +49,7 @@ public class HumanCrossbowman extends Person implements Archer, Aliance, Improva
 			Person target = targets.getRandomTarget();
 			int accuracy = getMaxAccuracy();
 			dealDamage(target, STRIKE_POWER, accuracy);
+			logCurrentBonuses(getAccuracy(), STRIKE_POWER);
 			logStrikeAction(getName(), sword.getWeaponAction(), target, STRIKE_POWER, accuracy);
 			if (target.isDead()) {
 				targets.removePerson(target);

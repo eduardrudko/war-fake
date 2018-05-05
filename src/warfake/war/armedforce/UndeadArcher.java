@@ -29,6 +29,7 @@ public class UndeadArcher extends Person implements Archer, Horde {
 			Person target = targets.getRandomTarget();
 			int accuracy = getRandomAccuracy();
 			dealDamage(target, SHOT_POWER, accuracy);
+			logCurrentBonuses(getAccuracy(), SHOT_POWER);
 			logStrikeAction(getName(), boneBow.getWeaponAction(), target, SHOT_POWER, accuracy);
 			if (target.isDead()) {
 				targets.removePerson(target);
@@ -48,6 +49,7 @@ public class UndeadArcher extends Person implements Archer, Horde {
 			Person target = targets.getRandomTarget();
 			int accuracy = getMaxAccuracy();
 			dealDamage(target, STAB_POWER, accuracy);
+			logCurrentBonuses(getAccuracy(), STAB_POWER);
 			logStrikeAction(getName(), knife.getWeaponAction(), target, STAB_POWER, accuracy);
 			if (target.isDead()) {
 				targets.removePerson(target);

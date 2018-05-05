@@ -30,7 +30,7 @@ public class ElfWarrior extends Person implements Warrior, Aliance, Improvable, 
 			Person target = targets.getRandomTarget();
 			int accuracy = getRandomAccuracy();
 			dealDamage(target, strikePower, accuracy);
-			System.out.println("Strike power" + strikePower);
+			logCurrentBonuses(getAccuracy(), strikePower);
 			logStrikeAction(getName(), longSword.getWeaponAction(), target, strikePower, accuracy);
 			if (target.isDead()) {
 				targets.removePerson(target);

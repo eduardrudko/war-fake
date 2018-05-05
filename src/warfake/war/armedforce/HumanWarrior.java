@@ -30,6 +30,7 @@ public class HumanWarrior extends Person implements Warrior, Aliance, Improvable
 			Person target = targets.getRandomTarget();
 			int accuracy = getRandomAccuracy();
 			dealDamage(target, strikePower, accuracy);
+			logCurrentBonuses(getAccuracy(), strikePower);
 			logStrikeAction(getName(), broadsword.getWeaponAction(), target, strikePower, accuracy);
 			if (target.isDead()) {
 				targets.removePerson(target);

@@ -67,8 +67,4 @@ public class HumanWarrior extends Person implements Warrior, Aliance, Improvable
 			break;
 		}
 	}
-
-	public static void main(String[] args) {
-
-	}
 }

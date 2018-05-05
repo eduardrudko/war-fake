@@ -66,9 +66,4 @@ public class OrcGoblin extends Person implements Warrior, Horde, Improvable {
 	public float getDefaultStrikePower() {
 		return DEFAULT_STRIKE_POWER_GOBLIN;
 	}
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
 }

@@ -271,7 +271,7 @@ public abstract class Person {
 	 * Each person is able to get its own accuracy value before performing an action
 	 */
 	protected int getRandomAccuracy() {
-		System.out.println("Getting random accuracy with bonus : " + getAccuracy());
+		System.out.println("Accuracy bonus: " + getAccuracy());
 		return (int) (Math.min((Math.random() * getMaxAccuracy() + getAccuracy()), 100));
 	}
 }

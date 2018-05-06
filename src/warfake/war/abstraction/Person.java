@@ -97,7 +97,7 @@ public abstract class Person {
 	 * @param aliance
 	 *            to perform an action on
 	 * @param horde
-	 *            to perform an action
+	 *            to perform an action on
 	 */
 	public abstract void performRandomAction(Squad aliance, Squad horde);
 
@@ -109,16 +109,16 @@ public abstract class Person {
 	 * @param target
 	 *            damage that have to be dealt on
 	 * @param power
-	 *            the given attack power
+	 *            of attack a character performs
 	 * @param accuracy
-	 *            the given accuracy
+	 *            of attack a character performs
 	 */
 	protected void dealDamage(Person target, float power, int accuracy) {
 		target.setHealth(Math.max((target.getHealth() - Math.round((power * accuracy) / 100)), 0));
 	}
 /**
  * Directs the logs produced during melee strike action to the standard output
- * and writes them to the global log String Builder
+ * and writes them to the global String Builder
  * @param attackerName of the attacker
  * @param actionType string implementation of the action
  * @param target the action has been performed on
@@ -139,7 +139,7 @@ public abstract class Person {
 	}
 	/**
 	 * Directs the logs produced during Heal spell to the standard output
-	 * and writes them to the global log String Builder
+	 * and writes them to the global String Builder
 	 * @param name of the caster
 	 * @param target of the spell
 	 * @param currentHealth on the moment of spell casting
@@ -157,7 +157,7 @@ public abstract class Person {
 	}
 	/**
 	 * Directs the logs produced during failed Heal spell to the standard output
-	 * and writes them to the global log String Builder
+	 * and writes them to the global String Builder
 	 * @param name of the caster
 	 * @param target of the spell
 	 */
@@ -187,7 +187,7 @@ public abstract class Person {
 	}
 	/**
 	 * Directs the logs produced during enhancing meeles power attack to the standard output
-	 * and writes them to the global log String Builder
+	 * and writes them to the global String Builder
 	 * @param name of the caster
 	 * @param target of the spell
 	 * @param currentPower on the moment of spell casting
@@ -203,7 +203,7 @@ public abstract class Person {
 	}
 	/**
 	 * Directs the logs produced during curse spell to the standard output
-	 * and writes them to the global log String Builder
+	 * and writes them to the global String Builder
 	 * @param name of the caster
 	 * @param target of the spell
 	 */
@@ -215,7 +215,7 @@ public abstract class Person {
 	}
 	/**
 	 * Directs the logs produced during failed curse spell to the standard output
-	 * and writes them to the global log String Builder
+	 * and writes them to the global String Builder
 	 * @param name of the caster
 	 */
 	protected void logFailedCurseAction(String name) {
@@ -226,7 +226,7 @@ public abstract class Person {
 	}
 	/**
 	 * Directs the logs produced during resurrection spell to the standard output
-	 * and writes them to the global log String Builder
+	 * and writes them to the global String Builder
 	 * @param name of the caster
 	 * @param target of the spell
 	 */
@@ -238,7 +238,7 @@ public abstract class Person {
 	}
 	/**
 	 * Directs the logs produced during failed resurrection spell to the standard output
-	 * and writes them to the global log String Builder
+	 * and writes them to the global String Builder
 	 * @param name of the caster
 	 */
 	protected void logFailedUndeadResurraction(String name) {
@@ -249,7 +249,7 @@ public abstract class Person {
 	}
 	/**
 	 * Directs the logs produced of the end of the game to the standard output
-	 * and writes them to the global log String Builder. States that the game is end and displays the winner is Aliance.
+	 * and writes them to the global String Builder. States that the game is end and displays the winner is Aliance.
 	 */
 	protected void logAlianceVictory() {
 		System.out.println("No enemies left!");
@@ -259,7 +259,7 @@ public abstract class Person {
 	}
 	/**
 	 * Directs the logs produced of the end of the game to the standard output
-	 * and writes them to the global log String Builder. States that the game is end and displays the winner is Horde.
+	 * and writes them to the global String Builder. States that the game is end and displays the winner is Horde.
 	 */
 	protected void logHordeVictory() {
 		System.out.println("No enemies left!");
@@ -268,19 +268,28 @@ public abstract class Person {
 		Game.logs.append("Horde won!");
 	}
 	/**
-	 * Each person is able to get its own accuracy value before performing an action
+	 * Each person is able to get its own accuracy value + bonuses before performing an action
 	 */
 	protected int getRandomAccuracy() {
 		return (int) (Math.min((Math.random() * getMaxAccuracy() + getAccuracy()), 100));
 	}
-	
+	/**
+	 * Indicates and writes to the logs the current bonuses of accuracy and attack power on the moment of
+	 * performing action.
+	 * @param accuracy AC - Accuracy show the +% accuracy bonus
+	 * @param attackPower AP - Attack Power show the total attack power with bonuses
+	 */
 	protected void logCurrentBonuses(int accuracy, float attackPower) {
 		System.out.print("[AC:" + accuracy + "%]");
 		Game.logs.append("[AC:" + accuracy + "%]");
 		System.out.print("[AP:" + attackPower + "] ");
 		Game.logs.append("[AP:" + attackPower + "] ");
 	}
-	
+	/**
+	 * Indicates and writes to the logs heal power a healing mage has on the moment of
+	 * performing healing spell
+	 * @param healPower
+	 */
 	protected void logCurrentHealPower(float healPower) {
 		System.out.print("[HPower:" + healPower + "%] ");
 		Game.logs.append("[HPower:" + healPower + "%] ");

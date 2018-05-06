@@ -280,4 +280,9 @@ public abstract class Person {
 		System.out.print("[AP:" + attackPower + "] ");
 		Game.logs.append("[AP:" + attackPower + "] ");
 	}
+	
+	protected void logCurrentHealPower(float healPower) {
+		System.out.print("[HPower:" + healPower + "%] ");
+		Game.logs.append("[HPower:" + healPower + "%] ");
+	}
 }

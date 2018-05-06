@@ -30,6 +30,7 @@ public class ElfMage extends Person implements Mage, Aliance {
 			if (currentHealth < getMaxHealth()) {
 				target.setHealth((Math.min((Math.round((currentHealth + (getMaxHealth() * HEAL_POWER) / 100))),
 						getMaxHealth())));
+				logCurrentHealPower(HEAL_POWER);
 				logHealAction(getName(), target, currentHealth, HEAL_POWER);
 			} else {
 				logFailedHealAction(getName(), target);

@@ -26,6 +26,7 @@ public abstract class Squad {
 	private LinkedList<Person> regularPersons = new LinkedList<>();
 	private LinkedList<Person> superPersons = new LinkedList<>();
 	private static LinkedList<Person> deadCorpses = new LinkedList<>();
+	private static Random random = new Random();
 
 	public Squad(LinkedList<Mage> mages, LinkedList<Archer> archers, LinkedList<Warrior> warriors) {
 		for (int i = 0; i < NUMBER_OF_MAGES; i++) {
@@ -141,7 +142,6 @@ public abstract class Squad {
 	 */
 	public Person getRandomTarget() throws NoEnemiesException {
 		LinkedList<Person> targetsPull = new LinkedList<>();
-		Random random = new Random();
 		gatherSquad(targetsPull);
 		if (targetsPull.size() != 0) {
 			return targetsPull.get(random.nextInt(targetsPull.size()));
@@ -166,14 +166,13 @@ public abstract class Squad {
 	 */
 	public Person getRandomImprovableTarget() throws NoImprovableTargetsException {
 		LinkedList<Person> improvableTargets = new LinkedList<>();
-		Random random = new Random();
 		for (Person value : regularPersons) {
 			if (value instanceof Improvable) {
 				improvableTargets.add(value);
 			}
 		}
 		if (improvableTargets.size() != 0) {
-			return improvableTargets.get(random.nextInt(improvableTargets.size())); // bug is here IllegalArgumentException
+			return improvableTargets.get(random.nextInt(improvableTargets.size()));
 		}
 		else {
 			throw new NoImprovableTargetsException();
@@ -186,7 +185,6 @@ public abstract class Squad {
 	 */
 	public Person getRandomImprovedTarget() throws NoImprovedTargetsException {
 		LinkedList<Person> improvedTargets = new LinkedList<>();
-		Random random = new Random();
 		if (superPersons.size() != 0) {
 			for (Person value: this.superPersons) {
 				improvedTargets.add(value);
@@ -204,7 +202,6 @@ public abstract class Squad {
 	 */
 	public static Person useRandomDeadTarget() throws NoDeadBodiesException {
 		LinkedList<Person> deadCorpsesPull = new LinkedList<>();
-		Random random = new Random();
 		if (deadCorpses.size() != 0) {
 			for (Person value: deadCorpses) {
 				if(value instanceof Resurectable) {

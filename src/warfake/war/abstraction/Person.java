@@ -288,7 +288,7 @@ public abstract class Person {
 	/**
 	 * Indicates and writes to the logs heal power a healing mage has on the moment of
 	 * performing healing spell
-	 * @param healPower
+	 * @param healPower the caster is applying
 	 */
 	protected void logCurrentHealPower(float healPower) {
 		System.out.print("[HPower:" + healPower + "%] ");

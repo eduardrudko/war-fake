@@ -10,7 +10,7 @@ public abstract class Person {
 	private static final int MAX_HP = 100;
 	private int accuracy;
 	private static final int MAX_ACCURACY = 100;
-	private static final float DEFAULT_STIKE_POWER = 20;
+	private static final float DEFAULT_STRIKE_POWER = 20;
 	private float strikePower;
 	private boolean isDead;
 	private boolean isImproved;
@@ -57,7 +57,7 @@ public abstract class Person {
 	}
 
 	public float getDefaultStrikePower() {
-		return DEFAULT_STIKE_POWER;
+		return DEFAULT_STRIKE_POWER;
 	}
 
 	public boolean isImproved() {

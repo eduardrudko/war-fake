@@ -138,7 +138,7 @@ public abstract class Squad {
 	/**
 	 * Produces for characters a random target from a pull
 	 * @return a random person
-	 * @throws NoEnemiesException
+	 * @throws NoEnemiesException if during current move there are no available enemies
 	 */
 	public Person getRandomTarget() throws NoEnemiesException {
 		LinkedList<Person> targetsPull = new LinkedList<>();
@@ -163,7 +163,7 @@ public abstract class Squad {
 	/**
 	 * Produces for characters a random improvable target
 	 * @return random improvable target
-	 * @throws NoImprovableTargetsException
+	 * @throws NoImprovableTargetsException if during current move there are no available improvable targets
 	 */
 	public Person getRandomImprovableTarget() throws NoImprovableTargetsException {
 		LinkedList<Person> improvableTargets = new LinkedList<>();
@@ -183,15 +183,13 @@ public abstract class Squad {
 	/**
 	 * Produces for characters a random improved character
 	 * @return improved character
-	 * @throws NoImprovedTargetsException
+	 * @throws NoImprovedTargetsException if during current move there are no available improved targets
 	 */
 	public Person getRandomImprovedTarget() throws NoImprovedTargetsException {
 		LinkedList<Person> improvedTargets = new LinkedList<>();
 		Random random = new Random();
 		if (superPersons.size() != 0) {
-			for (Person value: this.superPersons) {
-				improvedTargets.add(value);
-			}
+			improvedTargets.addAll(superPersons);
 			return improvedTargets.get(random.nextInt(improvedTargets.size()));
 		}
 		else {
@@ -201,7 +199,7 @@ public abstract class Squad {
 	/**
 	 * Produces for characters a random dead body
 	 * @return random dead body
-	 * @throws NoDeadBodiesException
+	 * @throws NoDeadBodiesException if during current move there are no available dead bodies
 	 */
 	public static Person useRandomDeadTarget() throws NoDeadBodiesException {
 		LinkedList<Person> deadCorpsesPull = new LinkedList<>();
@@ -231,33 +229,21 @@ public abstract class Squad {
 	}
 
 	private void gatherSquad(LinkedList<Person> personPull) {
-		for (Person value : regularPersons) {
-			personPull.add(value);
-		}
-		for (Person value : superPersons) {
-			personPull.add(value);
-		}
+		personPull.addAll(regularPersons);
+		personPull.addAll(superPersons);
 	}
 
 	private static ArrayList<Person> gatherSuperPersons(Squad aliance, Squad horde) {
 		ArrayList<Person> temp = new ArrayList<>();
-		for (Person value : aliance.superPersons) {
-			temp.add(value);
-		}
-		for (Person value : horde.superPersons) {
-			temp.add(value);
-		}
+		temp.addAll(aliance.superPersons);
+		temp.addAll(horde.superPersons);
 		return temp;
 	}
 
 	private static ArrayList<Person> gatherRegularPersons(Squad aliance, Squad horde) {
 		ArrayList<Person> temp = new ArrayList<>();
-		for (Person value : aliance.regularPersons) {
-			temp.add(value);
-		}
-		for (Person value : horde.regularPersons) {
-			temp.add(value);
-		}
+		temp.addAll(aliance.regularPersons);
+		temp.addAll(horde.regularPersons);
 		return temp;
 	}
 

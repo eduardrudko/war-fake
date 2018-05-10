@@ -83,10 +83,6 @@ public abstract class Squad {
 		System.out.println("\"" + person.getName() + "\"" + " is dead!\n");
 		Game.logs.append("\"" + person.getName() + "\"" + " is dead!\n");
 	}
-	
-	public void resurectPerson(Person person) {
-		deadCorpses.remove(person);
-	}
 	/**
 	 * Main algorithm which produce game moves
 	 * 1. Creates regular and super pulls from both squads

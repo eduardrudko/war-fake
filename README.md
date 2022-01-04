@@ -11,7 +11,7 @@ To run:
 
 `cd ~/war-fake/src`
 
-`javac -cp . $(find . -name "*.java")`
+`javac $(find . -name "*.java")`
 
 `java warfake.war.game.Game`
 

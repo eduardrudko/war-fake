@@ -11,6 +11,7 @@ To run:
 `java warfake.war.game.Game`
 
 
+
 The game creates a squad of a certain race, consisting of one magician, three archers and four fighters.
 
 There are four races: elves, humans, orcs, undead. Elves and humans play against orcs and undead.

@@ -4,6 +4,8 @@ A simple console type application prototype of self-playable game between Middle
 
 To run:
 
-`javac $(find . -name "*.java")` inside root directory
+`cd ./war-fake/src`
 
-`java src/warfake/war/game/Game.java`
+`javac -cp . $(find . -name "*.java")` inside root directory
+
+`java warfake.war.game.Game`

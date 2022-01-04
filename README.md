@@ -1,6 +1,6 @@
 # WarFake
 
-A prototype of self-playable game Middle-earth
+A prototype of self-playable game between Middle-Earth races
 
 `javac src/warfake/war/game/Game.java`
 

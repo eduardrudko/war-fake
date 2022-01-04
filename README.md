@@ -2,6 +2,9 @@
 
 A simple console type application prototype of self-playable game between Middle-Earth races
 
+Requirements:
+- Java at least 1.8
+
 To run:
 
 `git clone https://github.com/eduardrudko/war-fake.git ~/war-fake`

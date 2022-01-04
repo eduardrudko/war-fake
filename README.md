@@ -1,2 +1,5 @@
 # WarFake
-It is only required to run main to start
+
+`javac src/warfake/war/game/Game.java`
+
+`java src/warfake/war/game/Game.java`

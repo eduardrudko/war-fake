@@ -4,13 +4,15 @@ A simple console type application prototype of self-playable game between Middle
 
 To run:
 
-`cd ./war-fake/src`
+`git clone https://github.com/eduardrudko/war-fake.git ~/war-fake`
 
-`javac -cp . $(find . -name "*.java")` inside root directory
+`cd ~/war-fake/src`
+
+`javac -cp . $(find . -name "*.java")`
 
 `java warfake.war.game.Game`
 
-
+<br>
 
 The game creates a squad of a certain race, consisting of one magician, three archers and four fighters.
 

@@ -1,9 +1,9 @@
 # WarFake
 
-A prototype of self-playable game between Middle-Earth races
+A simple console type application prototype of self-playable game between Middle-Earth races
 
-Compile project with any of the java build tool like mvn or ant then run main
+To run:
 
-`javac src/warfake/war/game/Game.java`
+`javac $(find . -name "*.java")` inside root directory
 
 `java src/warfake/war/game/Game.java`
